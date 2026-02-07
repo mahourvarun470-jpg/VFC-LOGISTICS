@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VFC Logistics | We Deliver Commitment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VFC Logistics | Online Truck Booking</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
-  color: #333;
-}
-header {
-  background: white;
-  color: black;
-  padding: 40px 15px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-}
-section {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-h2 {
-  color: #0a1f44;
-}
-.services li {
-  margin: 10px 0;
-}
-.contact {
-  background: #0a1f44;
-  color: white;
-  padding: 30px 20px;
-  text-align: center;
-}
-footer {
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-}
-</style>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: black;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header img {
+      max-width: 180px;
+      display: block;
+      margin: auto;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-<img src="logo.jpg" alt="VFC Logistics Logo"
-style="max-width:180px; display:block; margin:0 auto 10px; transform: rotate(-90deg);">
+  <img src="logo.jpg" alt="VFC Logistics Logo">
   <h1>VFC LOGISTICS</h1>
   <p><strong>Varun Freight Carrier</strong></p>
   <p>We Deliver Commitment</p>
@@ -58,29 +81,46 @@ style="max-width:180px; display:block; margin:0 auto 10px; transform: rotate(-90
 <section>
   <h2>About Us</h2>
   <p>
-    VFC Logistics is a reliable Indian transport company providing
-    nationwide goods transportation with commitment and trust.
+    VFC Logistics (Varun Freight Carrier) is a reliable Indian transport company
+    providing nationwide goods transportation services with commitment, safety,
+    and trust. We work with owner-driver trucks and ensure timely delivery
+    across India.
   </p>
 </section>
 
 <section>
-  <h2>Our Services</h2>
-  <ul class="services">
-    <li>All India Transportation</li>
-    <li>Full Truck Load (FTL)</li>
-    <li>Part Load Services</li>
-    <li>Owner Driver Fleet</li>
-  </ul>
+  <h2>Online Truck Booking</h2>
+
+  <form action="https://formsubmit.co/varunfc2011@gmail.com" method="POST">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="tel" name="Phone" placeholder="Mobile Number" required>
+    <input type="text" name="Pickup City" placeholder="Pickup City" required>
+    <input type="text" name="Drop City" placeholder="Drop City" required>
+
+    <select name="Truck Type" required>
+      <option value="">Select Truck Type</option>
+      <option>Pickup</option>
+      <option>14 Feet</option>
+      <option>17 Feet</option>
+      <option>20 Feet</option>
+      <option>Trailer</option>
+    </select>
+
+    <input type="date" name="Loading Date" required>
+    <textarea name="Goods Details" placeholder="Goods Details"></textarea>
+
+    <button type="submit">Book Truck</button>
+  </form>
+
+  <div class="contact">
+    📞 <a href="tel:9541842526">9541842526</a> |
+    📞 <a href="tel:9728184226">9728184226</a><br><br>
+    💬 <a href="https://wa.me/919541842526" target="_blank">WhatsApp Booking</a>
+  </div>
 </section>
 
-<div class="contact">
-  <h2>Contact Us</h2>
-  <p>📞 9541842526 | 9728184226</p>
-  <p>📧 varunfc2011@gmail.com</p>
-</div>
-
 <footer>
-  © 2026 VFC Logistics. All Rights Reserved.
+  © 2026 VFC Logistics | Pan India Transport Service
 </footer>
 
 </body>
