@@ -1,192 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VFC Logistics | Truck Transport Services</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VFC Logistics | We Deliver Commitment</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #ffffff;
-      color: #111;
-      line-height: 1.6;
-    }
+<style>
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#000;
+}
 
-    header {
-      text-align: center;
-      padding: 60px 20px 40px;
-      border-bottom: 1px solid #e5e5e5;
-    }
+header{
+  text-align:center;
+  padding:40px 20px;
+  border-bottom:1px solid #e5e5e5;
+}
 
-    header img {
-      max-width: 160px;
-      display: block;
-      margin: 0 auto 20px;
-    }
+header img{
+  max-width:160px;
+  margin-bottom:10px;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 36px;
-      letter-spacing: 1px;
-    }
+header h1{
+  margin:10px 0 5px;
+  font-size:28px;
+  letter-spacing:1px;
+}
 
-    header p {
-      margin: 6px 0;
-      font-size: 15px;
-      color: #444;
-    }
+header p{
+  margin:4px 0;
+  font-size:15px;
+  color:#444;
+}
 
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+.hero{
+  padding:40px 20px;
+  max-width:900px;
+  margin:auto;
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 26px;
-    }
+.hero h2{
+  text-align:center;
+  font-size:24px;
+  margin-bottom:20px;
+}
 
-    .about {
-      text-align: center;
-      max-width: 700px;
-      margin: auto;
-      color: #333;
-    }
+form{
+  max-width:420px;
+  margin:0 auto;
+}
 
-    form {
-      max-width: 420px;
-      margin: 0 auto;
-    }
+input, select, button{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  font-size:15px;
+  border:1px solid #ccc;
+}
 
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 12px;
-      font-size: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+button{
+  background:#000;
+  color:#fff;
+  border:none;
+  margin-top:18px;
+  cursor:pointer;
+}
 
-    textarea {
-      resize: vertical;
-    }
+button:hover{
+  opacity:0.9;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 20px;
-      background: #000;
-      color: #fff;
-      border: none;
-      font-size: 15px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+.contact-strip{
+  text-align:center;
+  margin-top:30px;
+  font-size:15px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.contact-strip a{
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-    .note {
-      margin-top: 25px;
-      font-size: 14px;
-      color: #444;
-      background: #f8f8f8;
-      padding: 15px;
-      border-left: 4px solid #000;
-    }
+section{
+  max-width:900px;
+  margin:auto;
+  padding:30px 20px;
+}
 
-    .contact {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 16px;
-    }
+footer{
+  border-top:1px solid #e5e5e5;
+  padding:20px;
+  font-size:13px;
+  color:#555;
+  max-width:900px;
+  margin:auto;
+}
+</style>
 
-    .contact a {
-      color: #000;
-      text-decoration: none;
-      font-weight: 600;
-    }
+<script>
+function sendBooking(e){
+  e.preventDefault();
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #e5e5e5;
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let pickup = document.getElementById("pickup").value;
+  let drop = document.getElementById("drop").value;
+  let truck = document.getElementById("truck").value;
+
+  let msg =
+  "New Truck Booking Request%0A%0A"+
+  "Name: "+name+"%0A"+
+  "Mobile: "+phone+"%0A"+
+  "Pickup: "+pickup+"%0A"+
+  "Drop: "+drop+"%0A"+
+  "Truck: "+truck+"%0A%0A"+
+  "Please share rate & advance payment details.";
+
+  window.open("https://wa.me/919541842526?text="+msg,"_blank");
+
+  let form = document.createElement("form");
+  form.method="POST";
+  form.action="https://formsubmit.co/varunfc2011@gmail.com";
+
+  form.innerHTML=`
+    <input type="hidden" name="Name" value="${name}">
+    <input type="hidden" name="Phone" value="${phone}">
+    <input type="hidden" name="Pickup City" value="${pickup}">
+    <input type="hidden" name="Drop City" value="${drop}">
+    <input type="hidden" name="Truck Type" value="${truck}">
+    <input type="hidden" name="_subject" value="New Truck Booking - VFC Logistics">
+    <input type="hidden" name="_captcha" value="false">
+  `;
+
+  document.body.appendChild(form);
+  form.submit();
+}
+</script>
 </head>
 
 <body>
 
 <header>
   <img src="logo.jpg" alt="VFC Logistics Logo"
-style="max-width:180px; display:block; margin:0 auto 10px; transform: rotate(-90deg);">
+style="max-width:280px; display:block; margin:0 auto 10px; transform: rotate(-90deg);">
   <h1>VFC LOGISTICS</h1>
   <p><strong>Varun Freight Carrier</strong></p>
-  <p>WE DELIVER COMMITMENT</p>
+  <p>We Deliver Commitment</p>
 </header>
 
-<section>
-  <h2>About VFC Logistics</h2>
-  <p class="about">
-    VFC Logistics (Varun Freight Carrier) is a trusted transport service provider
-    offering reliable truck transportation across India. We operate with
-    owner-driven fleets and focus on timely, secure, and transparent delivery
-    for every shipment.
-  </p>
-</section>
+<div class="hero">
+  <h2>Book Truck Instantly</h2>
 
-<section>
-  <h2>Truck Booking Request</h2>
+  <form onsubmit="sendBooking(event)">
+    <input id="name" type="text" placeholder="Your Name" required>
+    <input id="phone" type="tel" placeholder="Mobile Number" required>
+    <input id="pickup" type="text" placeholder="Pickup City" required>
+    <input id="drop" type="text" placeholder="Drop City" required>
 
-  <form action="https://formsubmit.co/varunfc2011@gmail.com" method="POST">
-    <input type="hidden" name="_subject" value="New Truck Booking Request - VFC Logistics">
-
-    <input type="text" name="Customer Name" placeholder="Your Full Name" required>
-    <input type="tel" name="Mobile Number" placeholder="Mobile Number" required>
-    <input type="text" name="Pickup City" placeholder="Pickup City" required>
-    <input type="text" name="Drop City" placeholder="Drop City" required>
-
-    <select name="Truck Type" required>
+    <select id="truck" required>
       <option value="">Select Truck Type</option>
-      <option>Pickup (8 FT)</option>
-      <option>Pickup (10 FT)</option>
-      <option>14 FT Truck</option>
-      <option>17 FT Truck</option>
-      <option>20 FT Truck</option>
+      <option>8 FT</option>
+      <option>10 FT</option>
+      <option>14 FT</option>
+      <option>17 FT</option>
+      <option>20 FT</option>
       <option>Trailer</option>
     </select>
 
-    <input type="date" name="Loading Date" required>
-
-    <textarea name="Goods Details" placeholder="Type of goods / weight / any special instructions"></textarea>
-
-    <button type="submit">Submit Booking Request</button>
+    <button type="submit">Get Truck & Price</button>
   </form>
 
-  <div class="note">
-    <strong>Payment Policy:</strong><br>
-    • Advance / Prepaid payment required for booking confirmation.<br>
-    • Balance amount to be cleared as per agreed terms before delivery.<br>
-    • Booking is confirmed only after payment receipt.
+  <div class="contact-strip">
+    📞 <a href="tel:9541842526">9541842526</a> |
+    <a href="tel:9728184226">9728184226</a> <br><br>
+    💬 <a href="https://wa.me/919541842526">WhatsApp Booking</a>
   </div>
+</div>
 
-  <div class="contact">
-    📞 <a href="tel:9541842526">9541842526</a> &nbsp; | &nbsp;
-    📞 <a href="tel:9728184226">9728184226</a><br><br>
-    💬 <a href="https://wa.me/919541842526" target="_blank">WhatsApp Support</a><br><br>
-    📍 Ambala Cantt, Haryana
-  </div>
+<section>
+  <h3>Terms & Conditions</h3>
+  <p>
+    • Booking confirmation subject to vehicle availability.<br>
+    • Rates shared after route & load confirmation.<br>
+    • Advance / prepaid payment mandatory before loading.<br>
+    • Loading, unloading & detention charges extra if applicable.<br>
+    • Company not responsible for delays due to natural or unavoidable reasons.
+  </p>
+
+  <p style="margin-top:15px;">
+    <strong>Office Address:</strong><br>
+    Kuldeep Nagar, GT Road, Ambala Cantt, Haryana
+  </p>
 </section>
 
 <footer>
-  © 2026 VFC Logistics · Trusted Truck Transport Services
+  © 2026 VFC Logistics • Pan India Transport • Owner Driven Fleet
 </footer>
 
 </body>
