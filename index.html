@@ -1,70 +1,123 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VFC Logistics | Online Truck Booking</title>
+  <title>VFC Logistics | Truck Transport Services</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: white;
-      color: black;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #111;
+      line-height: 1.6;
     }
 
     header {
       text-align: center;
-      padding: 40px 20px;
-      border-bottom: 1px solid #ddd;
+      padding: 60px 20px 40px;
+      border-bottom: 1px solid #e5e5e5;
     }
 
     header img {
-      max-width: 180px;
+      max-width: 160px;
       display: block;
-      margin: auto;
+      margin: 0 auto 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 6px 0;
+      font-size: 15px;
+      color: #444;
     }
 
     section {
-      padding: 40px 20px;
+      padding: 60px 20px;
       max-width: 900px;
       margin: auto;
     }
 
-    h1, h2 {
+    h2 {
       text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    .about {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+      color: #333;
     }
 
     form {
-      max-width: 400px;
-      margin: auto;
+      max-width: 420px;
+      margin: 0 auto;
     }
 
-    input, select, textarea, button {
+    input, select, textarea {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 12px;
+      margin-top: 12px;
       font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical;
     }
 
     button {
-      background: black;
-      color: white;
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      background: #000;
+      color: #fff;
       border: none;
+      font-size: 15px;
       cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .note {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #444;
+      background: #f8f8f8;
+      padding: 15px;
+      border-left: 4px solid #000;
     }
 
     .contact {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 40px;
       font-size: 16px;
+    }
+
+    .contact a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
     }
 
     footer {
       text-align: center;
-      padding: 15px;
-      border-top: 1px solid #ddd;
+      padding: 20px;
+      border-top: 1px solid #e5e5e5;
       font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
@@ -73,55 +126,67 @@
 
 <header>
   <img src="logo.jpg" alt="VFC Logistics Logo"
-style="max-width:180px; display:block; margin:0 auto 10px; transform: rotate(90deg);">
+style="max-width:180px; display:block; margin:0 auto 10px; transform: rotate(-90deg);">
   <h1>VFC LOGISTICS</h1>
   <p><strong>Varun Freight Carrier</strong></p>
-  <p>We Deliver Commitment</p>
+  <p>WE DELIVER COMMITMENT</p>
 </header>
 
 <section>
-  <h2>About Us</h2>
-  <p>
-    VFC Logistics (Varun Freight Carrier) is a reliable Indian transport company
-    providing nationwide goods transportation services with commitment, safety,
-    and trust. We work with owner-driver trucks and ensure timely delivery
-    across India.
+  <h2>About VFC Logistics</h2>
+  <p class="about">
+    VFC Logistics (Varun Freight Carrier) is a trusted transport service provider
+    offering reliable truck transportation across India. We operate with
+    owner-driven fleets and focus on timely, secure, and transparent delivery
+    for every shipment.
   </p>
 </section>
 
 <section>
-  <h2>Online Truck Booking</h2>
+  <h2>Truck Booking Request</h2>
 
   <form action="https://formsubmit.co/varunfc2011@gmail.com" method="POST">
-    <input type="text" name="Name" placeholder="Your Name" required>
-    <input type="tel" name="Phone" placeholder="Mobile Number" required>
+    <input type="hidden" name="_subject" value="New Truck Booking Request - VFC Logistics">
+
+    <input type="text" name="Customer Name" placeholder="Your Full Name" required>
+    <input type="tel" name="Mobile Number" placeholder="Mobile Number" required>
     <input type="text" name="Pickup City" placeholder="Pickup City" required>
     <input type="text" name="Drop City" placeholder="Drop City" required>
 
     <select name="Truck Type" required>
       <option value="">Select Truck Type</option>
-      <option>Pickup</option>
-      <option>14 Feet</option>
-      <option>17 Feet</option>
-      <option>20 Feet</option>
+      <option>Pickup (8 FT)</option>
+      <option>Pickup (10 FT)</option>
+      <option>14 FT Truck</option>
+      <option>17 FT Truck</option>
+      <option>20 FT Truck</option>
       <option>Trailer</option>
     </select>
 
     <input type="date" name="Loading Date" required>
-    <textarea name="Goods Details" placeholder="Goods Details"></textarea>
 
-    <button type="submit">Book Truck</button>
+    <textarea name="Goods Details" placeholder="Type of goods / weight / any special instructions"></textarea>
+
+    <button type="submit">Submit Booking Request</button>
   </form>
 
+  <div class="note">
+    <strong>Payment Policy:</strong><br>
+    • Advance / Prepaid payment required for booking confirmation.<br>
+    • Balance amount to be cleared as per agreed terms before delivery.<br>
+    • Booking is confirmed only after payment receipt.
+  </div>
+
   <div class="contact">
-    📞 <a href="tel:9541842526">9541842526</a> |
+    📞 <a href="tel:9541842526">9541842526</a> &nbsp; | &nbsp;
     📞 <a href="tel:9728184226">9728184226</a><br><br>
-    💬 <a href="https://wa.me/919541842526" target="_blank">WhatsApp Booking</a>
+    💬 <a href="https://wa.me/919541842526" target="_blank">WhatsApp Support</a><br><br>
+    📍 Ambala Cantt, Haryana
   </div>
 </section>
 
 <footer>
-  © 2026 VFC Logistics | Pan India Transport Service
+  © 2026 VFC Logistics · Trusted Truck Transport Services
 </footer>
 
 </body>
