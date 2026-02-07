@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VFC Logistics | We Deliver Commitment</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+header {
+  background: #0a1f44;
+  color: white;
+  padding: 30px 15px;
+  text-align: center;
+}
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+h2 {
+  color: #0a1f44;
+}
+.services li {
+  margin: 10px 0;
+}
+.contact {
+  background: #0a1f44;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>VFC LOGISTICS</h1>
+  <p><strong>Varun Freight Carrier</strong></p>
+  <p>We Deliver Commitment</p>
+</header>
+
+<section>
+  <h2>About Us</h2>
+  <p>
+    VFC Logistics is a reliable Indian transport company providing
+    nationwide goods transportation with commitment and trust.
+  </p>
+</section>
+
+<section>
+  <h2>Our Services</h2>
+  <ul class="services">
+    <li>All India Transportation</li>
+    <li>Full Truck Load (FTL)</li>
+    <li>Part Load Services</li>
+    <li>Owner Driver Fleet</li>
+  </ul>
+</section>
+
+<div class="contact">
+  <h2>Contact Us</h2>
+  <p>📞 9541842526 | 9728184226</p>
+  <p>📧 varunfc2011@gmail.com</p>
+</div>
+
+<footer>
+  © 2026 VFC Logistics. All Rights Reserved.
+</footer>
+
+</body>
+</html>
