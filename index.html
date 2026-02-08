@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-  background-image: url("truck.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-</style>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VFC Logistics | We Deliver Commitment</title>
@@ -21,10 +13,12 @@ body{
   color:#000;
 }
 
+/* HEADER */
 header{
   text-align:center;
   padding:40px 20px;
   border-bottom:1px solid #e5e5e5;
+  background:#fff;
 }
 
 header img{
@@ -44,10 +38,30 @@ header p{
   color:#444;
 }
 
+/* HERO WITH TRUCK */
 .hero{
-  padding:40px 20px;
+  position:relative;
+  padding:50px 30px;
+  max-width:100%;
+  background-image:url("truck.jpg");
+  background-size:cover;
+  background-position:center;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
+
+.hero-content{
+  position:relative;
   max-width:900px;
   margin:auto;
+  background:rgba(255,255,255,0.92);
+  padding:30px 20px;
+  border-radius:6px;
 }
 
 .hero h2{
@@ -56,6 +70,7 @@ header p{
   margin-bottom:20px;
 }
 
+/* FORM */
 form{
   max-width:420px;
   margin:0 auto;
@@ -81,6 +96,7 @@ button:hover{
   opacity:0.9;
 }
 
+/* CONTACT STRIP */
 .contact-strip{
   text-align:center;
   margin-top:30px;
@@ -93,12 +109,14 @@ button:hover{
   font-weight:bold;
 }
 
+/* SECTION */
 section{
   max-width:900px;
   margin:auto;
   padding:30px 20px;
 }
 
+/* FOOTER */
 footer{
   border-top:1px solid #e5e5e5;
   padding:20px;
@@ -106,6 +124,7 @@ footer{
   color:#555;
   max-width:900px;
   margin:auto;
+  text-align:center;
 }
 </style>
 
@@ -119,6 +138,7 @@ function sendBooking(e){
   let drop = document.getElementById("drop").value;
   let truck = document.getElementById("truck").value;
 
+  // WhatsApp message
   let msg =
   "New Truck Booking Request%0A%0A"+
   "Name: "+name+"%0A"+
@@ -130,6 +150,7 @@ function sendBooking(e){
 
   window.open("https://wa.me/919541842526?text="+msg,"_blank");
 
+  // Email submit
   let form = document.createElement("form");
   form.method="POST";
   form.action="https://formsubmit.co/fitnesslakshay75@gmail.com";
@@ -142,10 +163,13 @@ function sendBooking(e){
     <input type="hidden" name="Truck Type" value="${truck}">
     <input type="hidden" name="_subject" value="New Truck Booking - VFC Logistics">
     <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
   `;
 
   document.body.appendChild(form);
   form.submit();
+
+  alert("✅ Booking request sent successfully! We will contact you shortly.");
 }
 </script>
 </head>
@@ -153,38 +177,39 @@ function sendBooking(e){
 <body>
 
 <header>
-  <img src="logo.jpg" alt="VFC Logistics Logo"
-style="max-width:180px; display:block; margin:0 auto 10px;">
+  <img src="logo.jpg" alt="VFC Logistics Logo">
   <h1>VFC LOGISTICS</h1>
   <p>We Deliver Commitment</p>
 </header>
 
 <div class="hero">
-  <h2>Book Truck Instantly</h2>
+  <div class="hero-content">
+    <h2>Book Truck Instantly</h2>
 
-  <form onsubmit="sendBooking(event)">
-    <input id="name" type="text" placeholder="Your Name" required>
-    <input id="phone" type="tel" placeholder="Mobile Number" required>
-    <input id="pickup" type="text" placeholder="Pickup City" required>
-    <input id="drop" type="text" placeholder="Drop City" required>
+    <form onsubmit="sendBooking(event)">
+      <input id="name" type="text" placeholder="Your Name" required>
+      <input id="phone" type="tel" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+      <input id="pickup" type="text" placeholder="Pickup City" required>
+      <input id="drop" type="text" placeholder="Drop City" required>
 
-    <select id="truck" required>
-      <option value="">Select Truck Type</option>
-      <option>8 FT</option>
-      <option>10 FT</option>
-      <option>14 FT</option>
-      <option>17 FT</option>
-      <option>20 FT</option>
-      <option>Trailer</option>
-    </select>
+      <select id="truck" required>
+        <option value="">Select Truck Type</option>
+        <option>8 FT</option>
+        <option>10 FT</option>
+        <option>14 FT</option>
+        <option>17 FT</option>
+        <option>20 FT</option>
+        <option>Trailer</option>
+      </select>
 
-    <button type="submit">Get Truck & Price</button>
-  </form>
+      <button type="submit">Get Truck & Price</button>
+    </form>
 
-  <div class="contact-strip">
-    📞 <a href="tel:9541842526">9541842526</a> |
-    <a href="tel:9728184226">9728184226</a> <br><br>
-    💬 <a href="https://wa.me/919541842526">WhatsApp Booking</a>
+    <div class="contact-strip">
+      📞 <a href="tel:9541842526">9541842526</a> |
+      <a href="tel:9728184226">9728184226</a><br><br>
+      💬 <a href="https://wa.me/919541842526">WhatsApp Booking</a>
+    </div>
   </div>
 </div>
 
