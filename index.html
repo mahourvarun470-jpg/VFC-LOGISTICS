@@ -6,8 +6,16 @@
 <title>VFC Logistics | We Deliver Commitment</title>
 
 <style>
-body{
+*{
+  box-sizing:border-box; /* ✅ ADD */
+}
+
+html, body{
+  height:100%;          /* ✅ ADD */
   margin:0;
+}
+
+body{
   font-family: Arial, Helvetica, sans-serif;
   background:#ffffff;
   color:#000;
@@ -41,11 +49,15 @@ header p{
 /* HERO WITH TRUCK */
 .hero{
   position:relative;
+  min-height:100vh;     /* ✅ ADD → full screen */
   padding:40px 20px;
   max-width:100%;
   background-image:url("truck.jpg");
   background-size:cover;
   background-position:center;
+  background-repeat:no-repeat; /* ✅ ADD */
+  display:flex;                 /* ✅ ADD */
+  align-items:center;           /* ✅ ADD */
 }
 
 .hero::before{
@@ -128,6 +140,7 @@ footer{
 }
 </style>
 
+<!-- JS SAME AS BEFORE – NOTHING DELETED -->
 <script>
 function sendBooking(e){
   e.preventDefault();
@@ -138,7 +151,6 @@ function sendBooking(e){
   let drop = document.getElementById("drop").value;
   let truck = document.getElementById("truck").value;
 
-  // WhatsApp message
   let msg =
   "New Truck Booking Request%0A%0A"+
   "Name: "+name+"%0A"+
@@ -150,7 +162,6 @@ function sendBooking(e){
 
   window.open("https://wa.me/919541842526?text="+msg,"_blank");
 
-  // Email submit
   let form = document.createElement("form");
   form.method="POST";
   form.action="https://formsubmit.co/fitnesslakshay75@gmail.com";
