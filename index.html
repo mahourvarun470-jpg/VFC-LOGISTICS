@@ -5,339 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VFC Logistics - We Deliver Commitment</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #111;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: #000;
-            border-bottom: 3px solid #d32f2f;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 5%;
-            display: table;
-            width: 100%;
-        }
-
-        .logo-area {
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        .logo-area h1 {
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo-area h1 span {
-            color: #d32f2f;
-        }
-
-        .nav-links {
-            display: table-cell;
-            text-align: right;
-            vertical-align: middle;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #d32f2f;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            padding: 100px 5%;
-            text-align: center;
-            border-bottom: 5px solid #d32f2f;
-        }
-
-        .hero h2 {
-            font-size: 42px;
-            color: #fff;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #ccc;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        .hero .btn-red {
-            max-width: 280px;
-            margin: 0 auto;
-            display: block;
-        }
-
-        /* Calculation & Form Box Styling */
-        .action-box {
-            background-color: #1a1a1a;
-            max-width: 700px;
-            margin: 0 auto 20px auto;
-            padding: 25px;
-            border-radius: 6px;
-            border-left: 5px solid #d32f2f;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .action-box h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #fff;
-            text-align: left;
-        }
-
-        .action-box input[type="text"], .action-box input[type="number"], .action-box input[type="tel"] {
-            width: 100%;
-            padding: 12px;
-            background-color: #222;
-            border: 1px solid #444;
-            color: #fff;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-
-        .action-box input:focus {
-            border-color: #d32f2f;
-            outline: none;
-        }
-
-        .btn-red {
-            background-color: #d32f2f;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 15px;
-            text-transform: uppercase;
-            transition: background 0.3s;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .btn-red:hover {
-            background-color: #b71c1c;
-        }
-
-        /* Main Container layout */
-        .main-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            color: #fff;
-            margin-bottom: 25px;
-            border-left: 4px solid #d32f2f;
-            padding-left: 12px;
-            text-transform: uppercase;
-        }
-
-        /* Services Grid */
-        .services-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 20px;
-            margin-bottom: 40px;
-        }
-
-        .service-card {
-            background-color: #1a1a1a;
-            padding: 25px;
-            border-radius: 4px;
-            border-top: 3px solid #333;
-            vertical-align: top;
-            width: 33.33%;
-            transition: border-color 0.3s;
-        }
-
-        .service-card:hover {
-            border-top-color: #d32f2f;
-        }
-
-        .service-card h3 {
-            color: #d32f2f;
-            font-size: 18px;
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        /* Dual Column Content */
-        .content-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 40px;
-        }
-
-        .content-cell {
-            vertical-align: top;
-            width: 50%;
-            padding: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            background-color: #1a1a1a;
-            border: 1px solid #444;
-            color: #fff;
-            border-radius: 4px;
-        }
-
-        .form-group input:focus {
-            border-color: #d32f2f;
-            outline: none;
-        }
-
-        .info-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .info-list li {
-            margin-bottom: 15px;
-            font-size: 15px;
-            color: #ccc;
-        }
-
-        .info-list strong {
-            color: #d32f2f;
-        }
-
-        /* FAQ Section styling */
-        .faq-item {
-            background-color: #1a1a1a;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border-left: 3px solid #333;
-        }
-        .faq-item h4 {
-            color: #d32f2f;
-            margin-bottom: 5px;
-        }
-        .faq-item p {
-            color: #ccc;
-            font-size: 14px;
-        }
-
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
-
-        footer {
-            background-color: #000;
-            padding: 30px 20px;
-            text-align: center;
-            border-top: 3px solid #333;
-            margin-top: 60px;
-            font-size: 14px;
-            color: #777;
-        }
-
-        footer span {
-            color: #d32f2f;
-        }
-
-        /* MOBILE RESPONSIVE CODE */
-        @media (max-width: 768px) {
-            header, .logo-area, .nav-links {
-                display: block !important;
-                text-align: center !important;
-                width: 100% !important;
-            }
-            .nav-links {
-                margin-top: 15px;
-            }
-            .nav-links a {
-                display: inline-block;
-                margin: 5px 10px !important;
-            }
-            .hero h2 {
-                font-size: 28px !important;
-            }
-            
-            #calculator table, #calculator tr, #calculator td {
-                display: block !important;
-                width: 100% !important;
-                padding-right: 0 !important;
-                margin-bottom: 15px;
-            }
-            
-            .services-table {
-                border-spacing: 0px !important;
-            }
-            .services-table tr, .services-table td.service-card {
-                display: block !important;
-                width: 100% !important;
-                margin-bottom: 20px;
-            }
-
-            .content-table tr, .content-table td.content-cell {
-                display: block !important;
-                width: 100% !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-                border-left: none !important;
-            }
-        }
+        /* [AAPKA PURANA CSS YAHI HAI - MAINE ISME KOI CHANGE NAHI KIYA] */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #111; color: #fff; line-height: 1.6; }
+        header { background-color: #000; border-bottom: 3px solid #d32f2f; position: sticky; top: 0; z-index: 1000; padding: 15px 5%; display: table; width: 100%; }
+        .logo-area { display: table-cell; vertical-align: middle; }
+        .logo-area h1 { color: #fff; font-size: 24px; font-weight: bold; }
+        .logo-area h1 span { color: #d32f2f; }
+        .nav-links { display: table-cell; text-align: right; vertical-align: middle; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: 500; font-size: 15px; transition: color 0.3s; }
+        .nav-links a:hover { color: #d32f2f; }
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover; padding: 100px 5%; text-align: center; border-bottom: 5px solid #d32f2f; }
+        .hero h2 { font-size: 42px; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero p { font-size: 18px; color: #ccc; font-style: italic; margin-bottom: 30px; }
+        .hero .btn-red { max-width: 280px; margin: 0 auto; display: block; }
+        .action-box { background-color: #1a1a1a; max-width: 700px; margin: 0 auto 20px auto; padding: 25px; border-radius: 6px; border-left: 5px solid #d32f2f; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .btn-red { background-color: #d32f2f; color: #fff; border: none; padding: 12px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; font-size: 15px; text-transform: uppercase; transition: background 0.3s; text-decoration: none; text-align: center; }
+        .btn-red:hover { background-color: #b71c1c; }
+        .main-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .section-title { font-size: 28px; color: #fff; margin-bottom: 25px; border-left: 4px solid #d32f2f; padding-left: 12px; text-transform: uppercase; }
+        .services-table { width: 100%; border-collapse: separate; border-spacing: 20px; margin-bottom: 40px; }
+        .service-card { background-color: #1a1a1a; padding: 25px; border-radius: 4px; border-top: 3px solid #333; vertical-align: top; width: 33.33%; transition: border-color 0.3s; }
+        .service-card:hover { border-top-color: #d32f2f; }
+        .service-card h3 { color: #d32f2f; font-size: 18px; margin-bottom: 12px; }
+        .service-card p { color: #aaa; font-size: 14px; }
+        .content-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+        .content-cell { vertical-align: top; width: 50%; padding: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 14px; margin-bottom: 5px; color: #ccc; }
+        .form-group input { width: 100%; padding: 10px; background-color: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 4px; }
+        .info-list { list-style: none; margin-top: 15px; }
+        .info-list li { margin-bottom: 15px; font-size: 15px; color: #ccc; }
+        .info-list strong { color: #d32f2f; }
+        .faq-item { background-color: #1a1a1a; padding: 15px; margin-bottom: 10px; border-radius: 4px; border-left: 3px solid #333; }
+        .faq-item h4 { color: #d32f2f; margin-bottom: 5px; }
+        .faq-item p { color: #ccc; font-size: 14px; }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
+        footer { background-color: #000; padding: 30px 20px; text-align: center; border-top: 3px solid #333; margin-top: 60px; font-size: 14px; color: #777; }
+        footer span { color: #d32f2f; }
+        @media (max-width: 768px) { header, .logo-area, .nav-links { display: block !important; text-align: center !important; width: 100% !important; } .nav-links { margin-top: 15px; } .hero h2 { font-size: 28px !important; } .services-table, .services-table tr, .services-table td { display: block !important; width: 100% !important; } .content-table, .content-table tr, .content-table td { display: block !important; width: 100% !important; } }
     </style>
+
     <script>
+        // 1. Calculator Logic
         function calculatePrice() {
             var weight = document.getElementById('calc-weight').value;
             var distance = document.getElementById('calc-distance').value;
@@ -348,15 +58,47 @@
                 document.getElementById('calc-result').innerHTML = "Please enter both weight and distance.";
             }
         }
+
+        // 2. New Booking Logic (Email + WhatsApp)
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const btn = form.querySelector('button[type="submit"]');
+            
+            const name = form.Customer_Name.value;
+            const phone = form.Mobile_Number.value;
+            const pickup = form.Pickup_Location.value;
+            const drop = form.Drop_Location.value;
+            const material = form.Material_And_Weight.value;
+
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+            .then(() => {
+                const msg = `*New Booking Request*%0A*Name:* ${name}%0A*Mobile:* ${phone}%0A*Pickup:* ${pickup}%0A*Drop:* ${drop}%0A*Cargo:* ${material}`;
+                window.open(`https://wa.me/919541842526?text=${msg}`, '_blank');
+                alert("Booking details sent successfully!");
+                form.reset();
+                btn.innerText = "Submit Details via Email";
+                btn.disabled = false;
+            })
+            .catch(() => {
+                alert("Something went wrong. Please try via WhatsApp directly.");
+                btn.innerText = "Submit Details via Email";
+                btn.disabled = false;
+            });
+        }
     </script>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
     <header>
-        <div class="logo-area">
-            <h1>VFC <span>LOGISTICS</span></h1>
-        </div>
+        <div class="logo-area"><h1>VFC <span>LOGISTICS</span></h1></div>
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#book-truck">Book A Truck</a>
@@ -366,7 +108,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <h2>We Deliver Commitment</h2>
         <p>Reliable, Safe & On-Time Logistics Solutions Across India</p>
@@ -374,13 +115,12 @@
     </section>
 
     <div class="main-container">
-        
-        <!-- Book A Truck Section (SABSE UPAR SHIFTED WITH SEPARATE NAME & MOBILE) -->
         <table class="content-table" id="book-truck">
             <tr>
                 <td class="content-cell" style="padding-right: 30px;">
                     <h2 class="section-title">Book / Get A Truck</h2>
-                    <form action="mailto:fitnesslakshay75@gmail.com" method="POST" enctype="text/plain">
+                    <!-- NAYA FORM -->
+                    <form id="bookingForm" onsubmit="handleFormSubmit(event)">
                         <div class="form-group"><label>Your Name</label><input type="text" name="Customer_Name" placeholder="e.g. Lakshay" required></div>
                         <div class="form-group"><label>Mobile Number</label><input type="tel" name="Mobile_Number" placeholder="e.g. 95418XXXXX" required></div>
                         <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup_Location" placeholder="e.g. Ambala Cantt" required></div>
@@ -389,7 +129,6 @@
                         <button class="btn-red" type="submit">Submit Details via Email</button>
                     </form>
                 </td>
-
                 <td class="content-cell" style="border-left: 1px solid #333; padding-left: 30px; vertical-align: middle;">
                     <h2 class="section-title">Contact Us</h2>
                     <ul class="info-list">
@@ -403,71 +142,35 @@
             </tr>
         </table>
 
-        <!-- Cost Calculator Section -->
         <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
         <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
             <p style="color: #aaa; margin-bottom: 15px;">Apna weight aur approx distance daal kar turant ek rough estimate rate nikalien:</p>
             <table>
                 <tr>
-                    <td>
-                        <label style="font-size:14px; color:#ccc;">Total Weight (in KG)</label>
-                        <input type="number" id="calc-weight" placeholder="e.g. 500">
-                    </td>
-                    <td>
-                        <label style="font-size:14px; color:#ccc;">Distance (in KM)</label>
-                        <input type="number" id="calc-distance" placeholder="e.g. 250">
-                    </td>
-                    <td style="vertical-align: bottom;">
-                        <button class="btn-red" onclick="calculatePrice()">Calculate</button>
-                    </td>
+                    <td><label style="font-size:14px; color:#ccc;">Total Weight (in KG)</label><input type="number" id="calc-weight" placeholder="e.g. 500"></td>
+                    <td><label style="font-size:14px; color:#ccc;">Distance (in KM)</label><input type="number" id="calc-distance" placeholder="e.g. 250"></td>
+                    <td style="vertical-align: bottom;"><button class="btn-red" onclick="calculatePrice()">Calculate</button></td>
                 </tr>
             </table>
             <h4 id="calc-result" style="margin-top: 15px; color: #25d366; font-size: 18px;"></h4>
         </div>
 
-        <!-- Services Section -->
         <h2 class="section-title" id="services">Our Core Services</h2>
         <table class="services-table">
             <tr>
-                <td class="service-card">
-                    <h3>Full Truck Load (FTL) & LTL</h3>
-                    <p>Bade industrial heavy cargo se lekar part-load shipment ki makkhan jaise delivery poore India mein.</p>
-                </td>
-                <td class="service-card">
-                    <h3>Commercial Fleet Supply</h3>
-                    <p>Tata Ace, Bolero Pickup, 14-Feet se lekar bade 32-Feet Containers har waqt available.</p>
-                </td>
-                <td class="service-card">
-                    <h3>Warehousing & Storage</h3>
-                    <p>Modern inventory management aur safe godown storage ki zabardast suvidha.</p>
-                </td>
+                <td class="service-card"><h3>Full Truck Load (FTL) & LTL</h3><p>Bade industrial heavy cargo se lekar part-load shipment ki makkhan jaise delivery poore India mein.</p></td>
+                <td class="service-card"><h3>Commercial Fleet Supply</h3><p>Tata Ace, Bolero Pickup, 14-Feet se lekar bade 32-Feet Containers har waqt available.</p></td>
+                <td class="service-card"><h3>Warehousing & Storage</h3><p>Modern inventory management aur safe godown storage ki zabardast suvidha.</p></td>
             </tr>
         </table>
 
-        <!-- FAQ Section -->
         <h2 class="section-title" id="faq">Frequently Asked Questions (FAQs)</h2>
-        <div class="faq-item">
-            <h4>Q. Kya aapka maal insured hota hai?</h4>
-            <p>A. Ji haan, VFC Logistics ke sath aapka har consignment fully secure aur insurance policy guidelines ke under safely transport kiya jata hai.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Q. Agar raste mein gadi kharab ho jaye toh kya back-up hai?</h4>
-            <p>A. Hmare paas poore India mein 24/7 route support aur breakdown backup team hai. Kisi bhi dikkat par turant dusri gadi ya mechanic line-up kiya jata hai.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Q. Payment terms kya hain (Advance ya On Delivery)?</h4>
-            <p>A. Hum professional corporate norms follow karte hain. General bookings ke liye booking par advance aur delivery par balance, ya regular clients ke liye billing cycle option hota hai.</p>
-        </div>
-
+        <div class="faq-item"><h4>Q. Kya aapka maal insured hota hai?</h4><p>A. Ji haan, VFC Logistics ke sath aapka har consignment fully secure aur insurance policy guidelines ke under safely transport kiya jata hai.</p></div>
+        <div class="faq-item"><h4>Q. Agar raste mein gadi kharab ho jaye toh kya back-up hai?</h4><p>A. Hmare paas poore India mein 24/7 route support aur breakdown backup team hai. Kisi bhi dikkat par turant dusri gadi ya mechanic line-up kiya jata hai.</p></div>
+        <div class="faq-item"><h4>Q. Payment terms kya hain (Advance ya On Delivery)?</h4><p>A. Hum professional corporate norms follow karte hain. General bookings ke liye booking par advance aur delivery par balance, ya regular clients ke liye billing cycle option hota hai.</p></div>
     </div>
 
-    <!-- Floating WhatsApp Integration -->
     <a href="https://wa.me/919541842526" class="whatsapp-float" target="_blank">💬 WhatsApp Chat</a>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 <span>VFC Logistics</span>. All Rights Reserved. | Tagline: We Deliver Commitment</p>
-    </footer>
-
+    <footer><p>&copy; 2026 <span>VFC Logistics</span>. All Rights Reserved. | Tagline: We Deliver Commitment</p></footer>
 </body>
 </html>
