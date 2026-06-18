@@ -33,7 +33,7 @@
         .content-cell { vertical-align: top; width: 50%; padding: 15px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 14px; margin-bottom: 5px; color: #ccc; }
-        .form-group input { width: 100%; padding: 10px; background-color: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 4px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; background-color: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 4px; }
         .info-list { list-style: none; margin-top: 15px; }
         .info-list li { margin-bottom: 15px; font-size: 15px; color: #ccc; }
         .info-list strong { color: #d32f2f; }
@@ -43,11 +43,12 @@
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
         footer { background-color: #000; padding: 30px 20px; text-align: center; border-top: 3px solid #333; margin-top: 60px; font-size: 14px; color: #777; }
         footer span { color: #d32f2f; }
-        @media (max-width: 768px) { header, .logo-area, .nav-links { display: block !important; text-align: center !important; width: 100% !important; } .nav-links { margin-top: 15px; } .hero h2 { font-size: 28px !important; } .services-table, .services-table tr, .services-table td { display: block !important; width: 100% !important; } .content-table, .content-table tr, .content-table td { display: block !important; width: 100% !important; } }
+        /* Responsive adjustments */
+        @media (max-width: 768px) { header, .logo-area, .nav-links { display: block !important; text-align: center !important; width: 100% !important; } .nav-links { margin-top: 15px; } .hero h2 { font-size: 28px !important; } .services-table, .services-table tr, .services-table td { display: block !important; width: 100% !important; } .content-table, .content-table tr, .content-table td { display: block !important; width: 100% !important; } .form-row { flex-direction: column; } }
+        .form-row { display: flex; gap: 10px; }
     </style>
 
     <script>
-        // 1. Calculator Logic
         function calculatePrice() {
             var weight = document.getElementById('calc-weight').value;
             var distance = document.getElementById('calc-distance').value;
@@ -59,37 +60,33 @@
             }
         }
 
-        // 2. New Booking Logic (Email + WhatsApp)
         function handleFormSubmit(event) {
             event.preventDefault();
             const form = event.target;
             const btn = form.querySelector('button[type="submit"]');
+            const formData = new FormData(form);
             
-            const name = form.Customer_Name.value;
-            const phone = form.Mobile_Number.value;
-            const pickup = form.Pickup_Location.value;
-            const drop = form.Drop_Location.value;
-            const material = form.Material_And_Weight.value;
-
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            const formData = new FormData(form);
             fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
                 method: "POST",
                 body: formData
             })
             .then(() => {
-                const msg = `*New Booking Request*%0A*Name:* ${name}%0A*Mobile:* ${phone}%0A*Pickup:* ${pickup}%0A*Drop:* ${drop}%0A*Cargo:* ${material}`;
+                let msg = `*New Booking Request*%0A`;
+                for (let [key, value] of formData.entries()) {
+                    msg += `*${key.replace(/_/g, ' ')}:* ${value}%0A`;
+                }
                 window.open(`https://wa.me/919541842526?text=${msg}`, '_blank');
                 alert("Booking details sent successfully!");
                 form.reset();
-                btn.innerText = "Submit Details via Email";
+                btn.innerText = "Submit Details";
                 btn.disabled = false;
             })
             .catch(() => {
-                alert("Something went wrong. Please try via WhatsApp directly.");
-                btn.innerText = "Submit Details via Email";
+                alert("Something went wrong.");
+                btn.innerText = "Submit Details";
                 btn.disabled = false;
             });
         }
@@ -115,33 +112,61 @@
     </section>
 
     <div class="main-container">
-        <table class="content-table" id="book-truck">
+        <!-- BOOKING SECTION UPDATED -->
+        <h2 class="section-title" id="book-truck">Book Your Requirement</h2>
+        <table class="content-table">
             <tr>
-                <td class="content-cell" style="padding-right: 30px;">
-                    <h2 class="section-title">Book / Get A Truck</h2>
-                    <!-- NAYA FORM -->
-                    <form id="bookingForm" onsubmit="handleFormSubmit(event)">
-                        <div class="form-group"><label>Your Name</label><input type="text" name="Customer_Name" placeholder="e.g. Lakshay" required></div>
-                        <div class="form-group"><label>Mobile Number</label><input type="tel" name="Mobile_Number" placeholder="e.g. 95418XXXXX" required></div>
-                        <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup_Location" placeholder="e.g. Ambala Cantt" required></div>
-                        <div class="form-group"><label>Drop Location</label><input type="text" name="Drop_Location" placeholder="e.g. Delhi NCR" required></div>
-                        <div class="form-group"><label>Material Type & Weight</label><input type="text" name="Material_And_Weight" placeholder="e.g. Steel Pipes - 10 Tons" required></div>
-                        <button class="btn-red" type="submit">Submit Details via Email</button>
-                    </form>
+                <!-- PART LOAD FORM -->
+                <td class="content-cell" style="padding-right: 20px;">
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 6px; border-left: 4px solid #d32f2f;">
+                        <h3 style="color: #fff; margin-bottom: 15px;">Part Load (LTL)</h3>
+                        <form onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="Booking_Type" value="Part Load">
+                            <div class="form-group"><label>Name</label><input type="text" name="Customer_Name" required></div>
+                            <div class="form-group"><label>Mobile</label><input type="tel" name="Mobile_Number" required></div>
+                            <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup_Location" required></div>
+                            <div class="form-group"><label>Drop Location</label><input type="text" name="Drop_Location" required></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>L (ft)</label><input type="number" name="Length"></div>
+                                <div class="form-group"><label>W (ft)</label><input type="number" name="Width"></div>
+                                <div class="form-group"><label>H (ft)</label><input type="number" name="Height"></div>
+                            </div>
+                            <div class="form-group"><label>Total Weight (Kg)</label><input type="text" name="Weight" required></div>
+                            <button class="btn-red" type="submit">Submit Part Load</button>
+                        </form>
+                    </div>
                 </td>
-                <td class="content-cell" style="border-left: 1px solid #333; padding-left: 30px; vertical-align: middle;">
-                    <h2 class="section-title">Contact Us</h2>
-                    <ul class="info-list">
-                        <li><strong>Our Fleet strength:</strong> Tata Ace, Pickup, 14ft, 22ft, 32ft Containers.</li>
-                        <li><strong>Network Mapping:</strong> All India Service (Fast & Reliable).</li>
-                        <li><strong>Support No:</strong> +91 9541842526, +91 9728184226</li>
-                        <li><strong>Email:</strong> fitnesslakshay75@gmail.com</li>
-                        <li><strong>Office Address:</strong> Kuldeep Nagar, Near HP Petrol Pump, Ambala Cantt - 133004</li>
-                    </ul>
+                <!-- FULL TRUCK FORM -->
+                <td class="content-cell" style="padding-left: 20px;">
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 6px; border-left: 4px solid #d32f2f;">
+                        <h3 style="color: #fff; margin-bottom: 15px;">Full Truck (FTL)</h3>
+                        <form onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="Booking_Type" value="Full Truck Load">
+                            <div class="form-group"><label>Name</label><input type="text" name="Customer_Name" required></div>
+                            <div class="form-group"><label>Mobile</label><input type="tel" name="Mobile_Number" required></div>
+                            <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup_Location" required></div>
+                            <div class="form-group"><label>Drop Location</label><input type="text" name="Drop_Location" required></div>
+                            <div class="form-group"><label>Truck Type</label>
+                                <select name="Truck_Type">
+                                    <option value="6ft">6 ft</option>
+                                    <option value="8ft">8 ft</option>
+                                    <option value="10ft">10 ft</option>
+                                    <option value="14ft">14 ft</option>
+                                    <option value="17ft">17 ft</option>
+                                    <option value="20ft">20 ft</option>
+                                    <option value="22ft">22 ft</option>
+                                    <option value="Trailer">Trailer</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label>Approx Weight (Kg)</label><input type="text" name="Weight" required></div>
+                            <button class="btn-red" type="submit">Submit FTL Booking</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         </table>
 
+        <!-- ... Baaki section waisa hi hai jaisa pehle tha ... -->
         <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
         <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
             <p style="color: #aaa; margin-bottom: 15px;">Apna weight aur approx distance daal kar turant ek rough estimate rate nikalien:</p>
