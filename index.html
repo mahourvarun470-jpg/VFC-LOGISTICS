@@ -8,16 +8,26 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
+        :root {
+            --primary: #e11d48;
+            --primary-hover: #be123c;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --text-muted: #64748b;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+        
         html, body {
-            height: 100%;
+            overflow-x: hidden;
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #ffffff;
-            color: #0f172a;
+            color: var(--dark);
             scroll-behavior: smooth;
         }
 
@@ -25,23 +35,25 @@
         .top-bar {
             background: #000000;
             color: #ffffff;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             text-align: center;
-            padding: 10px 20px;
-            letter-spacing: 1px;
+            padding: 12px 15px;
+            letter-spacing: 0.5px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
+            text-transform: uppercase;
         }
         .pulse-dot {
             width: 8px;
             height: 8px;
-            background: #e11d48;
+            background: var(--primary);
             border-radius: 50%;
             box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7);
             animation: pulse 1.5s infinite;
+            flex-shrink: 0;
         }
         @keyframes pulse {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
@@ -52,7 +64,7 @@
         /* PREMIUM STICKY HEADER */
         header {
             background: rgba(255, 255, 255, 0.96);
-            padding: 20px 60px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -64,16 +76,16 @@
             border-bottom: 1px solid #f1f5f9;
         }
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
-        .logo .brand-vfc { color: #e11d48; }
+        .logo .brand-vfc { color: var(--primary); }
         .logo .brand-logistics { color: #000000; }
         
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 30px;
             list-style: none;
             align-items: center;
         }
@@ -81,77 +93,77 @@
             color: #475569;
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             transition: color 0.2s;
         }
-        .nav-links a:hover { color: #e11d48; }
+        .nav-links a:hover { color: var(--primary); }
         
         .cta-header-btn {
             background: #000000;
             color: #fff !important;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 8px;
-            font-size: 14px !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 13px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: all 0.2s;
         }
         .cta-header-btn:hover {
-            background: #e11d48;
+            background: var(--primary);
         }
 
         /* HERO AREA */
         .hero-section {
             position: relative;
-            min-height: calc(100vh - 120px);
-            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(0, 0, 0, 0.65) 100%), url("truck.jpg");
+            min-height: calc(100vh - 100px);
+            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(0, 0, 0, 0.75) 100%), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
-            padding: 80px 60px;
+            padding: 60px 40px;
         }
         .hero-grid {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
-            max-width: 1300px;
+            gap: 50px;
+            max-width: 1250px;
             width: 100%;
             margin: 0 auto;
             align-items: center;
         }
         .hero-text h1 {
             color: #ffffff;
-            font-size: 56px;
+            font-size: 52px;
             font-weight: 800;
             line-height: 1.15;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             letter-spacing: -1px;
         }
-        .hero-text h1 span { color: #e11d48; }
+        .hero-text h1 span { color: var(--primary); }
         .hero-text p {
             color: #cbd5e1;
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.6;
-            margin-bottom: 45px;
-            max-width: 540px;
+            margin-bottom: 40px;
+            max-width: 520px;
         }
 
         /* HERO STATS */
         .trust-stats {
             display: flex;
-            gap: 40px;
+            gap: 35px;
             border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 35px;
+            padding-top: 30px;
         }
         .stat-item h3 {
             color: #ffffff;
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
         }
-        .stat-item h3 span { color: #e11d48; }
+        .stat-item h3 span { color: var(--primary); }
         .stat-item p {
             color: #94a3b8;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -161,46 +173,48 @@
         /* FLOATING FORM */
         .booking-container {
             background: #ffffff;
-            padding: 45px;
-            border-radius: 24px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
             width: 100%;
         }
         .booking-container h2 {
-            font-size: 28px;
-            color: #0f172a;
+            font-size: 26px;
+            color: var(--dark);
             font-weight: 800;
             margin-bottom: 6px;
         }
         .booking-container .subtitle {
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 700;
             color: #334155;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 15px 18px;
-            border: 2px solid #e2e8f0;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
             border-radius: 10px;
-            font-size: 15px;
+            font-size: 14px;
+            font-family: inherit;
             transition: all 0.2s ease;
             outline: none;
-            background: #f8fafc;
+            background: var(--light);
+            color: var(--dark);
         }
         .form-group input:focus, .form-group select:focus {
-            border-color: #e11d48;
+            border-color: var(--primary);
             background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.12);
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
         }
         .form-row {
             display: grid;
@@ -209,111 +223,123 @@
         }
         .btn-submit {
             width: 100%;
-            padding: 18px;
-            background: #e11d48;
+            padding: 16px;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.25);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         .btn-submit:hover {
-            background: #be123c;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
+            background: var(--primary-hover);
+            transform: translateY(-1px);
         }
 
-        /* SECTION LAYOUT GENERIC */
+        /* INFO LAYOUT GENERIC */
         section.info-layout {
-            padding: 100px 60px;
-            max-width: 1300px;
+            padding: 80px 40px;
+            max-width: 1250px;
             margin: 0 auto;
         }
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
         .section-title h2 {
-            font-size: 38px;
+            font-size: 34px;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: #000000;
         }
-        .section-title h2 span { color: #e11d48; }
+        .section-title h2 span { color: var(--primary); }
         .section-title p {
-            color: #64748b;
-            font-size: 16px;
-            margin-top: 10px;
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-top: 8px;
         }
 
         /* STRIP FEATURES */
         .features-strip {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: -50px;
-            margin-bottom: 50px;
+            gap: 25px;
+            margin-top: -40px;
+            margin-bottom: 40px;
             position: relative;
             z-index: 10;
         }
         .feature-card {
             background: #ffffff;
-            padding: 35px;
+            padding: 30px;
             border-radius: 16px;
-            border-top: 4px solid #e11d48;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--primary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
         }
-        .feature-card i { font-size: 28px; color: #e11d48; margin-bottom: 20px; }
-        .feature-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
-        .feature-card p { color: #64748b; font-size: 14px; line-height: 1.6; }
+        .feature-card i { font-size: 26px; color: var(--primary); margin-bottom: 18px; }
+        .feature-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
         /* FLEET SHOWCASE SECTION */
         .fleet-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 25px;
         }
         .fleet-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background: var(--light);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 30px;
+            overflow: hidden;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         .fleet-card:hover {
             background: #ffffff;
-            border-color: #e11d48;
+            border-color: var(--primary);
             box-shadow: 0 15px 30px rgba(225,29,72,0.05);
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+        }
+        .fleet-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+        .fleet-content {
+            padding: 25px;
+            flex-grow: 1;
         }
         .fleet-icon {
-            background: rgba(225, 29, 72, 0.08);
-            width: 55px;
-            height: 55px;
+            background: rgba(225, 29, 72, 0.06);
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
-            color: #e11d48;
-            font-size: 22px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 15px;
         }
-        .fleet-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .fleet-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+        .fleet-card > .fleet-content > p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
         .fleet-details {
             list-style: none;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid var(--border);
             padding-top: 15px;
             margin-top: 15px;
         }
         .fleet-details li {
-            font-size: 14px;
+            font-size: 13px;
             color: #475569;
             margin-bottom: 8px;
             display: flex;
@@ -322,75 +348,90 @@
         .fleet-details li span { font-weight: 600; color: #000; }
 
         /* PROCESS SECTION */
-        .process-bg { background: #0f172a; color: #ffffff; }
+        .process-bg { background: var(--dark); color: #ffffff; }
         .process-bg .section-title h2 { color: #fff; }
         .process-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            gap: 25px;
         }
         .process-node {
             position: relative;
             text-align: center;
         }
         .process-number {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 800;
-            color: rgba(225, 29, 72, 0.2);
+            color: rgba(225, 29, 72, 0.25);
             line-height: 1;
             margin-bottom: 10px;
         }
-        .process-node h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #fff;}
-        .process-node p { color: #94a3b8; font-size: 14px; line-height: 1.5; }
+        .process-node h4 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #fff;}
+        .process-node p { color: #94a3b8; font-size: 13px; line-height: 1.5; }
 
         /* FOOTER */
         footer {
             background: #000000;
             color: #94a3b8;
-            padding: 60px 60px 30px 60px;
-            border-top: 4px solid #e11d48;
+            padding: 60px 40px 30px 40px;
+            border-top: 4px solid var(--primary);
         }
         .footer-grid {
-            max-width: 1300px;
+            max-width: 1250px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 60px;
-            padding-bottom: 40px;
+            grid-template-columns: 1.4fr 0.8fr 0.8fr;
+            gap: 40px;
+            padding-bottom: 35px;
             border-bottom: 1px solid #1e293b;
         }
-        .footer-brand h3 { font-size: 24px; color: #fff; margin-bottom: 15px; font-weight: 800;}
-        .footer-brand h3 span { color: #e11d48; }
+        .footer-brand h3 { font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 800;}
+        .footer-brand h3 span { color: var(--primary); }
         .footer-brand p { font-size: 14px; line-height: 1.6; max-width: 320px; }
-        .footer-links h5 { color: #fff; font-size: 16px; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
+        .footer-links h5 { color: #fff; font-size: 14px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
         .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.2s; }
-        .footer-links a:hover { color: #e11d48; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--primary); }
         
         .footer-bottom {
-            max-width: 1300px;
-            margin: 30px auto 0 auto;
+            max-width: 1250px;
+            margin: 25px auto 0 auto;
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 12px;
         }
 
-        /* RESPONSIVE RESPONSIVENESS */
+        /* ADVANCED RESPONSIVE ENGINE (MOBILE & TABLET FIXES) */
         @media (max-width: 1024px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero-section { padding: 60px 20px; }
+            header { padding: 15px 20px; }
+            .hero-section { padding: 40px 20px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-text p { margin: 0 auto 30px auto; }
+            .trust-stats { justify-content: center; }
             section.info-layout { padding: 60px 20px; }
-            .features-strip, .fleet-grid, .process-grid { grid-template-columns: 1fr; }
-            .features-strip { margin-top: 20px; }
-            header { padding: 20px; }
-            .hero-text h1 { font-size: 42px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .features-strip { grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: -20px; }
+            .fleet-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
         }
-        @media (max-width: 600px) {
-            .form-row { grid-template-columns: 1fr; }
-            .trust-stats { flex-direction: column; gap: 20px; }
-            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hide heavy menu elements on mobile */
+            .hero-text h1 { font-size: 36px; }
+            .features-strip { grid-template-columns: 1fr; margin-top: 20px; }
+            .fleet-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; gap: 25px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 32px; }
+            .booking-container { padding: 25px 20px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .trust-stats { flex-direction: column; gap: 15px; align-items: center; }
+            .section-title h2 { font-size: 26px; }
         }
     </style>
 </head>
@@ -408,8 +449,8 @@
             <li><a href="#fleet">Our Fleet</a></li>
             <li><a href="#why-us">Why Choose Us</a></li>
             <li><a href="#process">Process</a></li>
-            <li><a href="tel:+919541842526" class="cta-header-btn"><i class="fa-solid fa-phone"></i> Urgent Inquiry</a></li>
         </ul>
+        <a href="tel:+919541842526" class="cta-header-btn"><i class="fa-solid fa-phone"></i> Call Now</a>
     </header>
 
     <!-- HERO SECTION WITH FORM -->
@@ -511,35 +552,47 @@
             <p>Engineered to handle varied weight matrices with optimum structural safety.</p>
         </div>
         <div class="fleet-grid">
+            <!-- CARD 1 -->
             <div class="fleet-card">
-                <div class="fleet-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-                <h3>Mini Fleets (Intracity)</h3>
-                <p>Ideal for rapid warehouse-to-retail movements and localized structural drops.</p>
-                <ul class="fleet-details">
-                    <li>Models <span>Tata Ace / Mahindra Pickup</span></li>
-                    <li>Payload Capacity <span>850 kg - 1.5 Tons</span></li>
-                    <li>Best For <span>E-commerce & Local Goods</span></li>
-                </ul>
+                <img src="https://images.unsplash.com/photo-1516576475522-e861879493bc?auto=format&fit=crop&q=80&w=600" alt="Mini Fleets" class="fleet-image">
+                <div class="fleet-content">
+                    <div class="fleet-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                    <h3>Mini Fleets (Intracity)</h3>
+                    <p>Ideal for rapid warehouse-to-retail movements and localized structural drops.</p>
+                    <ul class="fleet-details">
+                        <li>Models <span>Tata Ace / Mahindra Pickup</span></li>
+                        <li>Payload Capacity <span>850 kg - 1.5 Tons</span></li>
+                        <li>Best For <span>E-commerce & Local Goods</span></li>
+                    </ul>
+                </div>
             </div>
+            <!-- CARD 2 -->
             <div class="fleet-card">
-                <div class="fleet-icon"><i class="fa-solid fa-truck"></i></div>
-                <h3>Medium Payload Trucks</h3>
-                <p>Optimized for inter-city heavy raw material and manufactured asset transits.</p>
-                <ul class="fleet-details">
-                    <li>Models <span>14 Feet Open / Closed</span></li>
-                    <li>Payload Capacity <span>Up to 4 Tons</span></li>
-                    <li>Best For <span>Industrial & FMCG Loads</span></li>
-                </ul>
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=600" alt="Medium Payload" class="fleet-image">
+                <div class="fleet-content">
+                    <div class="fleet-icon"><i class="fa-solid fa-truck"></i></div>
+                    <h3>Medium Payload Trucks</h3>
+                    <p>Optimized for inter-city heavy raw material and manufactured asset transits.</p>
+                    <ul class="fleet-details">
+                        <li>Models <span>14 Feet Open / Closed</span></li>
+                        <li>Payload Capacity <span>Up to 4 Tons</span></li>
+                        <li>Best For <span>Industrial & FMCG Loads</span></li>
+                    </ul>
+                </div>
             </div>
+            <!-- CARD 3 -->
             <div class="fleet-card">
-                <div class="fleet-icon"><i class="fa-solid fa-truck-moving"></i></div>
-                <h3>Heavy Cargo Containers</h3>
-                <p>High-volume long-haul structural configurations designed for interstate corridors.</p>
-                <ul class="fleet-details">
-                    <li>Models <span>20ft / 32ft MX Containers</span></li>
-                    <li>Payload Capacity <span>7 Tons - 20+ Tons</span></li>
-                    <li>Best For <span>Heavy Machinery & Bulk Cargo</span></li>
-                </ul>
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" alt="Heavy Cargo" class="fleet-image">
+                <div class="fleet-content">
+                    <div class="fleet-icon"><i class="fa-solid fa-truck-moving"></i></div>
+                    <h3>Heavy Cargo Containers</h3>
+                    <p>High-volume long-haul structural configurations designed for interstate corridors.</p>
+                    <ul class="fleet-details">
+                        <li>Models <span>20ft / 32ft MX Containers</span></li>
+                        <li>Payload Capacity <span>7 Tons - 20+ Tons</span></li>
+                        <li>Best For <span>Heavy Machinery & Bulk Cargo</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -551,17 +604,17 @@
             <p>Setting the benchmark for premium industrial supply chains across India.</p>
         </div>
         <div class="fleet-grid">
-            <div class="feature-card" style="border-top:none; border-left: 4px solid #e11d48;">
+            <div class="feature-card" style="border-top:none; border-left: 4px solid var(--primary);">
                 <i class="fa-solid fa-hand-holding-dollar" style="color:#000;"></i>
                 <h4 style="margin-top:10px;">Transparent Flat Pricing</h4>
                 <p>No unexpected surcharges, toll manipulations, or complex loading fees. Upfront itemized billing matrix.</p>
             </div>
             <div class="feature-card" style="border-top:none; border-left: 4px solid #000000;">
-                <i class="fa-solid fa-route" style="color:#e11d48;"></i>
+                <i class="fa-solid fa-route" style="color:var(--primary);"></i>
                 <h4 style="margin-top:10px;">Optimized Corridor Routing</h4>
                 <p>Advanced algorithmic route planning bypasses high-congestion corridors, ensuring fast fuel-efficient timelines.</p>
             </div>
-            <div class="feature-card" style="border-top:none; border-left: 4px solid #e11d48;">
+            <div class="feature-card" style="border-top:none; border-left: 4px solid var(--primary);">
                 <i class="fa-solid fa-building-shield" style="color:#000;"></i>
                 <h4 style="margin-top:10px;">Zero-Downtime Maintenance</h4>
                 <p>Our fleets undergo rigorous fitness audits every fortnight to maximize highway uptime reliability.</p>
@@ -617,9 +670,9 @@
             <div class="footer-links">
                 <h5>Contact Hub</h5>
                 <ul>
-                    <li><a href="tel:+919541842526"><i class="fa-solid fa-phone" style="color:#e11d48; margin-right:5px;"></i> +91 95418 42526</a></li>
-                    <li><a href="mailto:fitnesslakshay75@gmail.com"><i class="fa-solid fa-envelope" style="color:#e11d48; margin-right:5px;"></i> info@vfclogistics.com</a></li>
-                    <li><a href="#bookingForm"><i class="fa-solid fa-location-dot" style="color:#e11d48; margin-right:5px;"></i> Pan-India Transit Network</a></li>
+                    <li><a href="tel:+919541842526"><i class="fa-solid fa-phone" style="color:var(--primary); margin-right:5px;"></i> +91 95418 42526</a></li>
+                    <li><a href="mailto:fitnesslakshay75@gmail.com"><i class="fa-solid fa-envelope" style="color:var(--primary); margin-right:5px;"></i> info@vfclogistics.com</a></li>
+                    <li><a href="#bookingForm"><i class="fa-solid fa-location-dot" style="color:var(--primary); margin-right:5px;"></i> Pan-India Transit Network</a></li>
                 </ul>
             </div>
         </div>
