@@ -5,79 +5,376 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VFC Logistics - We Deliver Commitment</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #111; color: #fff; line-height: 1.6; }
-
-        /* Header */
-        header { background-color: #000; border-bottom: 3px solid #d32f2f; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
-        .logo h1 { font-size: 24px; color: #fff; }
-        .logo h1 span { color: #d32f2f; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: 500; }
-        .nav-links a:hover { color: #d32f2f; }
-
-        /* Hero */
-        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') center/cover; padding: 100px 5%; text-align: center; border-bottom: 5px solid #d32f2f; }
-        .hero h2 { font-size: 48px; text-transform: uppercase; margin-bottom: 20px; }
-
-        /* Login Modal */
-        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: none; }
-        .login-popup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; padding: 40px; width: 90%; max-width: 400px; border-left: 5px solid #d32f2f; }
-        .btn-red { background: #d32f2f; color: #fff; border: none; padding: 12px; width: 100%; cursor: pointer; font-weight: bold; }
-        
-        .main-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
-        .section-title { font-size: 28px; margin-bottom: 20px; border-left: 4px solid #d32f2f; padding-left: 10px; }
-        .input-box { background: #222; padding: 20px; border-radius: 5px; margin-bottom: 30px; }
-        footer { text-align: center; padding: 40px; background: #000; margin-top: 50px; color: #777; }
-    </style>
-    <script>
-        function requireLogin(action) {
-            document.getElementById('loginModal').style.display = 'block';
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
-    </script>
+
+        body {
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #000;
+            border-bottom: 3px solid #d32f2f;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: table;
+            width: 100%;
+        }
+
+        .logo-area {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .logo-area h1 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-area h1 span {
+            color: #d32f2f;
+        }
+
+        .nav-links {
+            display: table-cell;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d32f2f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 80px 5%;
+            text-align: center;
+            border-bottom: 5px solid #d32f2f;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        /* Tracking & Action Box */
+        .action-box {
+            background-color: #1a1a1a;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 5px solid #d32f2f;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .action-box h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: left;
+        }
+
+        .search-form {
+            display: table;
+            width: 100%;
+        }
+
+        .search-input-cell {
+            display: table-cell;
+            width: 75%;
+            padding-right: 10px;
+        }
+
+        .search-btn-cell {
+            display: table-cell;
+            width: 25%;
+        }
+
+        .action-box input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .action-box input[type="text"]:focus {
+            border-color: #d32f2f;
+            outline: none;
+        }
+
+        .btn-red {
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-red:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Main Container layout using table */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 25px;
+            border-left: 4px solid #d32f2f;
+            padding-left: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Services Grid alternative using table */
+        .services-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-radius: 4px;
+            border-top: 3px solid #333;
+            vertical-align: top;
+            width: 33.33%;
+            transition: border-color 0.3s;
+        }
+
+        .service-card:hover {
+            border-top-color: #d32f2f;
+        }
+
+        .service-card h3 {
+            color: #d32f2f;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Dual Column Content (Form + Details) */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .content-cell {
+            vertical-align: top;
+            width: 50%;
+            padding: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #d32f2f;
+            outline: none;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .info-list li {
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #ccc;
+        }
+
+        .info-list strong {
+            color: #d32f2f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 3px solid #333;
+            margin-top: 60px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        footer span {
+            color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="loginModal" class="login-overlay">
-        <div class="login-popup">
-            <h3>VFC <span>LOGISTICS</span></h3>
-            <p>Verification Required to proceed.</p>
-            <form onsubmit="event.preventDefault(); alert('Access Granted!'); closeLogin();">
-                <input type="text" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px;" required>
-                <input type="text" placeholder="Mobile Number" style="width:100%; padding:10px; margin-bottom:10px;" required>
-                <button class="btn-red" type="submit">Unlock Features</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Header & Navigation -->
     <header>
-        <div class="logo"><h1>VFC <span>LOGISTICS</span></h1></div>
+        <div class="logo-area">
+            <h1>VFC <span>LOGISTICS</span></h1>
+        </div>
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#calculator">Calculator</a>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#quote">Get a Quote</a>
             <a href="#contact">Contact</a>
         </div>
     </header>
 
-    <section class="hero">
-        <h2>WE DELIVER COMMITMENT</h2>
-        <p>Premium Logistics Solutions Across India</p>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>We Deliver Commitment</h2>
+        <p>Reliable, Safe & On-Time Logistics Solutions Across India</p>
+        
+        <!-- Live Tracking System -->
+        <div class="action-box">
+            <h3>Track Your Shipment</h3>
+            <div class="search-form">
+                <div class="search-input-cell">
+                    <input type="text" placeholder="Enter LR / Docket Number (e.g. VFC102938)">
+                </div>
+                <div class="search-btn-cell">
+                    <button class="btn-red" type="button">Track</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div class="main-container">
-        <h2 class="section-title" id="calculator">Instant Price Estimator</h2>
-        <div class="input-box">
-            <button class="btn-red" onclick="requireLogin('calc')">Calculate Shipping Cost Now</button>
-        </div>
+        
+        <!-- Services Section -->
+        <h2 class="section-title" id="services">Our Core Services</h2>
+        <table class="services-table">
+            <tr>
+                <td class="service-card">
+                    <h3>Full Truck Load (FTL)</h3>
+                    <p>Bade industrial goods aur heavy machinery ke liye dedicated full truck capacity services poore India mein.</p>
+                </td>
+                <td class="service-card">
+                    <h3>Part Cargo (LTL)</h3>
+                    <p>Chote consignments aur part-load material ke liye cost-effective aur safe transport options.</p>
+                </td>
+                <td class="service-card">
+                    <h3>Warehousing & Storage</h3>
+                    <p>Aapke maal ko safe aur secure rakhne ke liye modern warehouses aur complete inventory management.</p>
+                </td>
+            </tr>
+        </table>
 
-        <h2 class="section-title">Why VFC Logistics?</h2>
-        <p>Hum sirf maal nahi, bharosa deliver karte hain. All India coverage with 24/7 support.</p>
+        <!-- Interactive Form & Contact Section -->
+        <table class="content-table" id="quote">
+            <tr>
+                <!-- Get a Quote Form -->
+                <td class="content-cell" style="padding-right: 30px;">
+                    <h2 class="section-title">Get A Quote</h2>
+                    <form onsubmit="event.preventDefault(); alert('Inquiry Submitted successfully!');">
+                        <div class="form-group">
+                            <label>Pickup Location</label>
+                            <input type="text" placeholder="e.g. Ambala" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Drop Location</label>
+                            <input type="text" placeholder="e.g. Mumbai" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Material Type / Weight</label>
+                            <input type="text" placeholder="e.g. Industrial Goods - 5 Tons" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Phone Number</label>
+                            <input type="text" placeholder="Enter Mobile Number" required>
+                        </div>
+                        <button class="btn-red" type="submit" style="margin-top: 10px;">Submit Request</button>
+                    </form>
+                </td>
+
+                <!-- Contact & Info -->
+                <td class="content-cell" id="contact" style="border-left: 1px solid #333; padding-left: 30px;">
+                    <h2 class="section-title">Why VFC Logistics?</h2>
+                    <p style="color: #aaa; margin-bottom: 15px;">Hum sirf maal deliver nahi karte, hum aapka bharosa aur commitment deliver karte hain. 24/7 support aur safe delivery hamari pehli priority hai.</p>
+                    
+                    <ul class="info-list">
+                        <li><strong>Our Fleet:</strong> All commercial vehicles available (Tata Ace, Pickup, 14ft to 32ft Containers).</li>
+                        <li><strong>Routes Cover:</strong> All India Service (Safe & Fast Delivery).</li>
+                        <li><strong>Support:</strong> +91 9541842526, +91 9728184226</li>
+                        <li><strong>Email:</strong> fitnesslakshay75@gmail.com</li>
+                        <li><strong>Head Office:</strong> Kuldeep Nagar, Near HP Petrol Pump, Ambala Cantt - 133004</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 VFC Logistics | Ambala Cantt, 133004</p>
+        <p>&copy; 2026 <span>VFC Logistics</span>. All Rights Reserved. | Tagline: We Deliver Commitment</p>
     </footer>
 
 </body>
-</html>
-      
+</html>      
