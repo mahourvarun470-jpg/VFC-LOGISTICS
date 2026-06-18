@@ -44,7 +44,6 @@
         footer span { color: #d32f2f; }
         @media (max-width: 768px) { header, .logo-area, .nav-links { display: block !important; text-align: center !important; width: 100% !important; } .nav-links { margin-top: 15px; } .hero h2 { font-size: 28px !important; } .services-table, .services-table tr, .services-table td { display: block !important; width: 100% !important; } .content-table, .content-table tr, .content-table td { display: block !important; width: 100% !important; } }
     </style>
-
     <script>
         function calculatePrice() {
             var weight = document.getElementById('calc-weight').value;
@@ -56,46 +55,19 @@
                 document.getElementById('calc-result').innerHTML = "Please enter both weight and distance.";
             }
         }
-
-        function showForm(type) {
-            document.getElementById('partLoadForm').style.display = (type === 'part') ? 'block' : 'none';
-            document.getElementById('fullLoadForm').style.display = (type === 'full') ? 'block' : 'none';
-        }
-
         function handleFormSubmit(event) {
             event.preventDefault();
             const form = event.target;
-            const btn = form.querySelector('button[type="submit"]');
             const formData = new FormData(form);
-            
-            btn.innerText = "Processing...";
-            btn.disabled = true;
-
-            fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
-                method: "POST",
-                body: formData
-            })
-            .then(() => {
-                let msg = `*New Booking Request*%0A`;
-                for (let [key, value] of formData.entries()) {
-                    msg += `*${key.replace('_', ' ')}:* ${value}%0A`;
-                }
-                window.open(`https://wa.me/919541842526?text=${msg}`, '_blank');
-                alert("Booking details sent successfully!");
-                form.reset();
-                btn.innerText = "Submit Details";
-                btn.disabled = false;
-            })
-            .catch(() => {
-                alert("Something went wrong.");
-                btn.innerText = "Submit Details";
-                btn.disabled = false;
-            });
+            let msg = `*New Booking Request*%0A`;
+            for (let [key, value] of formData.entries()) { msg += `*${key.replace('_', ' ')}:* ${value}%0A`; }
+            window.open(`https://wa.me/919541842526?text=${msg}`, '_blank');
+            alert("Booking details sent successfully!");
+            form.reset();
         }
     </script>
 </head>
 <body>
-
     <header>
         <div class="logo-area"><h1>VFC <span>LOGISTICS</span></h1></div>
         <div class="nav-links">
@@ -114,66 +86,57 @@
     </section>
 
     <div class="main-container">
-        <table class="content-table" id="book-truck">
+        <h2 class="section-title" id="book-truck">Book Your Truck</h2>
+        <table class="content-table">
             <tr>
-                <td class="content-cell" style="padding-right: 30px;">
-                    <h2 class="section-title">Book A Truck</h2>
-                    <div style="margin-bottom: 20px;">
-                        <button class="btn-red" style="width: 48%; padding: 8px;" onclick="showForm('part')">Part Load</button>
-                        <button class="btn-red" style="width: 48%; padding: 8px; background-color: #333;" onclick="showForm('full')">Full Truck</button>
+                <td class="content-cell" style="padding: 10px;">
+                    <div class="action-box" style="margin:0; width: 100%;">
+                        <h3 style="color:#d32f2f; margin-bottom:15px;">Part Load Booking</h3>
+                        <form onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="Type" value="Part Load">
+                            <div class="form-group"><label>Name</label><input type="text" name="Name" required></div>
+                            <div class="form-group"><label>Mobile</label><input type="tel" name="Mobile" required></div>
+                            <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup" required></div>
+                            <div class="form-group"><label>Drop Location</label><input type="text" name="Drop" required></div>
+                            <div style="display:flex; gap:10px;">
+                                <div class="form-group" style="flex:1;"><label>Weight (Kg)</label><input type="text" name="Weight" required></div>
+                                <div class="form-group" style="flex:1;"><label>Length (ft)</label><input type="text" name="Length"></div>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+                                <div class="form-group" style="flex:1;"><label>Width (ft)</label><input type="text" name="Width"></div>
+                                <div class="form-group" style="flex:1;"><label>Height (ft)</label><input type="text" name="Height"></div>
+                            </div>
+                            <button class="btn-red" type="submit">Book Part Load</button>
+                        </form>
                     </div>
-
-                    <!-- Part Load Form -->
-                    <form id="partLoadForm" onsubmit="handleFormSubmit(event)">
-                        <input type="hidden" name="Booking_Type" value="Part Load">
-                        <div class="form-group"><label>Name</label><input type="text" name="Customer_Name" required></div>
-                        <div class="form-group"><label>Mobile</label><input type="tel" name="Mobile_Number" required></div>
-                        <div class="form-group"><label>Pickup & Drop</label><input type="text" name="Locations" placeholder="Pickup City to Drop City" required></div>
-                        <div style="display: flex; gap: 10px;">
-                            <div class="form-group" style="flex:1;"><label>Length(ft)</label><input type="number" name="Length"></div>
-                            <div class="form-group" style="flex:1;"><label>Width(ft)</label><input type="number" name="Width"></div>
-                            <div class="form-group" style="flex:1;"><label>Height(ft)</label><input type="number" name="Height"></div>
-                        </div>
-                        <div class="form-group"><label>Weight (Kg)</label><input type="text" name="Weight" required></div>
-                        <button class="btn-red" type="submit">Submit Part Load</button>
-                    </form>
-
-                    <!-- Full Truck Load Form -->
-                    <form id="fullLoadForm" onsubmit="handleFormSubmit(event)" style="display: none;">
-                        <input type="hidden" name="Booking_Type" value="Full Truck Load">
-                        <div class="form-group"><label>Name</label><input type="text" name="Customer_Name" required></div>
-                        <div class="form-group"><label>Mobile</label><input type="tel" name="Mobile_Number" required></div>
-                        <div class="form-group"><label>Truck Type</label>
-                            <select name="Truck_Type">
-                                <option value="6ft">6 ft</option>
-                                <option value="8ft">8 ft</option>
-                                <option value="10ft">10 ft</option>
-                                <option value="14ft">14 ft</option>
-                                <option value="17ft">17 ft</option>
-                                <option value="20ft">20 ft</option>
-                                <option value="22ft">22 ft</option>
-                                <option value="Trailer">Trailer</option>
-                            </select>
-                        </div>
-                        <div class="form-group"><label>Route (Pickup to Drop)</label><input type="text" name="Route" required></div>
-                        <button class="btn-red" type="submit">Submit FTL Booking</button>
-                    </form>
                 </td>
-                <td class="content-cell" style="border-left: 1px solid #333; padding-left: 30px; vertical-align: middle;">
-                    <h2 class="section-title">Contact Us</h2>
-                    <ul class="info-list">
-                        <li><strong>Our Fleet strength:</strong> Tata Ace, Pickup, 14ft, 22ft, 32ft Containers.</li>
-                        <li><strong>Network Mapping:</strong> All India Service (Fast & Reliable).</li>
-                        <li><strong>Support No:</strong> +91 9541842526, +91 9728184226</li>
-                        <li><strong>Email:</strong> fitnesslakshay75@gmail.com</li>
-                        <li><strong>Office Address:</strong> Kuldeep Nagar, Near HP Petrol Pump, Ambala Cantt - 133004</li>
-                    </ul>
+                <td class="content-cell" style="padding: 10px;">
+                    <div class="action-box" style="margin:0; width: 100%;">
+                        <h3 style="color:#d32f2f; margin-bottom:15px;">Full Truck Load (FTL)</h3>
+                        <form onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="Type" value="Full Truck Load">
+                            <div class="form-group"><label>Name</label><input type="text" name="Name" required></div>
+                            <div class="form-group"><label>Mobile</label><input type="tel" name="Mobile" required></div>
+                            <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup" required></div>
+                            <div class="form-group"><label>Drop Location</label><input type="text" name="Drop" required></div>
+                            <div class="form-group"><label>Weight (Kg)</label><input type="text" name="Weight" required></div>
+                            <div class="form-group"><label>Select Truck</label>
+                                <select name="Truck_Size">
+                                    <option value="6ft">6 ft</option><option value="8ft">8 ft</option><option value="10ft">10 ft</option>
+                                    <option value="14ft">14 ft</option><option value="17ft">17 ft</option><option value="20ft">20 ft</option>
+                                    <option value="22ft">22 ft</option><option value="Trailer">Trailer</option>
+                                </select>
+                            </div>
+                            <button class="btn-red" type="submit">Book Full Truck</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         </table>
 
+        <!-- Baki ka content jo pehle tha -->
         <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
-        <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
+        <div class="action-box" style="max-width: 100%;">
             <p style="color: #aaa; margin-bottom: 15px;">Apna weight aur approx distance daal kar turant ek rough estimate rate nikalien:</p>
             <table>
                 <tr>
