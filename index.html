@@ -1,94 +1,825 @@
-<!-- Form Structure (Make sure your input IDs match these) -->
-<form id="bookingForm" onsubmit="sendBooking(event)" style="font-family: 'Segoe UI', sans-serif; max-width: 450px; margin: auto; padding: 20px; background: #fdfdfd; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-    <!-- Inputs ke fields standard rakhein (name, phone, pickup, drop, truck) -->
-    
-    <button type="submit" id="submitBtn" style="width: 100%; padding: 12px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <span id="btnText">Request via WhatsApp & Email</span>
-        <div id="btnSpinner" style="display: none; width: 20px; height: 20px; border: 3px solid #fff; border-radius: 50%; border-top-color: transparent; animation: spin 0.8s linear infinite;"></div>
-    </button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VFC Logistics | Premium Supply Chain & Commercial Fleet Solutions</title>
+    <!-- FontAwesome & Premium Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #00C853; /* Premium Eco Truck Green */
+            --primary-hover: #00B248;
+            --dark-blue: #0A1128; /* Modern Ultra Corporate Dark Blue */
+            --bg-light: #F4F7F6;
+            --card-border: #E2E8F0;
+            --text-dark: #1C2541;
+            --text-muted: #475569;
+        }
 
-<style>
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .success-toast {
-        position: fixed; top: 20px; right: 20px; background: #10B981; color: white; 
-        padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        z-index: 1000; font-family: sans-serif; font-weight: 500; animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-</style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #ffffff;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
 
-<script>
-    function sendBooking(e) {
-        e.preventDefault();
+        /* LIVE SYSTEM STATUS HEADLINER */
+        .system-banner {
+            background: #000000;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            padding: 12px 15px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary);
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7);
+            animation: pulse-green 1.5s infinite;
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 200, 83, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+        }
 
-        // Elements select karna UI update ke liye
-        const btn = document.getElementById("submitBtn");
-        const btnText = document.getElementById("btnText");
-        const btnSpinner = document.getElementById("btnSpinner");
+        /* ULTRA STICKY HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo i { color: var(--primary); font-size: 28px; }
+        .brand-vfc { color: var(--dark-blue); }
+        .brand-logistics { color: var(--primary); }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        
+        .phone-cta {
+            background: var(--dark-blue);
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px !important;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .phone-cta:hover { background: var(--primary); transform: translateY(-2px); }
 
-        // Loading state ON (Maza tabhi aayega jab lagega backend chal raha hai)
-        btn.style.pointerEvents = "none";
-        btn.style.opacity = "0.8";
-        btnText.innerText = "Processing...";
-        btnSpinner.style.display = "block";
+        /* ULTRA PREMIUM HERO SECTION */
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            background: linear-gradient(145deg, rgba(10, 17, 40, 0.95) 30%, rgba(10, 17, 40, 0.75) 100%), 
+                        url('https://images.unsplash.com/photo-1516576475522-e861879493bc?auto=format&fit=crop&q=80&w=1800') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 80px 50px;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .hero-text h1 {
+            color: #ffffff;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            letter-spacing: -1.5px;
+        }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p {
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 540px;
+        }
 
-        let name = document.getElementById("name").value;
-        let phone = document.getElementById("phone").value;
-        let pickup = document.getElementById("pickup").value;
-        let drop = document.getElementById("drop").value;
-        let truck = document.getElementById("truck").value;
+        /* METRIC counters */
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 35px;
+        }
+        .stat-box h3 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+        }
+        .stat-box h3 span { color: var(--primary); }
+        .stat-box p {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
 
-        // WhatsApp message structure
-        let msg = "*NEW ENTERPRISE FLEET BOOKING*%0A%0A" +
-                  "*Client/Company:* " + encodeURIComponent(name) + "%0A" +
-                  "*Contact:* " + encodeURIComponent(phone) + "%0A" +
-                  "*Origin:* " + encodeURIComponent(pickup) + "%0A" +
-                  "*Destination:* " + encodeURIComponent(drop) + "%0A" +
-                  "*Fleet Selected:* " + encodeURIComponent(truck);
+        /* PREMIUM DYNAMIC GLASS CONTAINER FORM */
+        .booking-card {
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .booking-card h2 {
+            font-size: 28px;
+            color: var(--dark-blue);
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .booking-card .tagline {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .form-block { margin-bottom: 20px; }
+        .form-block label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-block input, .form-block select {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid var(--card-border);
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            outline: none;
+            background: #F8FAFC;
+            color: var(--text-dark);
+        }
+        .form-block input:focus, .form-block select:focus {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.15);
+        }
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        /* THE MASSIVE WHATSAPP CTAs WITH BACKGROUND LOADER */
+        .submit-engine-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 24px rgba(0, 200, 83, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .submit-engine-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 200, 83, 0.4);
+        }
+        
+        .loader-ring {
+            display: none;
+            width: 22px;
+            height: 22px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: rotate-loader 0.8s linear infinite;
+        }
+        @keyframes rotate-loader { to { transform: rotate(360deg); } }
 
-        let whatsappURL = "https://wa.me/919541842526?text=" + msg;
+        /* REALTIME INLINE TOAST POPUP */
+        .toast-popup {
+            position: fixed; top: 30px; right: 30px; background: var(--dark-blue); color: white; 
+            padding: 16px 28px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 2000; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 10px;
+            border-left: 4px solid var(--primary); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        // AJAX/Fetch FormSubmit backend api ke throug background mein data bhejenge
-        let formData = new FormData();
-        formData.append("Company_Name", name);
-        formData.append("Phone_Number", phone);
-        formData.append("Pickup_Location", pickup);
-        formData.append("Drop_Location", drop);
-        formData.append("Selected_Truck", truck);
-        formData.append("_subject", "New Fleet Booking Request - VFC Logistics");
-        formData.append("_template", "table"); // Email ekdum clean dynamic table layout mein aayegi
+        /* REUSABLE SECTIONS SECTION */
+        .section-wrapper {
+            padding: 100px 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .centered-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .centered-title h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--dark-blue);
+        }
+        .centered-title h2 span { color: var(--primary); }
+        .centered-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-top: 10px;
+        }
 
-        fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            // UI Reset after success
-            btn.style.pointerEvents = "auto";
-            btn.style.opacity = "1";
-            btnText.innerText = "Request via WhatsApp & Email";
-            btnSpinner.style.display = "none";
+        /* OVERLAPPING HERO CARD FEATURES */
+        .floating-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: -50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+        .feature-item-card {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+        .feature-item-card:hover { transform: translateY(-5px); box-shadow: 0 30px 50px rgba(0,0,0,0.08); }
+        .feature-item-card i { font-size: 32px; color: var(--primary); margin-bottom: 20px; display: inline-block;}
+        .feature-item-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--dark-blue); }
+        .feature-item-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-            // Ek modern toast notification popup dikhayenge screen par
-            let toast = document.createElement("div");
-            toast.className = "success-toast";
-            toast.innerText = "✓ Booking Logged Successfully!";
-            document.body.appendChild(toast);
+        /* COMMERCIAL FLEET MATRIX LAYOUT */
+        .fleet-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .fleet-matrix-card {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        }
+        .fleet-matrix-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 200, 83, 0.06);
+            transform: translateY(-6px);
+        }
+        .fleet-visual {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .fleet-meta-content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+        .fleet-meta-content h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; color: var(--dark-blue); }
+        .fleet-meta-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        
+        .spec-list {
+            list-style: none;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 20px;
+        }
+        .spec-list li {
+            font-size: 13.5px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .spec-list li span { font-weight: 700; color: #000000; }
+        .spec-list li i { color: var(--primary); font-size: 14px; }
+
+        /* INFRASTRUCTURE ASSURANCE SECTION */
+        .infra-bg { background: var(--bg-light); }
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .infra-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 5px solid var(--dark-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .infra-card.active { border-left-color: var(--primary); }
+        .infra-card i { font-size: 28px; color: var(--primary); margin-bottom: 15px; }
+        .infra-card h4 { font-size: 19px; font-weight: 700; margin-bottom: 10px; color: var(--dark-blue); }
+        .infra-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+        /* BLUEPRINT DISPATCH SCHEDULER */
+        .blueprint-bg { background: var(--dark-blue); color: #ffffff; }
+        .blueprint-bg .centered-title h2 { color: #ffffff; }
+        .blueprint-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .blueprint-step {
+            position: relative;
+        }
+        .blueprint-num {
+            font-size: 54px;
+            font-weight: 800;
+            color: rgba(0, 200, 83, 0.2);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+        .blueprint-step h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #ffffff; }
+        .blueprint-step p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
+
+        /* MODERN CORPORATE FOOTER ENGINE */
+        footer {
+            background: #050B14;
+            color: #94a3b8;
+            padding: 80px 50px 40px 50px;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-matrix {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 0.8fr 1fr;
+            gap: 60px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #141E30;
+        }
+        .footer-profile h3 { font-size: 26px; color: #ffffff; margin-bottom: 15px; font-weight: 800; }
+        .footer-profile h3 span { color: var(--primary); }
+        .footer-profile p { font-size: 14px; line-height: 1.6; max-width: 360px; }
+        
+        .footer-links-group h5 { 
+            color: #ffffff; font-size: 14px; margin-bottom: 22px; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .footer-links-group ul { list-style: none; }
+        .footer-links-group li { margin-bottom: 12px; }
+        .footer-links-group a { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.2s ease; }
+        .footer-links-group a:hover { color: var(--primary); }
+        
+        .footer-contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+        .footer-contact-item i { color: var(--primary); font-size: 16px; }
+        .footer-contact-item a { color: #94a3b8; text-decoration: none; }
+        .footer-contact-item a:hover { color: #fff; }
+
+        .footer-copyright-bar {
+            max-width: 1300px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* POWERFUL MOBILE ENGINE RESPONSIVENESS */
+        @media (max-width: 1024px) {
+            header { padding: 20px; }
+            .hero-section { padding: 60px 20px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .hero-text p { margin: 0 auto 35px auto; }
+            .hero-stats { justify-content: center; }
+            .section-wrapper { padding: 70px 20px; }
+            .floating-features-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: -30px; }
+            .fleet-matrix-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .infra-grid { grid-template-columns: repeat(2, 1fr); }
+            .blueprint-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-text h1 { font-size: 38px; }
+            .floating-features-grid { grid-template-columns: 1fr; margin-top: 30px; }
+            .fleet-matrix-grid { grid-template-columns: 1fr; }
+            .infra-grid { grid-template-columns: 1fr; }
+            .blueprint-grid { grid-template-columns: 1fr; }
+            .footer-matrix { grid-template-columns: 1fr; gap: 40px; }
+            .footer-copyright-bar { flex-direction: column; gap: 15px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 32px; }
+            .booking-card { padding: 30px 20px; }
+            .grid-split { grid-template-columns: 1fr; gap: 0; }
+            .hero-stats { flex-direction: column; gap: 20px; align-items: center; }
+            .centered-title h2 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SYSTEM OPERATIONAL ANNOUNCER -->
+    <div class="system-banner">
+        <div class="live-dot"></div> SECURE TRANSIT NETWORK ACTIVE: 1,420 COMMERCIALLY VERIFIED FLEETS OPERATIONAL
+    </div>
+
+    <!-- CORPORATE HEADER NAVBAR -->
+    <header>
+        <div class="logo"><i class="fa-solid fa-layer-group"></i> <span class="brand-vfc">VFC</span><span class="brand-logistics"> Logistics</span></div>
+        <ul class="nav-links">
+            <li><a href="#fleet-catalog">Fleet Ecosystem</a></li>
+            <li><a href="#core-infrastructure">Core Strengths</a></li>
+            <li><a href="#dispatch-blueprint">Dispatch Process</a></li>
+        </ul>
+        <a href="tel:+919541842526" class="phone-cta"><i class="fa-solid fa-headset"></i> Call Control Room</a>
+    </header>
+
+    <!-- MAIN CONTEXTUAL HERO COMPONENT -->
+    <section class="hero-section">
+        <div class="hero-grid">
             
-            setTimeout(() => toast.remove(), 4000);
+            <div class="hero-text">
+                <h1>We Route <span>Performance</span>. We Secure Freight.</h1>
+                <p>India's industrial-grade tech logistics company providing optimized heavy assets and mini trucks for multi-tier corporate supply chain distributions.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <h3>15K<span>+</span></h3>
+                        <p>Successful Trips</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>99.4<span>%</span></h3>
+                        <p>On-Time SLA</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>24<span>/</span>7</h3>
+                        <p>Live Monitoring</p>
+                    </div>
+                </div>
+            </div>
 
-            // Form clear karo
-            document.getElementById("bookingForm").reset();
+            <!-- BACKEND FORM COMPONENT (ZERO BREAKAGE HANDLING) -->
+            <div class="booking-card" id="allocationDesk">
+                <h2>Request Fleet Allocation</h2>
+                <p class="tagline">Provide routing parameters below to auto-assign dispatch units.</p>
+                
+                <form id="bookingForm" onsubmit="executeAllocation(event)">
+                    <div class="form-block">
+                        <label for="name">Company Entity / Authorized Client Name</label>
+                        <input type="text" id="name" placeholder="Enter company name or personal identity" required>
+                    </div>
 
-            // Boom! Ab bina page load toote directly WhatsApp par redirect
-            window.open(whatsappURL, '_blank');
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("Kuch dikkat aayi, par aap direct WhatsApp kar sakte hain!");
-            window.open(whatsappURL, '_blank');
-        });
-    }
-</script>
+                    <div class="form-block">
+                        <label for="phone">Registered Contact Number</label>
+                        <input type="tel" id="phone" placeholder="Enter 10-digit primary mobile" required>
+                    </div>
+
+                    <div class="grid-split">
+                        <div class="form-block">
+                            <label for="pickup">Point of Origin (Pickup)</label>
+                            <input type="text" id="pickup" placeholder="City or Pincode" required>
+                        </div>
+                        <div class="form-block">
+                            <label for="drop">Destination Terminal (Drop)</label>
+                            <input type="text" id="drop" placeholder="City or Pincode" required>
+                        </div>
+                    </div>
+
+                    <div class="form-block">
+                        <label for="truck">Required Vehicle Configuration</label>
+                        <select id="truck" required>
+                            <option value="" disabled selected>Choose dynamic configuration...</option>
+                            <option value="Tata Ace / Chota Hathi (850 KG)">Tata Ace (Chota Hathi) — 850 KG Capacity</option>
+                            <option value="Mahindra Pickup (1.5 Ton)">Mahindra Pickup Commercial — 1.5 Ton Capacity</option>
+                            <option value="14 Feet Open/Closed Truck (4 Ton)">14 Feet Intermediate Truck — 4 Ton Capacity</option>
+                            <option value="20 Feet Heavy Container (7 Ton)">20 Feet Closed Container — 7 Ton Capacity</option>
+                            <option value="32 Feet Multi-Axle Container">32 Feet Heavy-Duty Industry Grade Axle Container</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-engine-btn" id="submitBtn">
+                        <span id="btnTxtContent"><i class="fab fa-whatsapp"></i> Transmit Request Via WhatsApp</span>
+                        <div class="loader-ring" id="btnLoaderRing"></div>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FLOATING CORE FEATURES VALUE SECTION -->
+    <section class="section-wrapper" style="padding-top:0;">
+        <div class="floating-features-grid">
+            <div class="feature-item-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4>Fully Insured High-Value Cargo</h4>
+                <p>Complete risk mitigation frameworks governing transit goods from physical dispatch points to target drops.</p>
+            </div>
+            <div class="feature-item-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h4>Accelerated Fleet Response</h4>
+                <p>Distributed strategic hubs near highways reduce allocation delays, driving optimized turnaround times.</p>
+            </div>
+            <div class="feature-item-card">
+                <i class="fa-solid fa-users-gear"></i>
+                <h4>Dedicated Enterprise Managers</h4>
+                <p>One direct human interface point monitoring critical waybills and specialized multi-point unloading.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: THE PREMIUM HIGH RES CATALOG DISPLAY -->
+    <section id="fleet-catalog" class="section-wrapper" style="border-top: 1px solid #F1F5F9;">
+        <div class="centered-title">
+            <h2>Our Verified <span>Commercial Fleet</span> Ecosystem</h2>
+            <p>Engineered structural payload metrics configured for zero en-route vulnerability.</p>
+        </div>
+        <div class="fleet-matrix-grid">
+            
+            <!-- FLEET ITEM 1 -->
+            <div class="fleet-matrix-card">
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=600" alt="Mini Commercial Fleets" class="fleet-visual">
+                <div class="fleet-meta-content">
+                    <h3>Intracity Mini Fleets</h3>
+                    <p>Perfect setup for localized retail channel replenishment and high-velocity last mile warehouse drop-shipping.</p>
+                    <ul class="spec-list">
+                        <li><div><i class="fa-solid fa-circle-check"></i> Standard Configurations</div> <span>Tata Ace / Pickup</span></li>
+                        <li><div><i class="fa-solid fa-circle-check"></i> Certified Payload Max</div> <span>850 KG - 1.5 Tons</span></li>
+                        <li><div><i class="fa-solid fa-circle-check"></i> Ideal Application</div> <span>E-Commerce, FMCG, Box Goods</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FLEET ITEM 2 -->
+            <div class="fleet-matrix-card">
+                <img src="https://images.unsplash.com/photo-1516576475522-e861879493bc?auto=format&fit=crop&q=80&w=600" alt="Medium Duty Cargo Fleet" class="fleet-visual">
+                <div class="fleet-meta-content">
+                    <h3>Medium Industrial Trucks</h3>
+                    <p>Designed for mid-tier weights requiring robust high-torque engine setups across complex interstate bypass corridors.</p>
+                    <ul class="spec-list">
+                        <li><div><i class="fa-solid fa-circle-check"></i> Standard Configurations</div> <span>14ft - 19ft Open/Closed</span></li>
+                        <li><div><i class="fa-solid fa-circle-check"></i> Certified Payload Max</div> <span>Up to 4 - 7 Tons</span></li>
+                        <li><div><i class="fa-solid fa-circle-check"></i> Ideal Application</div> <span>Pharma, Electronics, Machinery</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FLEET ITEM 3 -->
+            <div class="fleet-matrix-card">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" alt="Heavy Cargo Logistics" class="fleet-visual">
+                <div class="fleet-meta-content">
+                    <h3>Heavy-Duty Containers</h3>
+                    <p>High capacity long-haul setups engineered explicitly to process raw industrial metal assets over national corridors.</p>
+                    <ul class="spec-list">
+                        <li><div><i class="fa-solid fa-circle-check"></i> Standard Configurations</div> <span>20ft / 32ft MX High Cube</span></li>
+                        <li><div><i class="fa-solid fa-circle-check"></i> Certified Payload Max</div> <span>10 Tons - 25+ Tons</span></li>
+                        <li><div><i class="fa-solid fa-circle-check"></i> Ideal Application</div> <span>Industrial Steel, Automotive, Bulk</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: THE ASSURANCE GRID STRUCTURE -->
+    <section id="core-infrastructure" class="section-wrapper infra-bg">
+        <div class="centered-title">
+            <h2>Why Supply Chain Leaders Choose <span>VFC</span></h2>
+            <p>Deploying technological accuracy behind every line-haul commercial commitment.</p>
+        </div>
+        <div class="infra-grid">
+            <div class="infra-card active">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <h4>Transparent Upfront Billing</h4>
+                <p>Complete elimination of arbitrary en-route fuel markups, sudden unlisted toll costs, or hidden secondary loading surcharges.</p>
+            </div>
+            <div class="infra-card">
+                <i class="fa-solid fa-route"></i>
+                <h4>Algorithmic Route Routing</h4>
+                <p>Realtime lane evaluation software optimizes paths around congested corridors to keep high-value assets moving safely.</p>
+            </div>
+            <div class="infra-card active">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h4>High-Frequency Maintenance</h4>
+                <p>Our owned and aggregated vehicles undergo rigorous mechanical fitness audits fortnightly to maximize highway reliability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROCESS BLUEPRINT -->
+    <section id="dispatch-blueprint" class="section-wrapper blueprint-bg">
+        <div class="centered-title">
+            <h2>The <span>VFC Engineered</span> Operation Blueprint</h2>
+            <p style="color:#94a3b8;">Systematized freight allocation workflows structured for extreme execution accuracy.</p>
+        </div>
+        <div class="blueprint-grid">
+            <div class="blueprint-step">
+                <div class="blueprint-num">01</div>
+                <h4>Routing Request</h4>
+                <p>Submit critical origin-destination variables via our responsive digital frontend control desk console.</p>
+            </div>
+            <div class="blueprint-step">
+                <div class="blueprint-num">02</div>
+                <h4>Asset Matching</h4>
+                <p>The centralized routing engine cross-verifies axle configs and assigns an active, verified commercial operator.</p>
+            </div>
+            <div class="blueprint-step">
+                <div class="blueprint-num">03</div>
+                <h4>Secure Depot Loading</h4>
+                <p>Cargo manifest checks are executed directly at loading points using industrial safety containment guidelines.</p>
+            </div>
+            <div class="blueprint-step">
+                <div class="blueprint-num">04</div>
+                <h4>Terminal Delivery</h4>
+                <p>Assets navigate designated highway corridors, finalizing drops on schedule with absolute SLA verification.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENTERPRISE CLEAN FOOTER CORE -->
+    <footer>
+        <div class="footer-matrix">
+            <div class="footer-profile">
+                <h3><span class="brand-vfc">VFC</span> <span class="brand-logistics">Logistics</span></h3>
+                <p>Premium supply chain logistics, heavy line-haul transport management, and multimodal corporate enterprise transportation solutions nationwide.</p>
+            </div>
+            <div class="footer-links-group">
+                <h5>Ecosystem Operations</h5>
+                <ul>
+                    <li><a href="#fleet-catalog">Intracity Hubs</a></li>
+                    <li><a href="#fleet-catalog">Interstate Line-Haul</a></li>
+                    <li><a href="#fleet-catalog">Dedicated Contract Fleet</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-group">
+                <h5>Control Terminal Hub</h5>
+                <ul>
+                    <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> <a href="tel:+919541842526">+91 95418 42526</a></li>
+                    <li class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:fitnesslakshay75@gmail.com">ops@vfclogistics.com</a></li>
+                    <li class="footer-contact-item"><i class="fa-solid fa-location-crosshairs"></i> <span>Pan-India Strategic Corridors</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright-bar">
+            <p>&copy; 2026 VFC Logistics Network Private Limited. All Corporate Jurisdictions Applied.</p>
+            <p>Engineered For Enterprise Supply Chains.</p>
+        </div>
+    </footer>
+
+    <!-- BACKGROUND ENGINE SCRIPT FOR STABLE AJAX FETCH TRANSMISSION -->
+    <script>
+        function executeAllocation(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById("submitBtn");
+            const btnTxt = document.getElementById("btnTxtContent");
+            const btnLoader = document.getElementById("btnLoaderRing");
+
+            // UI System State Adjust to Loading
+            btn.style.pointerEvents = "none";
+            btn.style.opacity = "0.85";
+            btnTxt.innerHTML = "Processing Fleet Matrix Allocation...";
+            btnLoader.style.display = "block";
+
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let pickup = document.getElementById("pickup").value;
+            let drop = document.getElementById("drop").value;
+            let truck = document.getElementById("truck").value;
+
+            // Generate Professional WhatsApp Data Matrix Link
+            let msg = "*NEW ENTERPRISE FLEET BOOKING*%0A%0A" +
+                      "*Client/Company:* " + encodeURIComponent(name) + "%0A" +
+                      "*Contact Line:* " + encodeURIComponent(phone) + "%0A" +
+                      "*Origin Terminal:* " + encodeURIComponent(pickup) + "%0A" +
+                      "*Destination Drop:* " + encodeURIComponent(drop) + "%0A" +
+                      "*Fleet Configuration:* " + encodeURIComponent(truck);
+
+            let whatsappURL = "https://wa.me/919541842526?text=" + msg;
+
+            // FormSubmit Backend AJAX Integration Array
+            let formData = new FormData();
+            formData.append("Corporate_Client", name);
+            formData.append("Contact_Number", phone);
+            formData.append("Origin_Point", pickup);
+            formData.append("Destination_Point", drop);
+            formData.append("Vehicle_Configuration", truck);
+            formData.append("_subject", "New Secure Fleet Booking Request - VFC Logistics");
+            formData.append("_template", "table"); // FormSubmit formats clean table mail output
+
+            fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Recover Dynamic Button States
+                btn.style.pointerEvents = "auto";
+                btn.style.opacity = "1";
+                btnTxt.innerHTML = "<i class='fab fa-whatsapp'></i> Transmit Request Via WhatsApp";
+                btnLoader.style.display = "none";
+
+                // Generate Modern Success Popup Toast
+                let toast = document.createElement("div");
+                toast.className = "toast-popup";
+                toast.innerHTML = "<i class='fa-solid fa-circle-check' style='color:#00C853;'></i> Allocation Logged & Transmitted!";
+                document.body.appendChild(toast);
+                
+                setTimeout(() => toast.remove(), 4000);
+
+                // Reset Field Entities
+                document.getElementById("bookingForm").reset();
+
+                // Fire Seamless Redirect to WhatsApp API Securely
+                window.open(whatsappURL, '_blank');
+            })
+            .catch(error => {
+                console.error('System Routing Exception:', error);
+                
+                // Fallback Engine to bypass blockages
+                btn.style.pointerEvents = "auto";
+                btn.style.opacity = "1";
+                btnTxt.innerHTML = "<i class='fab fa-whatsapp'></i> Transmit Request Via WhatsApp";
+                btnLoader.style.display = "none";
+                window.open(whatsappURL, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
