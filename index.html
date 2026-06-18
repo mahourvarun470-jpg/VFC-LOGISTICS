@@ -88,7 +88,7 @@
         }
 
         .hero .btn-red {
-            max-width: 250px;
+            max-width: 280px;
             margin: 0 auto;
             display: block;
         }
@@ -294,9 +294,7 @@
             color: #d32f2f;
         }
 
-        /* ==========================================================================
-           MOBILE RESPONSIVE CODE (SIF YE ADD KIYA HAI JO DABBI BANNE SE ROKEGA)
-           ========================================================================== */
+        /* MOBILE RESPONSIVE CODE */
         @media (max-width: 768px) {
             header, .logo-area, .nav-links {
                 display: block !important;
@@ -314,7 +312,6 @@
                 font-size: 28px !important;
             }
             
-            /* Calculator cells ko ek ke neeche ek kiya */
             #calculator table, #calculator tr, #calculator td {
                 display: block !important;
                 width: 100% !important;
@@ -322,7 +319,6 @@
                 margin-bottom: 15px;
             }
             
-            /* Services table fix */
             .services-table {
                 border-spacing: 0px !important;
             }
@@ -332,7 +328,6 @@
                 margin-bottom: 20px;
             }
 
-            /* Form and Contact section fix */
             .content-table tr, .content-table td.content-cell {
                 display: block !important;
                 width: 100% !important;
@@ -357,6 +352,7 @@
 </head>
 <body>
 
+    <!-- Header & Navigation -->
     <header>
         <div class="logo-area">
             <h1>VFC <span>LOGISTICS</span></h1>
@@ -370,14 +366,16 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <h2>We Deliver Commitment</h2>
         <p>Reliable, Safe & On-Time Logistics Solutions Across India</p>
-        <a href="#quote" class="btn-red">Get Enquiry Now</a>
+        <a href="#quote" class="btn-red">Book Your Truck Now</a>
     </section>
 
     <div class="main-container">
         
+        <!-- Cost Calculator Section -->
         <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
         <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
             <p style="color: #aaa; margin-bottom: 15px;">Apna weight aur approx distance daal kar turant ek rough estimate rate nikalien:</p>
@@ -399,6 +397,7 @@
             <h4 id="calc-result" style="margin-top: 15px; color: #25d366; font-size: 18px;"></h4>
         </div>
 
+        <!-- Services Section -->
         <h2 class="section-title" id="services">Our Core Services</h2>
         <table class="services-table">
             <tr>
@@ -417,6 +416,7 @@
             </tr>
         </table>
 
+        <!-- Form & Contact Section -->
         <table class="content-table" id="quote">
             <tr>
                 <td class="content-cell" style="padding-right: 30px;">
@@ -443,6 +443,7 @@
             </tr>
         </table>
 
+        <!-- FAQ Section -->
         <h2 class="section-title" id="faq">Frequently Asked Questions (FAQs)</h2>
         <div class="faq-item">
             <h4>Q. Kya aapka maal insured hota hai?</h4>
@@ -459,8 +460,10 @@
 
     </div>
 
+    <!-- Floating WhatsApp Integration -->
     <a href="https://wa.me/919541842526" class="whatsapp-float" target="_blank">💬 WhatsApp Chat</a>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>VFC Logistics</span>. All Rights Reserved. | Tagline: We Deliver Commitment</p>
     </footer>
