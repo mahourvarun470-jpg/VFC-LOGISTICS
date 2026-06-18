@@ -3,565 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VFC Logistics | We Deliver Commitment</title>
-    <!-- FontAwesome Icons & Inter Font -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>VFC Logistics - We Deliver Commitment</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        :root {
-            --vfc-red: #D32F2F; /* Premium Enterprise Crimson Red */
-            --vfc-red-hover: #B71C1C;
-            --vfc-black: #0F1115; /* Matte Premium Black */
-            --vfc-dark-surface: #1A1D24; /* Elevated Dark Carbon */
-            --bg-light: #F4F6F9;
-            --surface-card: #FFFFFF;
-            --border-color: #E2E8F0;
-            --text-main: #1E293B;
-            --text-muted: #64748B;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: var(--bg-light);
-            color: var(--text-main);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
         }
 
-        /* TOP LIVE TICKER BANNER */
-        .top-ticker {
-            background: var(--vfc-black);
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 10px 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--vfc-red);
-            letter-spacing: 0.5px;
-        }
-        .top-ticker span {
-            color: var(--vfc-red);
-            font-weight: 700;
-        }
-
-        /* ENTERPRISE STICKY HEADER */
+        /* Header & Navigation */
         header {
-            background: #ffffff;
-            padding: 15px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: #000;
+            border-bottom: 3px solid #d32f2f;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border-bottom: 1px solid var(--border-color);
+            padding: 15px 5%;
+            display: table;
+            width: 100%;
         }
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-        }
+
         .logo-area {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: var(--vfc-black);
-            line-height: 1;
+            display: table-cell;
+            vertical-align: middle;
         }
-        .logo-area span {
-            color: var(--vfc-red);
-        }
-        .logo-slogan {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--vfc-red);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 5px;
-        }
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        .nav-menu a {
-            color: var(--vfc-black);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-        .nav-menu a:hover { color: var(--vfc-red); }
-        
-        .header-ctas .btn-support {
-            background: var(--vfc-black);
+
+        .logo-area h1 {
             color: #fff;
-            padding: 10px 22px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-        .header-ctas .btn-support:hover { 
-            background: #fff;
-            color: var(--vfc-black);
-            border-color: var(--vfc-black);
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        /* HERO DASHBOARD WITH PRESET DARK OVERLAY */
-        .hero-dashboard {
-            background: linear-gradient(rgba(15, 17, 21, 0.88), rgba(26, 29, 36, 0.95)), 
-                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            padding: 80px 60px 100px 60px;
-            color: #ffffff;
-            text-align: center;
-        }
-        .hero-dashboard h1 {
-            font-size: 46px;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        .hero-dashboard h1 span { color: var(--vfc-red); }
-        .hero-tagline {
-            font-size: 18px;
-            color: #94A3B8;
-            max-width: 650px;
-            margin: 0 auto 35px auto;
-            font-weight: 500;
-            line-height: 1.5;
+        .logo-area h1 span {
+            color: #d32f2f;
         }
 
-        /* BOOKING SYSTEM CONSOLE BOX */
-        .console-box {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 14px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            padding: 35px;
-            color: var(--text-main);
-            text-align: left;
-            border-top: 4px solid var(--vfc-red);
-        }
-        .console-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-        }
-        .console-header i {
-            color: var(--vfc-red);
-            font-size: 22px;
-        }
-        .console-header h3 {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--vfc-black);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .nav-links {
+            display: table-cell;
+            text-align: right;
+            vertical-align: middle;
         }
 
-        /* FORM UI ENGINE */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .form-field { display: flex; flex-direction: column; gap: 8px; }
-        .form-field label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--vfc-black); }
-        .form-field input, .form-field select {
-            padding: 14px 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            background: #F8FAFC;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .form-field input:focus, .form-field select:focus { 
-            border-color: var(--vfc-red); 
-            background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
-        }
-        
-        .btn-dispatch {
-            width: 100%;
-            background: var(--vfc-red);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .btn-dispatch:hover { background: var(--vfc-red-hover); }
-
-        /* REAL-TIME SYSTEM STATS METRICS STRIP */
-        .stats-strip {
-            background: var(--vfc-dark-surface);
-            border-bottom: 3px solid var(--vfc-red);
-            padding: 40px 60px;
+        .nav-links a {
             color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
         }
-        .stats-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+        .nav-links a:hover {
+            color: #d32f2f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 80px 5%;
             text-align: center;
+            border-bottom: 5px solid #d32f2f;
         }
-        .stat-node h4 { font-size: 38px; font-weight: 900; color: #ffffff; }
-        .stat-node h4 span { color: var(--vfc-red); }
-        .stat-node p { font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-top: 6px; letter-spacing: 1px;}
 
-        /* PREMIUM SERVICES VISUAL VERTICALS */
-        .section-layout {
-            padding: 90px 60px;
-            max-width: 1300px;
-            margin: 0 auto;
+        .hero h2 {
+            font-size: 42px;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .section-header { margin-bottom: 50px; text-align: center; }
-        .section-header h2 { font-size: 36px; font-weight: 900; color: var(--vfc-black); letter-spacing: -1px; text-transform: uppercase; }
-        .section-header h2 span { color: var(--vfc-red); }
-        .section-header p { color: var(--text-muted); font-size: 16px; margin-top: 6px; font-weight: 500; }
 
-        .services-matrix {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+        .hero p {
+            font-size: 18px;
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 30px;
         }
-        .service-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: var(--vfc-red);
-        }
-        .service-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--vfc-red);
-        }
-        .service-content {
+
+        /* Tracking & Action Box */
+        .action-box {
+            background-color: #1a1a1a;
+            max-width: 700px;
+            margin: 0 auto 20px auto;
             padding: 25px;
+            border-radius: 6px;
+            border-left: 5px solid #d32f2f;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .service-card .icon-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+
+        .action-box h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: left;
+        }
+
+        .search-form {
+            display: table;
+            width: 100%;
+        }
+
+        .search-input-cell {
+            display: table-cell;
+            width: 75%;
+            padding-right: 10px;
+        }
+
+        .search-btn-cell {
+            display: table-cell;
+            width: 25%;
+        }
+
+        .action-box input[type="text"], .action-box input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .action-box input:focus {
+            border-color: #d32f2f;
+            outline: none;
+        }
+
+        .btn-red {
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-red:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Main Container layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 25px;
+            border-left: 4px solid #d32f2f;
+            padding-left: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Services Grid alternative using table */
+        .services-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-radius: 4px;
+            border-top: 3px solid #333;
+            vertical-align: top;
+            width: 33.33%;
+            transition: border-color 0.3s;
+        }
+
+        .service-card:hover {
+            border-top-color: #d32f2f;
+        }
+
+        .service-card h3 {
+            color: #d32f2f;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Dual Column Content */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        .content-cell {
+            vertical-align: top;
+            width: 50%;
+            padding: 15px;
+        }
+
+        .form-group {
             margin-bottom: 15px;
         }
-        .service-card .icon-title i {
-            color: var(--vfc-red);
-            font-size: 22px;
-        }
-        .service-card h3 { font-size: 20px; font-weight: 800; color: var(--vfc-black); }
-        .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; font-weight: 500; }
 
-        /* ENTERPRISE FOOTER */
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #d32f2f;
+            outline: none;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .info-list li {
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #ccc;
+        }
+
+        .info-list strong {
+            color: #d32f2f;
+        }
+
+        /* FAQ Section styling */
+        .faq-item {
+            background-color: #1a1a1a;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border-left: 3px solid #333;
+        }
+        .faq-item h4 {
+            color: #d32f2f;
+            margin-bottom: 5px;
+        }
+        .faq-item p {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* Portals Style */
+        .portal-box {
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
         footer {
-            background: var(--vfc-black);
-            color: #94A3B8;
-            padding: 70px 60px 30px 60px;
-            border-top: 4px solid var(--vfc-red);
-        }
-        .footer-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 50px;
-            border-bottom: 1px solid #232830;
-            padding-bottom: 40px;
-        }
-        .footer-brand h3 { color: white; font-size: 26px; font-weight: 900; margin-bottom: 12px; }
-        .footer-brand h3 span { color: var(--vfc-red); }
-        .footer-brand p { font-size: 14px; line-height: 1.6; color: #94A3B8; }
-        
-        .footer-col h5 { color: white; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; }
-        .footer-col a { color: #94A3B8; text-decoration: none; font-size: 14px; transition: color 0.2s; font-weight: 500; }
-        .footer-col a:hover { color: #fff; }
-
-        .footer-bottom {
-            max-width: 1300px;
-            margin: 25px auto 0 auto;
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: #64748B;
-            font-weight: 500;
+            background-color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 3px solid #333;
+            margin-top: 60px;
+            font-size: 14px;
+            color: #777;
         }
 
-        /* MOBILE FIRST RESPONSIVE ENGINEERING */
-        @media (max-width: 1024px) {
-            header { padding: 15px 30px; }
-            .hero-dashboard { padding: 60px 20px 80px 20px; }
-            .section-layout { padding: 60px 20px; }
-            .services-matrix { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        }
-        @media (max-width: 768px) {
-            header { padding: 12px 20px; }
-            .nav-menu { display: none; }
-            .logo-area { font-size: 22px; }
-            .hero-dashboard { padding: 40px 15px 60px 15px; }
-            .hero-dashboard h1 { font-size: 30px; }
-            .hero-tagline { font-size: 14px; margin-bottom: 25px; }
-            
-            /* Ultra Compress Screen Matrix - No Scroll Layout */
-            .console-box { padding: 20px; border-radius: 12px; }
-            .console-header { margin-bottom: 15px; padding-bottom: 10px; }
-            .form-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
-            .form-field { gap: 4px; }
-            .form-field input, .form-field select { padding: 12px; font-size: 13px; }
-            .btn-dispatch { padding: 14px; font-size: 15px; }
-            
-            .services-matrix { grid-template-columns: 1fr; gap: 20px; }
-            .service-img { height: 180px; }
-            .stats-strip { padding: 30px 20px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
-            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        footer span {
+            color: #d32f2f;
         }
     </style>
+    <script>
+        function calculatePrice() {
+            var weight = document.getElementById('calc-weight').value;
+            var distance = document.getElementById('calc-distance').value;
+            if(weight && distance) {
+                var estimatedCost = (weight * 12) + (distance * 7); // Mock Calculation Logic
+                document.getElementById('calc-result').innerHTML = "Estimated Cost: ₹" + estimatedCost + " /- (Approx)";
+            } else {
+                document.getElementById('calc-result').innerHTML = "Please enter both weight and distance.";
+            }
+        }
+    </script>
 </head>
 <body>
 
-    <!-- TOP SYSTEM INFRASTRUCTURE STATUS -->
-    <div class="top-ticker">
-        <i class="fa-solid fa-shield-halved"></i> VFC HIGH-INTEGRITY FREIGHT CORRIDOR: <span>99.8% ACCURACY SLA</span> ACTIVE ACROSS INDIA
-    </div>
-
-    <!-- LOGISTICS ENTERPRISE STICKY NAVIGATION -->
+    <!-- Header & Navigation -->
     <header>
-        <div class="logo-container">
-            <div class="logo-area">VFC<span>Logistics</span></div>
-            <div class="logo-slogan">We Deliver Commitment</div>
+        <div class="logo-area">
+            <h1>VFC <span>LOGISTICS</span></h1>
         </div>
-        <ul class="nav-menu">
-            <li><a href="#services">Corporate Services</a></li>
-            <li><a href="#infrastructure">Our Fleet Network</a></li>
-        </ul>
-        <div class="header-ctas">
-            <a href="tel:+919541842526" class="btn-support"><i class="fa-solid fa-headset"></i> Control Room</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#calculator">Price Estimator</a>
+            <a href="#portals">Portals</a>
+            <a href="#quote">Get a Quote</a>
+            <a href="#faq">FAQs</a>
         </div>
     </header>
 
-    <!-- CORPORATE CONTROL HUB OVERVIEW HERO -->
-    <section class="hero-dashboard">
-        <h1>VFC Supply Chain: <span>We Deliver Commitment</span></h1>
-        <p class="hero-tagline">Direct, high-velocity freight scheduling & commercial fleet allocation pipelines across our premium nationwide corridor.</p>
-
-        <!-- AUTOMATED SHIPPING DISPATCH TERMINAL ONLY (NO TRACKING TAB) -->
-        <div class="console-box">
-            <div class="console-header">
-                <i class="fa-solid fa-truck-ramp-box"></i>
-                <h3>Instant Fleet Asset Allocation</h3>
-            </div>
-
-            <form id="bookingForm" onsubmit="executeEnterpriseDispatch(event)">
-                <div class="form-grid">
-                    <div class="form-field">
-                        <label>Corporate Account Entity</label>
-                        <input type="text" id="clientName" placeholder="e.g. Dua Communications" required>
-                    </div>
-                    <div class="form-field">
-                        <label>Secure System Contact</label>
-                        <input type="tel" id="clientPhone" placeholder="10-digit authorized mobile" required>
-                    </div>
-                    <div class="form-field">
-                        <label>Origin Supply Hub</label>
-                        <input type="text" id="originLoc" placeholder="Pickup Hub Location" required>
-                    </div>
-                    <div class="form-field">
-                        <label>Destination Terminal</label>
-                        <input type="text" id="destLoc" placeholder="Target Unload City" required>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>We Deliver Commitment</h2>
+        <p>Reliable, Safe & On-Time Logistics Solutions Across India</p>
+        
+        <!-- Live Tracking System -->
+        <div class="action-box">
+            <h3>Track Your Shipment (LR / Docket / Tracking ID)</h3>
+            <div class="search-form">
+                <div class="search-input-cell">
+                    <input type="text" id="track-id" placeholder="Enter Tracking Number (e.g. VFC95418)">
                 </div>
-                <div class="form-field" style="margin-bottom:20px;">
-                    <label>Payload Asset Class Configuration</label>
-                    <select id="vehicleType" required>
-                        <option value="" disabled selected>Select dynamic logistics fleet class...</option>
-                        <option value="Tata Ace (Chota Hathi) - 850KG">Tata Ace (Chota Hathi) — Last-Mile 850 KG</option>
-                        <option value="Mahindra Pickup - 1.5 Ton">Mahindra Commercial Pickup — 1.5 Ton</option>
-                        <option value="14 Feet Intermediate Truck - 4 Ton">14 Feet Open/Closed Cargo Truck — 4 Ton</option>
-                        <option value="32 Feet Multi-Axle Industrial Container">32 Feet Heavy Duty Corporate Axle Container</option>
-                    </select>
+                <div class="search-btn-cell">
+                    <button class="btn-red" type="button" onclick="alert('Status: Dispatched from Ambala Hub. In Transit.')">Track</button>
                 </div>
-                <button type="submit" class="btn-dispatch">
-                    <i class="fab fa-whatsapp"></i> Initialize Automated Dispatch Pipeline
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- REAL-TIME ENTERPRISE INFRASTRUCTURE METRICS STRIP -->
-    <section class="stats-strip">
-        <div class="stats-grid">
-            <div class="stat-node">
-                <h4>24<span>/</span>7</h4>
-                <p>Audited Operations Room</p>
-            </div>
-            <div class="stat-node">
-                <h4>15K<span>+</span></h4>
-                <p>Commercial Deliveries Finalized</p>
-            </div>
-            <div class="stat-node">
-                <h4>99.4<span>%</span></h4>
-                <p>On-Time Linehaul SLA</p>
-            </div>
-            <div class="stat-node">
-                <h4>100<span>%</span></h4>
-                <p>Paperless Invoice Integration</p>
             </div>
         </div>
-    </section>
 
-    <!-- PREMIUM HIGH-QUALITY SERVICES VERTICAL MATRIX -->
-    <section id="services" class="section-layout">
-        <div class="section-header">
-            <h2>Industrial <span>Supply Chain</span> Verticals</h2>
-            <p>High-efficiency freight deployment across certified national transportation nodes.</p>
-        </div>
-        <div class="services-matrix">
-            <!-- CARD 1 -->
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1516521518252-f0f8f652de10?auto=format&fit=crop&w=600&q=80" alt="Heavy Line Freight" class="service-img">
-                <div class="service-content">
-                    <div class="icon-title">
-                        <i class="fa-solid fa-truck-moving"></i>
-                        <h3>Heavy Line Freight</h3>
-                    </div>
-                    <p>Scalable Full-Truckload (FTL) and Part-Truckload (PTL) fleet transit handling high-tonnage cargo over core national bypass routes safely.</p>
+        <!-- Digital POD Download Section -->
+        <div class="action-box" style="background-color: #151515; border-left-color: #999;">
+            <h3>Download Digital POD (Proof of Delivery)</h3>
+            <div class="search-form">
+                <div class="search-input-cell">
+                    <input type="text" placeholder="Enter LR Number for Signed Copy">
                 </div>
-            </div>
-            <!-- CARD 2 -->
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80" alt="Express Supply Distribution" class="service-img">
-                <div class="service-content">
-                    <div class="icon-title">
-                        <i class="fa-solid fa-box-open"></i>
-                        <h3>Express Distribution</h3>
-                    </div>
-                    <p>High-velocity middle-mile and localized last-mile networks optimized for rapid time-critical business fulfillment targets.</p>
-                </div>
-            </div>
-            <!-- CARD 3 -->
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80" alt="Strategic Warehousing" class="service-img">
-                <div class="service-content">
-                    <div class="icon-title">
-                        <i class="fa-solid fa-warehouse"></i>
-                        <h3>Strategic Warehousing</h3>
-                    </div>
-                    <p>High-security warehousing complexes situated near key business clusters to completely eliminate transit lag times.</p>
+                <div class="search-btn-cell">
+                    <button class="btn-red" style="background-color: #444;" type="button" onclick="alert('POD found! Downloading signed copy...')">Download</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ENTERPRISE BLACK & RED FOOTER -->
+    <div class="main-container">
+        
+        <!-- Cost Calculator Section -->
+        <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
+        <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
+            <p style="color: #aaa; margin-bottom: 15px;">Apna weight aur approx distance daal kar turant ek rough estimate rate nikalien:</p>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="padding-right: 15px;">
+                        <label style="font-size:14px; color:#ccc;">Total Weight (in KG)</label>
+                        <input type="number" id="calc-weight" placeholder="e.g. 500">
+                    </td>
+                    <td style="padding-right: 15px;">
+                        <label style="font-size:14px; color:#ccc;">Distance (in KM)</label>
+                        <input type="number" id="calc-distance" placeholder="e.g. 250">
+                    </td>
+                    <td style="vertical-align: bottom; width: 20%;">
+                        <button class="btn-red" onclick="calculatePrice()">Calculate</button>
+                    </td>
+                </tr>
+            </table>
+            <h4 id="calc-result" style="margin-top: 15px; color: #25d366; font-size: 18px;"></h4>
+        </div>
+
+        <!-- Services Section -->
+        <h2 class="section-title" id="services">Our Core Services</h2>
+        <table class="services-table">
+            <tr>
+                <td class="service-card">
+                    <h3>Full Truck Load (FTL) & LTL</h3>
+                    <p>Bade industrial heavy cargo se lekar part-load shipment ki makkhan jaise delivery poore India mein.</p>
+                </td>
+                <td class="service-card">
+                    <h3>Commercial Fleet Supply</h3>
+                    <p>Tata Ace, Bolero Pickup, 14-Feet se lekar bade 32-Feet Containers har waqt available.</p>
+                </td>
+                <td class="service-card">
+                    <h3>Warehousing & Storage</h3>
+                    <p>Modern inventory management aur safe godown storage ki zabardast suvidha.</p>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Portals Section -->
+        <h2 class="section-title" id="portals">VFC Corporate Portals</h2>
+        <table class="content-table">
+            <tr>
+                <td class="content-cell" style="padding-right: 20px;">
+                    <div class="portal-box">
+                        <h3 style="color: #d32f2f; margin-bottom: 10px;">Client Portal / Dashboard</h3>
+                        <p style="font-size: 14px; color: #aaa; margin-bottom: 15px;">Regular Corporate Clients login karke apna past order history, pending invoices, aur multiple trucks track kar sakte hain.</p>
+                        <button class="btn-red" style="padding: 8px 15px; font-size: 13px;" onclick="alert('Redirecting to Corporate Client Login...')">Client Login</button>
+                    </div>
+                </td>
+                <td class="content-cell" style="padding-left: 20px;">
+                    <div class="portal-box">
+                        <h3 style="color: #d32f2f; margin-bottom: 10px;">Driver & Vendor Portal</h3>
+                        <p style="font-size: 14px; color: #aaa; margin-bottom: 15px;">Hmare driver partners aur attached vehicle vendors naye trips accept karne aur on-spot POD photo upload karne ke liye yahan login karein.</p>
+                        <button class="btn-red" style="padding: 8px 15px; font-size: 13px; background-color: #333;" onclick="alert('Redirecting to Driver/Vendor Portal...')">Driver Login</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Form & Contact Section -->
+        <table class="content-table" id="quote">
+            <tr>
+                <td class="content-cell" style="padding-right: 30px;">
+                    <h2 class="section-title">Get A Quote / Enquiry</h2>
+                    <form onsubmit="event.preventDefault(); alert('Inquiry sent! VFC Team will contact you shortly.');">
+                        <div class="form-group"><label>Pickup Location</label><input type="text" placeholder="e.g. Ambala Cantt" required></div>
+                        <div class="form-group"><label>Drop Location</label><input type="text" placeholder="e.g. Delhi NCR" required></div>
+                        <div class="form-group"><label>Material Type & Weight</label><input type="text" placeholder="e.g. Steel Pipes - 10 Tons" required></div>
+                        <div class="form-group"><label>Your Contact Info (Name, Phone, Email)</label><input type="text" placeholder="Lakshay - 95418XXXXX" required></div>
+                        <button class="btn-red" type="submit">Submit Enquiry</button>
+                    </form>
+                </td>
+
+                <td class="content-cell" style="border-left: 1px solid #333; padding-left: 30px;">
+                    <h2 class="section-title">Contact Us</h2>
+                    <ul class="info-list">
+                        <li><strong>Our Fleet strength:</strong> Tata Ace, Pickup, 14ft, 22ft, 32ft Containers.</li>
+                        <li><strong>Network Mapping:</strong> All India Service (Fast & Reliable).</li>
+                        <li><strong>Support No:</strong> +91 9541842526, +91 9728184226</li>
+                        <li><strong>Email:</strong> fitnesslakshay75@gmail.com</li>
+                        <li><strong>Office Address:</strong> Kuldeep Nagar, Near HP Petrol Pump, Ambala Cantt - 133004</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <!-- FAQ Section -->
+        <h2 class="section-title" id="faq">Frequently Asked Questions (FAQs)</h2>
+        <div class="faq-item">
+            <h4>Q. Kya aapka maal insured hota hai?</h4>
+            <p>A. Ji haan, VFC Logistics ke sath aapka har consignment fully secure aur insurance policy guidelines ke under safely transport kiya jata hai.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Q. Agar raste mein gadi kharab ho jaye toh kya back-up hai?</h4>
+            <p>A. Hmare paas poore India mein 24/7 route support aur breakdown backup team hai. Kisi bhi dikkat par turant dusri gadi ya mechanic line-up kiya jata hai.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Q. Payment terms kya hain (Advance ya On Delivery)?</h4>
+            <p>A. Hum professional corporate norms follow karte hain. General bookings ke liye booking par advance aur delivery par balance, ya regular clients ke liye billing cycle option hota hai.</p>
+        </div>
+
+    </div>
+
+    <!-- Floating WhatsApp Integration -->
+    <a href="https://wa.me/919541842526" class="whatsapp-float" target="_blank">💬 WhatsApp Chat</a>
+
+    <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h3>VFC<span>Logistics</span></h3>
-                <p>Constructing India's premier high-velocity digital logistics infrastructure. Engineered for speed, execution, and total precision. We Deliver Commitment.</p>
-            </div>
-            <div class="footer-col">
-                <h5>Operational Pipelines</h5>
-                <ul>
-                    <li><a href="#services">B2B Heavy Cargo Freight</a></li>
-                    <li><a href="#services">Dedicated Fleet Management</a></li>
-                    <li><a href="#services">Express Supply Logistics</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h5>Control Terminal Gateway</h5>
-                <ul>
-                    <li><i class="fa-solid fa-phone" style="color:var(--vfc-red); margin-right:8px;"></i> <a href="tel:+919541842526">+91 95418 42526</a></li>
-                    <li><i class="fa-solid fa-envelope" style="color:var(--vfc-red); margin-right:8px;"></i> <a href="mailto:fitnesslakshay75@gmail.com">ops@vfclogistics.com</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 VFC Supply Chain Infrastructure Pvt. Ltd. All Rights Reserved.</p>
-            <p>ISO 9001:2015 High-Velocity Network Setup</p>
-        </div>
+        <p>&copy; 2026 <span>VFC Logistics</span>. All Rights Reserved. | Tagline: We Deliver Commitment</p>
     </footer>
 
-    <!-- LOGISTICS ALLOCATION DATA TRIGGER PIPELINE -->
-    <script>
-        function executeEnterpriseDispatch(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('clientName').value;
-            const phone = document.getElementById('clientPhone').value;
-            const origin = document.getElementById('originLoc').value;
-            const dest = document.getElementById('destLoc').value;
-            const vehicle = document.getElementById('vehicleType').value;
-
-            // Highly Professional Log Generation for WhatsApp Redirect
-            const msg = "*VFC LOGISTICS SYSTEMS LOG*%0A" +
-                        "*Slogan:* We Deliver Commitment%0A%0A" +
-                        "*Corporate Account Name:* " + encodeURIComponent(name) + "%0A" +
-                        "*System Access Contact:* " + encodeURIComponent(phone) + "%0A" +
-                        "*Source Distribution Hub:* " + encodeURIComponent(origin) + "%0A" +
-                        "*Target Delivery Node:* " + encodeURIComponent(dest) + "%0A" +
-                        "*Assigned Asset Class:* " + encodeURIComponent(vehicle);
-
-            const waRedirectURL = "https://wa.me/919541842526?text=" + msg;
-
-            let corporateData = new FormData();
-            corporateData.append("Enterprise_Client", name);
-            corporateData.append("System_Contact", phone);
-            corporateData.append("Origin_Hub", origin);
-            corporateData.append("Destination_Hub", dest);
-            corporateData.append("Assigned_Asset_Class", vehicle);
-            corporateData.append("_subject", "System Dispatch Alert: VFC Logistics");
-
-            fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
-                method: "POST",
-                body: corporateData
-            })
-            .then(() => {
-                document.getElementById("bookingForm").reset();
-                window.open(waRedirectURL, '_blank');
-            })
-            .catch(() => {
-                window.open(waRedirectURL, '_blank');
-            });
-        }
-    </script>
 </body>
 </html>
