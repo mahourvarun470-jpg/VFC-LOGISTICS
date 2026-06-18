@@ -162,7 +162,7 @@
             text-transform: uppercase;
         }
 
-        /* Services Grid alternative using table */
+        /* Services Grid */
         .services-table {
             width: 100%;
             border-collapse: separate;
@@ -293,13 +293,61 @@
         footer span {
             color: #d32f2f;
         }
+
+        /* ==========================================================================
+           MOBILE RESPONSIVE CODE (SIF YE ADD KIYA HAI JO DABBI BANNE SE ROKEGA)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            header, .logo-area, .nav-links {
+                display: block !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+            .nav-links {
+                margin-top: 15px;
+            }
+            .nav-links a {
+                display: inline-block;
+                margin: 5px 10px !important;
+            }
+            .hero h2 {
+                font-size: 28px !important;
+            }
+            
+            /* Calculator cells ko ek ke neeche ek kiya */
+            #calculator table, #calculator tr, #calculator td {
+                display: block !important;
+                width: 100% !important;
+                padding-right: 0 !important;
+                margin-bottom: 15px;
+            }
+            
+            /* Services table fix */
+            .services-table {
+                border-spacing: 0px !important;
+            }
+            .services-table tr, .services-table td.service-card {
+                display: block !important;
+                width: 100% !important;
+                margin-bottom: 20px;
+            }
+
+            /* Form and Contact section fix */
+            .content-table tr, .content-table td.content-cell {
+                display: block !important;
+                width: 100% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                border-left: none !important;
+            }
+        }
     </style>
     <script>
         function calculatePrice() {
             var weight = document.getElementById('calc-weight').value;
             var distance = document.getElementById('calc-distance').value;
             if(weight && distance) {
-                var estimatedCost = (weight * 12) + (distance * 7); // Active Working Logic
+                var estimatedCost = (weight * 12) + (distance * 7); 
                 document.getElementById('calc-result').innerHTML = "Estimated Cost: ₹" + estimatedCost + " /- (Approx)";
             } else {
                 document.getElementById('calc-result').innerHTML = "Please enter both weight and distance.";
@@ -309,7 +357,6 @@
 </head>
 <body>
 
-    <!-- Header & Navigation -->
     <header>
         <div class="logo-area">
             <h1>VFC <span>LOGISTICS</span></h1>
@@ -323,7 +370,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <h2>We Deliver Commitment</h2>
         <p>Reliable, Safe & On-Time Logistics Solutions Across India</p>
@@ -332,21 +378,20 @@
 
     <div class="main-container">
         
-        <!-- Cost Calculator Section (FULLY WORKING FEATURE) -->
         <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
         <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
             <p style="color: #aaa; margin-bottom: 15px;">Apna weight aur approx distance daal kar turant ek rough estimate rate nikalien:</p>
-            <table style="width: 100%;">
+            <table>
                 <tr>
-                    <td style="padding-right: 15px;">
+                    <td>
                         <label style="font-size:14px; color:#ccc;">Total Weight (in KG)</label>
                         <input type="number" id="calc-weight" placeholder="e.g. 500">
                     </td>
-                    <td style="padding-right: 15px;">
+                    <td>
                         <label style="font-size:14px; color:#ccc;">Distance (in KM)</label>
                         <input type="number" id="calc-distance" placeholder="e.g. 250">
                     </td>
-                    <td style="vertical-align: bottom; width: 20%;">
+                    <td style="vertical-align: bottom;">
                         <button class="btn-red" onclick="calculatePrice()">Calculate</button>
                     </td>
                 </tr>
@@ -354,7 +399,6 @@
             <h4 id="calc-result" style="margin-top: 15px; color: #25d366; font-size: 18px;"></h4>
         </div>
 
-        <!-- Services Section -->
         <h2 class="section-title" id="services">Our Core Services</h2>
         <table class="services-table">
             <tr>
@@ -373,12 +417,10 @@
             </tr>
         </table>
 
-        <!-- Form & Contact Section -->
         <table class="content-table" id="quote">
             <tr>
                 <td class="content-cell" style="padding-right: 30px;">
                     <h2 class="section-title">Get A Quote / Enquiry</h2>
-                    <!-- Redirects directly to mail/action once submitted with real values -->
                     <form action="mailto:fitnesslakshay75@gmail.com" method="POST" enctype="text/plain">
                         <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup" placeholder="e.g. Ambala Cantt" required></div>
                         <div class="form-group"><label>Drop Location</label><input type="text" name="Drop" placeholder="e.g. Delhi NCR" required></div>
@@ -401,7 +443,6 @@
             </tr>
         </table>
 
-        <!-- FAQ Section -->
         <h2 class="section-title" id="faq">Frequently Asked Questions (FAQs)</h2>
         <div class="faq-item">
             <h4>Q. Kya aapka maal insured hota hai?</h4>
@@ -418,10 +459,8 @@
 
     </div>
 
-    <!-- Floating WhatsApp Integration (WORKING) -->
     <a href="https://wa.me/919541842526" class="whatsapp-float" target="_blank">💬 WhatsApp Chat</a>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>VFC Logistics</span>. All Rights Reserved. | Tagline: We Deliver Commitment</p>
     </footer>
