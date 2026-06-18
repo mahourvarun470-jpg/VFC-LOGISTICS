@@ -1,728 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VFC Logistics | Enterprise Supply Chain & Fleet Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
-        :root {
-            --primary: #e11d48;
-            --primary-hover: #be123c;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --border: #e2e8f0;
-            --text-muted: #64748b;
-        }
+<!-- Form Structure (Make sure your input IDs match these) -->
+<form id="bookingForm" onsubmit="sendBooking(event)" style="font-family: 'Segoe UI', sans-serif; max-width: 450px; margin: auto; padding: 20px; background: #fdfdfd; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    <!-- Inputs ke fields standard rakhein (name, phone, pickup, drop, truck) -->
+    
+    <button type="submit" id="submitBtn" style="width: 100%; padding: 12px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <span id="btnText">Request via WhatsApp & Email</span>
+        <div id="btnSpinner" style="display: none; width: 20px; height: 20px; border: 3px solid #fff; border-radius: 50%; border-top-color: transparent; animation: spin 0.8s linear infinite;"></div>
+    </button>
+</form>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html, body {
-            overflow-x: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #ffffff;
-            color: var(--dark);
-            scroll-behavior: smooth;
-        }
+<style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .success-toast {
+        position: fixed; top: 20px; right: 20px; background: #10B981; color: white; 
+        padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 1000; font-family: sans-serif; font-weight: 500; animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+</style>
 
-        /* LIVE MONITORING BAR */
-        .top-bar {
-            background: #000000;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 700;
-            text-align: center;
-            padding: 12px 15px;
-            letter-spacing: 0.5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-        }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7);
-            animation: pulse 1.5s infinite;
-            flex-shrink: 0;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(225, 29, 72, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
-        }
+<script>
+    function sendBooking(e) {
+        e.preventDefault();
 
-        /* PREMIUM STICKY HEADER */
-        header {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.02);
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .logo .brand-vfc { color: var(--primary); }
-        .logo .brand-logistics { color: #000000; }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            color: #475569;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--primary); }
-        
-        .cta-header-btn {
-            background: #000000;
-            color: #fff !important;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 13px !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.2s;
-        }
-        .cta-header-btn:hover {
-            background: var(--primary);
-        }
+        // Elements select karna UI update ke liye
+        const btn = document.getElementById("submitBtn");
+        const btnText = document.getElementById("btnText");
+        const btnSpinner = document.getElementById("btnSpinner");
 
-        /* HERO AREA */
-        .hero-section {
-            position: relative;
-            min-height: calc(100vh - 100px);
-            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(0, 0, 0, 0.75) 100%), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            padding: 60px 40px;
-        }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            max-width: 1250px;
-            width: 100%;
-            margin: 0 auto;
-            align-items: center;
-        }
-        .hero-text h1 {
-            color: #ffffff;
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-        .hero-text h1 span { color: var(--primary); }
-        .hero-text p {
-            color: #cbd5e1;
-            font-size: 17px;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 520px;
-        }
+        // Loading state ON (Maza tabhi aayega jab lagega backend chal raha hai)
+        btn.style.pointerEvents = "none";
+        btn.style.opacity = "0.8";
+        btnText.innerText = "Processing...";
+        btnSpinner.style.display = "block";
 
-        /* HERO STATS */
-        .trust-stats {
-            display: flex;
-            gap: 35px;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 30px;
-        }
-        .stat-item h3 {
-            color: #ffffff;
-            font-size: 32px;
-            font-weight: 800;
-        }
-        .stat-item h3 span { color: var(--primary); }
-        .stat-item p {
-            color: #94a3b8;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
-        }
+        let name = document.getElementById("name").value;
+        let phone = document.getElementById("phone").value;
+        let pickup = document.getElementById("pickup").value;
+        let drop = document.getElementById("drop").value;
+        let truck = document.getElementById("truck").value;
 
-        /* FLOATING FORM */
-        .booking-container {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
-            width: 100%;
-        }
-        .booking-container h2 {
-            font-size: 26px;
-            color: var(--dark);
-            font-weight: 800;
-            margin-bottom: 6px;
-        }
-        .booking-container .subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-        .form-group { margin-bottom: 18px; }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: #334155;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.2s ease;
-            outline: none;
-            background: var(--light);
-            color: var(--dark);
-        }
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-            background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.25);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-submit:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-        }
+        // WhatsApp message structure
+        let msg = "*NEW ENTERPRISE FLEET BOOKING*%0A%0A" +
+                  "*Client/Company:* " + encodeURIComponent(name) + "%0A" +
+                  "*Contact:* " + encodeURIComponent(phone) + "%0A" +
+                  "*Origin:* " + encodeURIComponent(pickup) + "%0A" +
+                  "*Destination:* " + encodeURIComponent(drop) + "%0A" +
+                  "*Fleet Selected:* " + encodeURIComponent(truck);
 
-        /* INFO LAYOUT GENERIC */
-        section.info-layout {
-            padding: 80px 40px;
-            max-width: 1250px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .section-title h2 {
-            font-size: 34px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #000000;
-        }
-        .section-title h2 span { color: var(--primary); }
-        .section-title p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-top: 8px;
-        }
+        let whatsappURL = "https://wa.me/919541842526?text=" + msg;
 
-        /* STRIP FEATURES */
-        .features-strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: -40px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 10;
-        }
-        .feature-card {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 16px;
-            border-top: 4px solid var(--primary);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
-        }
-        .feature-card i { font-size: 26px; color: var(--primary); margin-bottom: 18px; }
-        .feature-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-        .feature-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        // AJAX/Fetch FormSubmit backend api ke throug background mein data bhejenge
+        let formData = new FormData();
+        formData.append("Company_Name", name);
+        formData.append("Phone_Number", phone);
+        formData.append("Pickup_Location", pickup);
+        formData.append("Drop_Location", drop);
+        formData.append("Selected_Truck", truck);
+        formData.append("_subject", "New Fleet Booking Request - VFC Logistics");
+        formData.append("_template", "table"); // Email ekdum clean dynamic table layout mein aayegi
 
-        /* FLEET SHOWCASE SECTION */
-        .fleet-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-        .fleet-card {
-            background: var(--light);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .fleet-card:hover {
-            background: #ffffff;
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(225,29,72,0.05);
-            transform: translateY(-4px);
-        }
-        .fleet-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #e2e8f0;
-        }
-        .fleet-content {
-            padding: 25px;
-            flex-grow: 1;
-        }
-        .fleet-icon {
-            background: rgba(225, 29, 72, 0.06);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            color: var(--primary);
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        .fleet-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
-        .fleet-card > .fleet-content > p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
-        .fleet-details {
-            list-style: none;
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
-            margin-top: 15px;
-        }
-        .fleet-details li {
-            font-size: 13px;
-            color: #475569;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .fleet-details li span { font-weight: 600; color: #000; }
+        fetch("https://formsubmit.co/ajax/fitnesslakshay75@gmail.com", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // UI Reset after success
+            btn.style.pointerEvents = "auto";
+            btn.style.opacity = "1";
+            btnText.innerText = "Request via WhatsApp & Email";
+            btnSpinner.style.display = "none";
 
-        /* PROCESS SECTION */
-        .process-bg { background: var(--dark); color: #ffffff; }
-        .process-bg .section-title h2 { color: #fff; }
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-        .process-node {
-            position: relative;
-            text-align: center;
-        }
-        .process-number {
-            font-size: 42px;
-            font-weight: 800;
-            color: rgba(225, 29, 72, 0.25);
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-        .process-node h4 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #fff;}
-        .process-node p { color: #94a3b8; font-size: 13px; line-height: 1.5; }
-
-        /* FOOTER */
-        footer {
-            background: #000000;
-            color: #94a3b8;
-            padding: 60px 40px 30px 40px;
-            border-top: 4px solid var(--primary);
-        }
-        .footer-grid {
-            max-width: 1250px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.4fr 0.8fr 0.8fr;
-            gap: 40px;
-            padding-bottom: 35px;
-            border-bottom: 1px solid #1e293b;
-        }
-        .footer-brand h3 { font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 800;}
-        .footer-brand h3 span { color: var(--primary); }
-        .footer-brand p { font-size: 14px; line-height: 1.6; max-width: 320px; }
-        .footer-links h5 { color: #fff; font-size: 14px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: #94a3b8; text-decoration: none; font-size: 13px; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--primary); }
-        
-        .footer-bottom {
-            max-width: 1250px;
-            margin: 25px auto 0 auto;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-        }
-
-        /* ADVANCED RESPONSIVE ENGINE (MOBILE & TABLET FIXES) */
-        @media (max-width: 1024px) {
-            header { padding: 15px 20px; }
-            .hero-section { padding: 40px 20px; }
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-text p { margin: 0 auto 30px auto; }
-            .trust-stats { justify-content: center; }
-            section.info-layout { padding: 60px 20px; }
-            .features-strip { grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: -20px; }
-            .fleet-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Hide heavy menu elements on mobile */
-            .hero-text h1 { font-size: 36px; }
-            .features-strip { grid-template-columns: 1fr; margin-top: 20px; }
-            .fleet-grid { grid-template-columns: 1fr; }
-            .process-grid { grid-template-columns: 1fr; gap: 25px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-text h1 { font-size: 32px; }
-            .booking-container { padding: 25px 20px; }
-            .form-row { grid-template-columns: 1fr; gap: 0; }
-            .trust-stats { flex-direction: column; gap: 15px; align-items: center; }
-            .section-title h2 { font-size: 26px; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- LIVE MONITORING BAR -->
-    <div class="top-bar">
-        <div class="pulse-dot"></div> MONITORING LIVE IN TRANSIT: 1,420 COMMERCIAL FLEETS ACTIVE NOW
-    </div>
-
-    <!-- NAVBAR -->
-    <header>
-        <div class="logo"><span class="brand-vfc">VFC</span> <span class="brand-logistics">Logistics</span></div>
-        <ul class="nav-links">
-            <li><a href="#fleet">Our Fleet</a></li>
-            <li><a href="#why-us">Why Choose Us</a></li>
-            <li><a href="#process">Process</a></li>
-        </ul>
-        <a href="tel:+919541842526" class="cta-header-btn"><i class="fa-solid fa-phone"></i> Call Now</a>
-    </header>
-
-    <!-- HERO SECTION WITH FORM -->
-    <section class="hero-section">
-        <div class="hero-grid">
+            // Ek modern toast notification popup dikhayenge screen par
+            let toast = document.createElement("div");
+            toast.className = "success-toast";
+            toast.innerText = "✓ Booking Logged Successfully!";
+            document.body.appendChild(toast);
             
-            <div class="hero-text">
-                <h1>We Deliver <span>Commitment</span>, Not Just Cargo.</h1>
-                <p>India's professional tech-enabled logistics network providing premium commercial fleets for streamlined corporate supply chains with guaranteed on-time delivery.</p>
-                
-                <div class="trust-stats">
-                    <div class="stat-item">
-                        <h3>15K<span>+</span></h3>
-                        <p>Trips Managed</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>99.4<span>%</span></h3>
-                        <p>SLA Adherence</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>24<span>/</span>7</h3>
-                        <p>Control Room</p>
-                    </div>
-                </div>
-            </div>
+            setTimeout(() => toast.remove(), 4000);
 
-            <div class="booking-container">
-                <h2>Request Fleet Allocation</h2>
-                <p class="subtitle">Provide routing parameters to route assignment via WhatsApp.</p>
-                
-                <form id="bookingForm" onsubmit="sendBooking(event)">
-                    <div class="form-group">
-                        <label for="name">Company / Client Name</label>
-                        <input type="text" id="name" placeholder="Enter full name or corporate entity" required>
-                    </div>
+            // Form clear karo
+            document.getElementById("bookingForm").reset();
 
-                    <div class="form-group">
-                        <label for="phone">Authorized Phone Number</label>
-                        <input type="tel" id="phone" placeholder="Enter 10-digit mobile number" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="pickup">Origin (Pickup)</label>
-                            <input type="text" id="pickup" placeholder="City or Pincode" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="drop">Destination (Drop)</label>
-                            <input type="text" id="drop" placeholder="City or Pincode" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="truck">Required Vehicle Configuration</label>
-                        <select id="truck" required>
-                            <option value="" disabled selected>Select appropriate fleet...</option>
-                            <option value="Tata Ace / Chota Hathi">Tata Ace (Chota Hathi) - 850 kg</option>
-                            <option value="Mahindra Pickup">Mahindra Pickup - 1.5 Ton</option>
-                            <option value="14 Feet Truck">14 Feet Commercial Truck - 4 Ton</option>
-                            <option value="20 Feet Container">20 Feet Closed Container - 7 Ton</option>
-                            <option value="32 Feet Multi-Axle">32 Feet Multi-Axle HQ Container</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        <i class="fab fa-whatsapp"></i> Dispatch Request Via WhatsApp
-                    </button>
-                </form>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- VALUE PROPS -->
-    <section class="info-layout" style="padding-top:0;">
-        <div class="features-strip">
-            <div class="feature-card">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h4>Fully Insured Goods</h4>
-                <p>Comprehensive transit safety assurance covers every commercial cargo from dispatch to final delivery hub.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-bolt"></i>
-                <h4>High-Speed Dispatch</h4>
-                <p>With strategically distributed transit points, vehicles are mobilized within minimal lead times.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-headset"></i>
-                <h4>Corporate Support</h4>
-                <p>Direct communication pipeline with dedicated managers overseeing cargo routing milestones.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: FLEET SPECIFICATIONS -->
-    <section id="fleet" class="info-layout" style="background: #ffffff; border-top: 1px solid #f1f5f9;">
-        <div class="section-title">
-            <h2>Our Verified <span>Commercial Fleet</span></h2>
-            <p>Engineered to handle varied weight matrices with optimum structural safety.</p>
-        </div>
-        <div class="fleet-grid">
-            <!-- CARD 1 -->
-            <div class="fleet-card">
-                <img src="https://images.unsplash.com/photo-1516576475522-e861879493bc?auto=format&fit=crop&q=80&w=600" alt="Mini Fleets" class="fleet-image">
-                <div class="fleet-content">
-                    <div class="fleet-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-                    <h3>Mini Fleets (Intracity)</h3>
-                    <p>Ideal for rapid warehouse-to-retail movements and localized structural drops.</p>
-                    <ul class="fleet-details">
-                        <li>Models <span>Tata Ace / Mahindra Pickup</span></li>
-                        <li>Payload Capacity <span>850 kg - 1.5 Tons</span></li>
-                        <li>Best For <span>E-commerce & Local Goods</span></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- CARD 2 -->
-            <div class="fleet-card">
-                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=600" alt="Medium Payload" class="fleet-image">
-                <div class="fleet-content">
-                    <div class="fleet-icon"><i class="fa-solid fa-truck"></i></div>
-                    <h3>Medium Payload Trucks</h3>
-                    <p>Optimized for inter-city heavy raw material and manufactured asset transits.</p>
-                    <ul class="fleet-details">
-                        <li>Models <span>14 Feet Open / Closed</span></li>
-                        <li>Payload Capacity <span>Up to 4 Tons</span></li>
-                        <li>Best For <span>Industrial & FMCG Loads</span></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- CARD 3 -->
-            <div class="fleet-card">
-                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" alt="Heavy Cargo" class="fleet-image">
-                <div class="fleet-content">
-                    <div class="fleet-icon"><i class="fa-solid fa-truck-moving"></i></div>
-                    <h3>Heavy Cargo Containers</h3>
-                    <p>High-volume long-haul structural configurations designed for interstate corridors.</p>
-                    <ul class="fleet-details">
-                        <li>Models <span>20ft / 32ft MX Containers</span></li>
-                        <li>Payload Capacity <span>7 Tons - 20+ Tons</span></li>
-                        <li>Best For <span>Heavy Machinery & Bulk Cargo</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: WHY CHOOSE US -->
-    <section id="why-us" class="info-layout" style="background: #f8fafc;">
-        <div class="section-title">
-            <h2>Why Enterprise Leaders Trust <span>VFC</span></h2>
-            <p>Setting the benchmark for premium industrial supply chains across India.</p>
-        </div>
-        <div class="fleet-grid">
-            <div class="feature-card" style="border-top:none; border-left: 4px solid var(--primary);">
-                <i class="fa-solid fa-hand-holding-dollar" style="color:#000;"></i>
-                <h4 style="margin-top:10px;">Transparent Flat Pricing</h4>
-                <p>No unexpected surcharges, toll manipulations, or complex loading fees. Upfront itemized billing matrix.</p>
-            </div>
-            <div class="feature-card" style="border-top:none; border-left: 4px solid #000000;">
-                <i class="fa-solid fa-route" style="color:var(--primary);"></i>
-                <h4 style="margin-top:10px;">Optimized Corridor Routing</h4>
-                <p>Advanced algorithmic route planning bypasses high-congestion corridors, ensuring fast fuel-efficient timelines.</p>
-            </div>
-            <div class="feature-card" style="border-top:none; border-left: 4px solid var(--primary);">
-                <i class="fa-solid fa-building-shield" style="color:#000;"></i>
-                <h4 style="margin-top:10px;">Zero-Downtime Maintenance</h4>
-                <p>Our fleets undergo rigorous fitness audits every fortnight to maximize highway uptime reliability.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: PROCESS TIMELINE -->
-    <section id="process" class="info-layout process-bg">
-        <div class="section-title">
-            <h2>The <span>VFC Dispatch</span> Blueprint</h2>
-            <p style="color:#94a3b8;">Systemized resource orchestration from initialization to offloading.</p>
-        </div>
-        <div class="process-grid">
-            <div class="process-node">
-                <div class="process-number">01</div>
-                <h4>Instant Initialization</h4>
-                <p>Submit your destination parameters through our real-time digital allocation desk.</p>
-            </div>
-            <div class="process-node">
-                <div class="process-number">02</div>
-                <h4>Fleet Assignment</h4>
-                <p>The system matches the correct axle configurations and verifies active driver availability.</p>
-            </div>
-            <div class="process-node">
-                <div class="process-number">03</div>
-                <h4>Secure Loading</h4>
-                <p>Cargo is tracked during loading at warehouses with secure inventory verification tags.</p>
-            </div>
-            <div class="process-node">
-                <div class="process-number">04</div>
-                <h4>Assured Delivery</h4>
-                <p>Consignments travel via designated lanes and reach destination points exactly on time.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CORPORATE FOOTER -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h3><span class="brand-vfc">VFC</span> <span class="brand-logistics">Logistics</span></h3>
-                <p>Premium supply chain, heavy freight management, and nationwide commercial transportation solutions built on absolute commitment.</p>
-            </div>
-            <div class="footer-links">
-                <h5>Our Services</h5>
-                <ul>
-                    <li><a href="#fleet">Intracity Distribution</a></li>
-                    <li><a href="#fleet">Interstate Long-Haul</a></li>
-                    <li><a href="#fleet">Dedicated Enterprise Fleet</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h5>Contact Hub</h5>
-                <ul>
-                    <li><a href="tel:+919541842526"><i class="fa-solid fa-phone" style="color:var(--primary); margin-right:5px;"></i> +91 95418 42526</a></li>
-                    <li><a href="mailto:fitnesslakshay75@gmail.com"><i class="fa-solid fa-envelope" style="color:var(--primary); margin-right:5px;"></i> info@vfclogistics.com</a></li>
-                    <li><a href="#bookingForm"><i class="fa-solid fa-location-dot" style="color:var(--primary); margin-right:5px;"></i> Pan-India Transit Network</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 VFC Logistics Private Limited. All Rights Reserved.</p>
-            <p>Designed for Enterprise Performance</p>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT CODE -->
-    <script>
-        function sendBooking(e) {
-            e.preventDefault();
-
-            let name = document.getElementById("name").value;
-            let phone = document.getElementById("phone").value;
-            let pickup = document.getElementById("pickup").value;
-            let drop = document.getElementById("drop").value;
-            let truck = document.getElementById("truck").value;
-
-            let msg = "*NEW ENTERPRISE FLEET BOOKING*%0A%0A" +
-                      "*Client/Company:* " + encodeURIComponent(name) + "%0A" +
-                      "*Contact:* " + encodeURIComponent(phone) + "%0A" +
-                      "*Origin:* " + encodeURIComponent(pickup) + "%0A" +
-                      "*Destination:* " + encodeURIComponent(drop) + "%0A" +
-                      "*Fleet Selected:* " + encodeURIComponent(truck);
-
-            window.open("https://wa.me/919541842526?text=" + msg, "_blank");
-
-            let form = document.createElement("form");
-            form.method = "POST";
-            form.action = "https://formsubmit.co/fitnesslakshay75@gmail.com";
-            form.target = "_blank";
-
-            let inputs = { name, phone, pickup, drop, truck };
-            for (let key in inputs) {
-                let input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = inputs[key];
-                form.appendChild(input);
-            }
-
-            document.body.appendChild(form);
-            
-            setTimeout(() => {
-                form.submit();
-                document.body.removeChild(form);
-            }, 500);
-        }
-    </script>
-</body>
-</html>
+            // Boom! Ab bina page load toote directly WhatsApp par redirect
+            window.open(whatsappURL, '_blank');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Kuch dikkat aayi, par aap direct WhatsApp kar sakte hain!");
+            window.open(whatsappURL, '_blank');
+        });
+    }
+</script>
