@@ -93,7 +93,7 @@
             display: block;
         }
 
-        /* Calculation Box */
+        /* Calculation & Form Box Styling */
         .action-box {
             background-color: #1a1a1a;
             max-width: 700px;
@@ -111,7 +111,7 @@
             text-align: left;
         }
 
-        .action-box input[type="text"], .action-box input[type="number"] {
+        .action-box input[type="text"], .action-box input[type="number"], .action-box input[type="tel"] {
             width: 100%;
             padding: 12px;
             background-color: #222;
@@ -219,7 +219,7 @@
             color: #ccc;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group input {
             width: 100%;
             padding: 10px;
             background-color: #1a1a1a;
@@ -228,7 +228,7 @@
             border-radius: 4px;
         }
 
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+        .form-group input:focus {
             border-color: #d32f2f;
             outline: none;
         }
@@ -359,9 +359,9 @@
         </div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#services">Services</a>
+            <a href="#book-truck">Book A Truck</a>
             <a href="#calculator">Price Estimator</a>
-            <a href="#quote">Get a Quote</a>
+            <a href="#services">Services</a>
             <a href="#faq">FAQs</a>
         </div>
     </header>
@@ -370,11 +370,39 @@
     <section class="hero" id="home">
         <h2>We Deliver Commitment</h2>
         <p>Reliable, Safe & On-Time Logistics Solutions Across India</p>
-        <a href="#quote" class="btn-red">Book Your Truck Now</a>
+        <a href="#book-truck" class="btn-red">Book Your Truck Now</a>
     </section>
 
     <div class="main-container">
         
+        <!-- Book A Truck Section (SABSE UPAR SHIFTED WITH SEPARATE NAME & MOBILE) -->
+        <table class="content-table" id="book-truck">
+            <tr>
+                <td class="content-cell" style="padding-right: 30px;">
+                    <h2 class="section-title">Book / Get A Truck</h2>
+                    <form action="mailto:fitnesslakshay75@gmail.com" method="POST" enctype="text/plain">
+                        <div class="form-group"><label>Your Name</label><input type="text" name="Customer_Name" placeholder="e.g. Lakshay" required></div>
+                        <div class="form-group"><label>Mobile Number</label><input type="tel" name="Mobile_Number" placeholder="e.g. 95418XXXXX" required></div>
+                        <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup_Location" placeholder="e.g. Ambala Cantt" required></div>
+                        <div class="form-group"><label>Drop Location</label><input type="text" name="Drop_Location" placeholder="e.g. Delhi NCR" required></div>
+                        <div class="form-group"><label>Material Type & Weight</label><input type="text" name="Material_And_Weight" placeholder="e.g. Steel Pipes - 10 Tons" required></div>
+                        <button class="btn-red" type="submit">Submit Details via Email</button>
+                    </form>
+                </td>
+
+                <td class="content-cell" style="border-left: 1px solid #333; padding-left: 30px; vertical-align: middle;">
+                    <h2 class="section-title">Contact Us</h2>
+                    <ul class="info-list">
+                        <li><strong>Our Fleet strength:</strong> Tata Ace, Pickup, 14ft, 22ft, 32ft Containers.</li>
+                        <li><strong>Network Mapping:</strong> All India Service (Fast & Reliable).</li>
+                        <li><strong>Support No:</strong> +91 9541842526, +91 9728184226</li>
+                        <li><strong>Email:</strong> fitnesslakshay75@gmail.com</li>
+                        <li><strong>Office Address:</strong> Kuldeep Nagar, Near HP Petrol Pump, Ambala Cantt - 133004</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
         <!-- Cost Calculator Section -->
         <h2 class="section-title" id="calculator">Cost Calculator / Price Estimator</h2>
         <div class="action-box" style="max-width: 100%; margin-bottom: 40px; text-align: left;">
@@ -412,33 +440,6 @@
                 <td class="service-card">
                     <h3>Warehousing & Storage</h3>
                     <p>Modern inventory management aur safe godown storage ki zabardast suvidha.</p>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Form & Contact Section -->
-        <table class="content-table" id="quote">
-            <tr>
-                <td class="content-cell" style="padding-right: 30px;">
-                    <h2 class="section-title">Get A Quote / Enquiry</h2>
-                    <form action="mailto:fitnesslakshay75@gmail.com" method="POST" enctype="text/plain">
-                        <div class="form-group"><label>Pickup Location</label><input type="text" name="Pickup" placeholder="e.g. Ambala Cantt" required></div>
-                        <div class="form-group"><label>Drop Location</label><input type="text" name="Drop" placeholder="e.g. Delhi NCR" required></div>
-                        <div class="form-group"><label>Material Type & Weight</label><input type="text" name="Material" placeholder="e.g. Steel Pipes - 10 Tons" required></div>
-                        <div class="form-group"><label>Your Contact Info (Name & Phone)</label><input type="text" name="Contact_Details" placeholder="Lakshay - 95418XXXXX" required></div>
-                        <button class="btn-red" type="submit">Submit Enquiry via Email</button>
-                    </form>
-                </td>
-
-                <td class="content-cell" style="border-left: 1px solid #333; padding-left: 30px;">
-                    <h2 class="section-title">Contact Us</h2>
-                    <ul class="info-list">
-                        <li><strong>Our Fleet strength:</strong> Tata Ace, Pickup, 14ft, 22ft, 32ft Containers.</li>
-                        <li><strong>Network Mapping:</strong> All India Service (Fast & Reliable).</li>
-                        <li><strong>Support No:</strong> +91 9541842526, +91 9728184226</li>
-                        <li><strong>Email:</strong> fitnesslakshay75@gmail.com</li>
-                        <li><strong>Office Address:</strong> Kuldeep Nagar, Near HP Petrol Pump, Ambala Cantt - 133004</li>
-                    </ul>
                 </td>
             </tr>
         </table>
