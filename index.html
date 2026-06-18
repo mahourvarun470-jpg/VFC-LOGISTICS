@@ -1,248 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VFC Logistics | We Deliver Commitment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VFC Logistics | Enterprise Supply Chain & Fleet Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #ffffff;
+            color: #0f172a;
+            scroll-behavior: smooth;
+        }
 
-<style>
-*{
-  box-sizing:border-box; /* ✅ ADD */
-}
+        /* LIVE MONITORING BAR */
+        .top-bar {
+            background: #000000;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px 20px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #e11d48;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(225, 29, 72, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
 
-html, body{
-  height:100%;          /* ✅ ADD */
-  margin:0;
-}
+        /* PREMIUM STICKY HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.02);
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .logo .brand-vfc { color: #e11d48; }
+        .logo .brand-logistics { color: #000000; }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #e11d48; }
+        
+        .cta-header-btn {
+            background: #000000;
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .cta-header-btn:hover {
+            background: #e11d48;
+        }
 
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  background:#ffffff;
-  color:#000;
-}
+        /* HERO AREA */
+        .hero-section {
+            position: relative;
+            min-height: calc(100vh - 120px);
+            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(0, 0, 0, 0.65) 100%), url("truck.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 80px 60px;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .hero-text h1 {
+            color: #ffffff;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        .hero-text h1 span { color: #e11d48; }
+        .hero-text p {
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 45px;
+            max-width: 540px;
+        }
 
-/* HEADER */
-header{
-  text-align:center;
-  padding:40px 20px;
-  border-bottom:1px solid #e5e5e5;
-  background:#fff;
-}
+        /* HERO STATS */
+        .trust-stats {
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 35px;
+        }
+        .stat-item h3 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+        }
+        .stat-item h3 span { color: #e11d48; }
+        .stat-item p {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
 
-header img{
-  max-width:160px;
-  margin-bottom:10px;
-}
+        /* FLOATING FORM */
+        .booking-container {
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+            width: 100%;
+        }
+        .booking-container h2 {
+            font-size: 28px;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .booking-container .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #334155;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            outline: none;
+            background: #f8fafc;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #e11d48;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.12);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #e11d48;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-submit:hover {
+            background: #be123c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
+        }
 
-header h1{
-  margin:10px 0 5px;
-  font-size:28px;
-  letter-spacing:1px;
-}
+        /* SECTION LAYOUT GENERIC */
+        section.info-layout {
+            padding: 100px 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #000000;
+        }
+        .section-title h2 span { color: #e11d48; }
+        .section-title p {
+            color: #64748b;
+            font-size: 16px;
+            margin-top: 10px;
+        }
 
-header p{
-  margin:4px 0;
-  font-size:15px;
-  color:#444;
-}
+        /* STRIP FEATURES */
+        .features-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: -50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+        .feature-card {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 16px;
+            border-top: 4px solid #e11d48;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+        .feature-card i { font-size: 28px; color: #e11d48; margin-bottom: 20px; }
+        .feature-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .feature-card p { color: #64748b; font-size: 14px; line-height: 1.6; }
 
-/* HERO WITH TRUCK */
-.hero{
-  position:relative;
-  min-height:100vh;     /* ✅ ADD → full screen */
-  padding:40px 20px;
-  max-width:100%;
-  background-image:url("truck.jpg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat; /* ✅ ADD */
-  display:flex;                 /* ✅ ADD */
-  align-items:center;           /* ✅ ADD */
-}
+        /* FLEET SHOWCASE SECTION */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .fleet-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        .fleet-card:hover {
+            background: #ffffff;
+            border-color: #e11d48;
+            box-shadow: 0 15px 30px rgba(225,29,72,0.05);
+            transform: translateY(-5px);
+        }
+        .fleet-icon {
+            background: rgba(225, 29, 72, 0.08);
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: #e11d48;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .fleet-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .fleet-details {
+            list-style: none;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .fleet-details li {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .fleet-details li span { font-weight: 600; color: #000; }
 
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-}
+        /* PROCESS SECTION */
+        .process-bg { background: #0f172a; color: #ffffff; }
+        .process-bg .section-title h2 { color: #fff; }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .process-node {
+            position: relative;
+            text-align: center;
+        }
+        .process-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: rgba(225, 29, 72, 0.2);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .process-node h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #fff;}
+        .process-node p { color: #94a3b8; font-size: 14px; line-height: 1.5; }
 
-.hero-content{
-  position:relative;
-  max-width:900px;
-  margin:auto;
-  background:rgba(255,255,255,0.92);
-  padding:30px 20px;
-  border-radius:6px;
-}
+        /* FOOTER */
+        footer {
+            background: #000000;
+            color: #94a3b8;
+            padding: 60px 60px 30px 60px;
+            border-top: 4px solid #e11d48;
+        }
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #1e293b;
+        }
+        .footer-brand h3 { font-size: 24px; color: #fff; margin-bottom: 15px; font-weight: 800;}
+        .footer-brand h3 span { color: #e11d48; }
+        .footer-brand p { font-size: 14px; line-height: 1.6; max-width: 320px; }
+        .footer-links h5 { color: #fff; font-size: 16px; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-links a:hover { color: #e11d48; }
+        
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
 
-.hero h2{
-  text-align:center;
-  font-size:24px;
-  margin-bottom:20px;
-}
-
-/* FORM */
-form{
-  max-width:420px;
-  margin:0 auto;
-}
-
-input, select, button{
-  width:100%;
-  padding:12px;
-  margin-top:12px;
-  font-size:15px;
-  border:1px solid #ccc;
-}
-
-button{
-  background:#000;
-  color:#fff;
-  border:none;
-  margin-top:18px;
-  cursor:pointer;
-}
-
-button:hover{
-  opacity:0.9;
-}
-
-/* CONTACT STRIP */
-.contact-strip{
-  text-align:center;
-  margin-top:30px;
-  font-size:15px;
-}
-
-.contact-strip a{
-  color:#000;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* SECTION */
-section{
-  max-width:900px;
-  margin:auto;
-  padding:30px 20px;
-}
-
-/* FOOTER */
-footer{
-  border-top:1px solid #e5e5e5;
-  padding:20px;
-  font-size:13px;
-  color:#555;
-  max-width:900px;
-  margin:auto;
-  text-align:center;
-}
-</style>
-
-<!-- JS SAME AS BEFORE – NOTHING DELETED -->
-<script>
-function sendBooking(e){
-  e.preventDefault();
-
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let pickup = document.getElementById("pickup").value;
-  let drop = document.getElementById("drop").value;
-  let truck = document.getElementById("truck").value;
-
-  let msg =
-  "New Truck Booking Request%0A%0A"+
-  "Name: "+name+"%0A"+
-  "Mobile: "+phone+"%0A"+
-  "Pickup: "+pickup+"%0A"+
-  "Drop: "+drop+"%0A"+
-  "Truck: "+truck+"%0A%0A"+
-  "Please share rate & advance payment details.";
-
-  window.open("https://wa.me/919541842526?text="+msg,"_blank");
-
-  let form = document.createElement("form");
-  form.method="POST";
-  form.action="https://formsubmit.co/fitnesslakshay75@gmail.com";
-
-  form.innerHTML=`
-    <input type="hidden" name="Name" value="${name}">
-    <input type="hidden" name="Phone" value="${phone}">
-    <input type="hidden" name="Pickup City" value="${pickup}">
-    <input type="hidden" name="Drop City" value="${drop}">
-    <input type="hidden" name="Truck Type" value="${truck}">
-    <input type="hidden" name="_subject" value="New Truck Booking - VFC Logistics">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-  `;
-
-  document.body.appendChild(form);
-  form.submit();
-
-  alert("✅ Booking request sent successfully! We will contact you shortly.");
-}
-</script>
+        /* RESPONSIVE RESPONSIVENESS */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-section { padding: 60px 20px; }
+            section.info-layout { padding: 60px 20px; }
+            .features-strip, .fleet-grid, .process-grid { grid-template-columns: 1fr; }
+            .features-strip { margin-top: 20px; }
+            header { padding: 20px; }
+            .hero-text h1 { font-size: 42px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .trust-stats { flex-direction: column; gap: 20px; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <img src="logo.jpg" alt="VFC Logistics Logo">
-  <h1>VFC LOGISTICS</h1>
-  <p>We Deliver Commitment</p>
-</header>
-
-<div class="hero">
-  <div class="hero-content">
-    <h2>Book Truck Instantly</h2>
-
-    <form onsubmit="sendBooking(event)">
-      <input id="name" type="text" placeholder="Your Name" required>
-      <input id="phone" type="tel" placeholder="Mobile Number" pattern="[0-9]{10}" required>
-      <input id="pickup" type="text" placeholder="Pickup City" required>
-      <input id="drop" type="text" placeholder="Drop City" required>
-
-      <select id="truck" required>
-        <option value="">Select Truck Type</option>
-        <option>8 FT</option>
-        <option>10 FT</option>
-        <option>14 FT</option>
-        <option>17 FT</option>
-        <option>20 FT</option>
-        <option>Trailer</option>
-      </select>
-
-      <button type="submit">Get Truck & Price</button>
-    </form>
-
-    <div class="contact-strip">
-      📞 <a href="tel:9541842526">9541842526</a> |
-      <a href="tel:9728184226">9728184226</a><br><br>
-      💬 <a href="https://wa.me/919541842526">WhatsApp Booking</a>
+    <!-- LIVE MONITORING BAR -->
+    <div class="top-bar">
+        <div class="pulse-dot"></div> MONITORING LIVE IN TRANSIT: 1,420 COMMERCIAL FLEETS ACTIVE NOW
     </div>
-  </div>
-</div>
 
-<section>
-  <h3>Terms & Conditions</h3>
-  <p>
-    • Booking confirmation subject to vehicle availability.<br>
-    • Rates shared after route & load confirmation.<br>
-    • Advance / prepaid payment mandatory before loading.<br>
-    • Loading, unloading & detention charges extra if applicable.<br>
-    • Company not responsible for delays due to natural or unavoidable reasons.
-  </p>
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo"><span class="brand-vfc">VFC</span> <span class="brand-logistics">Logistics</span></div>
+        <ul class="nav-links">
+            <li><a href="#fleet">Our Fleet</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="tel:+919541842526" class="cta-header-btn"><i class="fa-solid fa-phone"></i> Urgent Inquiry</a></li>
+        </ul>
+    </header>
 
-  <p style="margin-top:15px;">
-    <strong>Office Address:</strong><br>
-    Kuldeep Nagar, GT Road, Ambala Cantt, Haryana
-  </p>
-</section>
+    <!-- HERO SECTION WITH FORM -->
+    <section class="hero-section">
+        <div class="hero-grid">
+            
+            <div class="hero-text">
+                <h1>We Deliver <span>Commitment</span>, Not Just Cargo.</h1>
+                <p>India's professional tech-enabled logistics network providing premium commercial fleets for streamlined corporate supply chains with guaranteed on-time delivery.</p>
+                
+                <div class="trust-stats">
+                    <div class="stat-item">
+                        <h3>15K<span>+</span></h3>
+                        <p>Trips Managed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>99.4<span>%</span></h3>
+                        <p>SLA Adherence</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24<span>/</span>7</h3>
+                        <p>Control Room</p>
+                    </div>
+                </div>
+            </div>
 
-<footer>
-  © 2026 VFC Logistics • Pan India Transport • Owner Driven Fleet
-</footer>
+            <div class="booking-container">
+                <h2>Request Fleet Allocation</h2>
+                <p class="subtitle">Provide routing parameters to route assignment via WhatsApp.</p>
+                
+                <form id="bookingForm" onsubmit="sendBooking(event)">
+                    <div class="form-group">
+                        <label for="name">Company / Client Name</label>
+                        <input type="text" id="name" placeholder="Enter full name or corporate entity" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="phone">Authorized Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter 10-digit mobile number" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pickup">Origin (Pickup)</label>
+                            <input type="text" id="pickup" placeholder="City or Pincode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="drop">Destination (Drop)</label>
+                            <input type="text" id="drop" placeholder="City or Pincode" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="truck">Required Vehicle Configuration</label>
+                        <select id="truck" required>
+                            <option value="" disabled selected>Select appropriate fleet...</option>
+                            <option value="Tata Ace / Chota Hathi">Tata Ace (Chota Hathi) - 850 kg</option>
+                            <option value="Mahindra Pickup">Mahindra Pickup - 1.5 Ton</option>
+                            <option value="14 Feet Truck">14 Feet Commercial Truck - 4 Ton</option>
+                            <option value="20 Feet Container">20 Feet Closed Container - 7 Ton</option>
+                            <option value="32 Feet Multi-Axle">32 Feet Multi-Axle HQ Container</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fab fa-whatsapp"></i> Dispatch Request Via WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VALUE PROPS -->
+    <section class="info-layout" style="padding-top:0;">
+        <div class="features-strip">
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4>Fully Insured Goods</h4>
+                <p>Comprehensive transit safety assurance covers every commercial cargo from dispatch to final delivery hub.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h4>High-Speed Dispatch</h4>
+                <p>With strategically distributed transit points, vehicles are mobilized within minimal lead times.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-headset"></i>
+                <h4>Corporate Support</h4>
+                <p>Direct communication pipeline with dedicated managers overseeing cargo routing milestones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FLEET SPECIFICATIONS -->
+    <section id="fleet" class="info-layout" style="background: #ffffff; border-top: 1px solid #f1f5f9;">
+        <div class="section-title">
+            <h2>Our Verified <span>Commercial Fleet</span></h2>
+            <p>Engineered to handle varied weight matrices with optimum structural safety.</p>
+        </div>
+        <div class="fleet-grid">
+            <div class="fleet-card">
+                <div class="fleet-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                <h3>Mini Fleets (Intracity)</h3>
+                <p>Ideal for rapid warehouse-to-retail movements and localized structural drops.</p>
+                <ul class="fleet-details">
+                    <li>Models <span>Tata Ace / Mahindra Pickup</span></li>
+                    <li>Payload Capacity <span>850 kg - 1.5 Tons</span></li>
+                    <li>Best For <span>E-commerce & Local Goods</span></li>
+                </ul>
+            </div>
+            <div class="fleet-card">
+                <div class="fleet-icon"><i class="fa-solid fa-truck"></i></div>
+                <h3>Medium Payload Trucks</h3>
+                <p>Optimized for inter-city heavy raw material and manufactured asset transits.</p>
+                <ul class="fleet-details">
+                    <li>Models <span>14 Feet Open / Closed</span></li>
+                    <li>Payload Capacity <span>Up to 4 Tons</span></li>
+                    <li>Best For <span>Industrial & FMCG Loads</span></li>
+                </ul>
+            </div>
+            <div class="fleet-card">
+                <div class="fleet-icon"><i class="fa-solid fa-truck-moving"></i></div>
+                <h3>Heavy Cargo Containers</h3>
+                <p>High-volume long-haul structural configurations designed for interstate corridors.</p>
+                <ul class="fleet-details">
+                    <li>Models <span>20ft / 32ft MX Containers</span></li>
+                    <li>Payload Capacity <span>7 Tons - 20+ Tons</span></li>
+                    <li>Best For <span>Heavy Machinery & Bulk Cargo</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: WHY CHOOSE US -->
+    <section id="why-us" class="info-layout" style="background: #f8fafc;">
+        <div class="section-title">
+            <h2>Why Enterprise Leaders Trust <span>VFC</span></h2>
+            <p>Setting the benchmark for premium industrial supply chains across India.</p>
+        </div>
+        <div class="fleet-grid">
+            <div class="feature-card" style="border-top:none; border-left: 4px solid #e11d48;">
+                <i class="fa-solid fa-hand-holding-dollar" style="color:#000;"></i>
+                <h4 style="margin-top:10px;">Transparent Flat Pricing</h4>
+                <p>No unexpected surcharges, toll manipulations, or complex loading fees. Upfront itemized billing matrix.</p>
+            </div>
+            <div class="feature-card" style="border-top:none; border-left: 4px solid #000000;">
+                <i class="fa-solid fa-route" style="color:#e11d48;"></i>
+                <h4 style="margin-top:10px;">Optimized Corridor Routing</h4>
+                <p>Advanced algorithmic route planning bypasses high-congestion corridors, ensuring fast fuel-efficient timelines.</p>
+            </div>
+            <div class="feature-card" style="border-top:none; border-left: 4px solid #e11d48;">
+                <i class="fa-solid fa-building-shield" style="color:#000;"></i>
+                <h4 style="margin-top:10px;">Zero-Downtime Maintenance</h4>
+                <p>Our fleets undergo rigorous fitness audits every fortnight to maximize highway uptime reliability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROCESS TIMELINE -->
+    <section id="process" class="info-layout process-bg">
+        <div class="section-title">
+            <h2>The <span>VFC Dispatch</span> Blueprint</h2>
+            <p style="color:#94a3b8;">Systemized resource orchestration from initialization to offloading.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-node">
+                <div class="process-number">01</div>
+                <h4>Instant Initialization</h4>
+                <p>Submit your destination parameters through our real-time digital allocation desk.</p>
+            </div>
+            <div class="process-node">
+                <div class="process-number">02</div>
+                <h4>Fleet Assignment</h4>
+                <p>The system matches the correct axle configurations and verifies active driver availability.</p>
+            </div>
+            <div class="process-node">
+                <div class="process-number">03</div>
+                <h4>Secure Loading</h4>
+                <p>Cargo is tracked during loading at warehouses with secure inventory verification tags.</p>
+            </div>
+            <div class="process-node">
+                <div class="process-number">04</div>
+                <h4>Assured Delivery</h4>
+                <p>Consignments travel via designated lanes and reach destination points exactly on time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORPORATE FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3><span class="brand-vfc">VFC</span> <span class="brand-logistics">Logistics</span></h3>
+                <p>Premium supply chain, heavy freight management, and nationwide commercial transportation solutions built on absolute commitment.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Our Services</h5>
+                <ul>
+                    <li><a href="#fleet">Intracity Distribution</a></li>
+                    <li><a href="#fleet">Interstate Long-Haul</a></li>
+                    <li><a href="#fleet">Dedicated Enterprise Fleet</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Contact Hub</h5>
+                <ul>
+                    <li><a href="tel:+919541842526"><i class="fa-solid fa-phone" style="color:#e11d48; margin-right:5px;"></i> +91 95418 42526</a></li>
+                    <li><a href="mailto:fitnesslakshay75@gmail.com"><i class="fa-solid fa-envelope" style="color:#e11d48; margin-right:5px;"></i> info@vfclogistics.com</a></li>
+                    <li><a href="#bookingForm"><i class="fa-solid fa-location-dot" style="color:#e11d48; margin-right:5px;"></i> Pan-India Transit Network</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 VFC Logistics Private Limited. All Rights Reserved.</p>
+            <p>Designed for Enterprise Performance</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT CODE -->
+    <script>
+        function sendBooking(e) {
+            e.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let pickup = document.getElementById("pickup").value;
+            let drop = document.getElementById("drop").value;
+            let truck = document.getElementById("truck").value;
+
+            let msg = "*NEW ENTERPRISE FLEET BOOKING*%0A%0A" +
+                      "*Client/Company:* " + encodeURIComponent(name) + "%0A" +
+                      "*Contact:* " + encodeURIComponent(phone) + "%0A" +
+                      "*Origin:* " + encodeURIComponent(pickup) + "%0A" +
+                      "*Destination:* " + encodeURIComponent(drop) + "%0A" +
+                      "*Fleet Selected:* " + encodeURIComponent(truck);
+
+            window.open("https://wa.me/919541842526?text=" + msg, "_blank");
+
+            let form = document.createElement("form");
+            form.method = "POST";
+            form.action = "https://formsubmit.co/fitnesslakshay75@gmail.com";
+            form.target = "_blank";
+
+            let inputs = { name, phone, pickup, drop, truck };
+            for (let key in inputs) {
+                let input = document.createElement("input");
+                input.type = "hidden";
+                input.name = key;
+                input.value = inputs[key];
+                form.appendChild(input);
+            }
+
+            document.body.appendChild(form);
+            
+            setTimeout(() => {
+                form.submit();
+                document.body.removeChild(form);
+            }, 500);
+        }
+    </script>
 </body>
 </html>
