@@ -95,7 +95,7 @@ footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
     <div class="links">
       <a href="#services">Services</a>
       <a href="#coverage">Coverage</a>
-      <a href="#quote" class="btn">Request a quote</a>
+      <a href="#quote" class="btn">Book a truck</a>
     </div>
   </nav>
 </header>
@@ -107,7 +107,7 @@ footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
       <h1>Move your business freight with confidence.</h1>
       <p>Tell us what you need to move and where it needs to go. Our team will review your shipment details and get back to you with a tailored quote.</p>
       <div class="actions">
-        <a class="btn" href="#quote">Request a transport quote →</a>
+        <a class="btn" href="#quote">Book a truck →</a>
         <a class="btn ghost" href="https://wa.me/919541842526" target="_blank" rel="noopener">Chat on WhatsApp</a>
       </div>
       <div class="note">Share your route, shipment size and preferred timing for a useful response.</div>
@@ -160,7 +160,7 @@ footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
       <div>
         <div class="eyebrow">Request a quote</div>
         <h2>Send your enquiry to our team.</h2>
-        <p class="muted">Complete the form. Your enquiry will be emailed, and WhatsApp will open with a draft for you to review and send.</p>
+        <p class="muted">Submit your shipment details to VFC Logistics. WhatsApp will also open with a draft; sending that WhatsApp message is optional.</p>
         <p><strong>Prefer to call?</strong><br><a href="tel:+919541842526">+91 95418 42526</a></p>
       </div>
 
@@ -208,8 +208,8 @@ footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
             <textarea id="notes" name="Shipment details" placeholder="Dimensions, goods type, pickup date, or other requirements"></textarea>
           </div>
         </div>
-        <p class="hint">WhatsApp opens with a draft. Review the message and press Send there too.</p>
-        <button class="btn" type="submit">Send enquiry by email + WhatsApp</button>
+        <p class="hint">Clicking Book a truck submits the enquiry. WhatsApp opens separately; you do not need to send a WhatsApp message for the email to go.</p>
+        <button class="btn" type="submit">Book a truck</button>
       </form>
     </div>
   </section>
@@ -258,7 +258,7 @@ footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
   <section class="cta">
     <div class="wrap">
       <div><h2>Have a shipment to move?</h2><p>Send your route and shipment details to start a quote discussion.</p></div>
-      <a href="#quote" class="btn">Request a quote →</a>
+      <a href="#quote" class="btn">Book a truck →</a>
     </div>
   </section>
 </main>
@@ -275,13 +275,13 @@ footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-document.getElementById('quoteForm').addEventListener('submit', async function(event) {
+document.getElementById('quoteForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
   const form = event.currentTarget;
   const data = Object.fromEntries(new FormData(form).entries());
-  const lines = ['Hello VFC Logistics, I would like a transport quote.', ''];
 
+  const lines = ['Hello VFC Logistics, I would like a transport quote.', ''];
   for (const [key, value] of Object.entries(data)) {
     if (String(value).trim()) lines.push(key + ': ' + String(value).trim());
   }
@@ -290,35 +290,24 @@ document.getElementById('quoteForm').addEventListener('submit', async function(e
     'https://wa.me/919541842526?text=' +
     encodeURIComponent(lines.join('\n'));
 
-  // WhatsApp draft kholne ki koshish; wahan Send dabana hoga.
-  const whatsappTab = window.open(whatsappUrl, '_blank');
+  // Email request starts as soon as the form is submitted.
+  // It does not wait for the customer to send the WhatsApp message.
+  fetch('https://formsubmit.co/ajax/fitnesslakshy75@gmail.com', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      ...data,
+      _subject: 'New VFC Logistics transport enquiry'
+    })
+  }).catch(function() {});
 
-  try {
-    const response = await fetch(
-      'https://formsubmit.co/ajax/fitnesslakshy75@gmail.com',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data,
-          _subject: 'New VFC Logistics transport enquiry'
-        })
-      }
-    );
+  // WhatsApp opens separately. The customer may send or close it.
+  window.open(whatsappUrl, '_blank');
 
-    const result = await response.json();
-    if (!response.ok || !result.success) {
-      throw new Error('Email submission failed');
-    }
-
-    alert('Email enquiry submit ho gayi. WhatsApp draft mein Send bhi dabana.');
-    form.reset();
-  } catch (error) {
-    alert('Email abhi submit nahi hui. WhatsApp draft khula ho to wahan Send dabao, phir dobara try karo.');
-  }
+  form.reset();
 });
 </script>
 
