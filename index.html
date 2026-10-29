@@ -1,113 +1,326 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10243a">
 <meta name="description" content="VFC Logistics helps businesses arrange road transport. Request a quote for your route and shipment.">
 <title>VFC Logistics | Business Transport</title>
 <style>
-:root{--navy:#10243a;--blue:#1b3c59;--orange:#ef8b27;--ink:#172638;--muted:#5d6b79;--paper:#f4f7f9;--line:#dce3e9}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+:root{--navy:#10243a;--orange:#ef8b27;--ink:#172638;--muted:#5d6b79;--paper:#f4f7f9;--line:#dce3e9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
 .wrap{width:min(1120px,calc(100% - 36px));margin:auto}
-.top{background:var(--navy);color:#e2ebf2;padding:8px 0;font-size:13px}.top .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.top a{color:white;text-decoration:none}
-header{position:sticky;top:0;background:#fff;z-index:5;border-bottom:1px solid var(--line)}
+.top{background:var(--navy);color:#e2ebf2;padding:8px 0;font-size:13px}
+.top .wrap,footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.top a,footer a{color:white;text-decoration:none}
+header{position:sticky;top:0;background:white;z-index:5;border-bottom:1px solid var(--line)}
 nav{min-height:72px;display:flex;justify-content:space-between;align-items:center;gap:18px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-weight:850;letter-spacing:.05em}
-.brand img{width:44px;height:44px;object-fit:contain}.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:.12em}
-.links{display:flex;align-items:center;gap:22px}.links a{font-size:14px;font-weight:700;text-decoration:none;color:#33465a}
+.brand img{width:44px;height:44px;object-fit:contain}
+.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:.12em}
+.links{display:flex;align-items:center;gap:20px}
+.links a{font-size:14px;font-weight:700;text-decoration:none;color:#33465a}
 .btn{display:inline-block;border:0;border-radius:9px;background:var(--orange);color:#182431!important;padding:12px 18px;font-weight:800;text-decoration:none;cursor:pointer}
-.btn.dark{background:var(--navy);color:white!important}.btn.ghost{background:transparent;color:white!important;border:1px solid #ffffff80}
+.btn.dark{background:var(--navy);color:white!important}
+.btn.ghost{background:transparent;color:white!important;border:1px solid #ffffff80}
 .hero{color:white;background:linear-gradient(100deg,#091a2bf2,#091a2bbd 62%,#091a2b55),url('truck.jpg') center/cover;padding:82px 0;min-height:440px;display:flex;align-items:center}
-.hero .copy{max-width:690px}.eyebrow{color:var(--orange);font-size:12px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+.copy{max-width:690px}
+.eyebrow{color:var(--orange);font-size:12px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
 h1{font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-.04em;margin:12px 0 18px}
-.hero p{max-width:600px;color:#d9e2e9;font-size:18px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-.hero .note{font-size:13px;margin-top:18px;color:#d9e2e9}
-.trust{border-bottom:1px solid var(--line);padding:18px 0}.trust .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;font-weight:700;color:#33465a}
-section{padding:68px 0}.soft{background:var(--paper)}h2{font-size:clamp(28px,4vw,40px);line-height:1.12;color:var(--navy);letter-spacing:-.03em;margin:8px 0 12px}
-.intro{max-width:680px;margin-bottom:28px}.intro p,.muted{color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:24px}
-.card .icon{font-size:24px}.card h3{color:var(--navy);margin:10px 0 6px}.card p{color:var(--muted);margin:0;font-size:14px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}.photo{min-height:320px;border-radius:16px;background:url('truck.jpg') center/cover;box-shadow:0 16px 36px #10243a22}
-ul{padding:0;list-style:none}li{margin:11px 0;color:#33465a}li:before{content:"✓";color:#178257;font-weight:900;margin-right:10px}
-.quote{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:start}.quote aside{position:sticky;top:100px}
+.hero p{max-width:600px;color:#d9e2e9;font-size:18px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.note{font-size:13px;margin-top:18px;color:#d9e2e9}
+.trust{border-bottom:1px solid var(--line);padding:18px 0}
+.trust .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;font-weight:700;color:#33465a}
+section{padding:64px 0}
+.soft{background:var(--paper)}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.12;color:var(--navy);letter-spacing:-.03em;margin:8px 0 12px}
+.intro{max-width:680px;margin-bottom:28px}
+.intro p,.muted{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;border:1px solid var(--line);border-radius:15px;padding:24px}
+.card h3{color:var(--navy);margin:10px 0 6px}
+.card p{color:var(--muted);margin:0;font-size:14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.photo{min-height:300px;border-radius:16px;background:url('truck.jpg') center/cover}
+ul{padding:0;list-style:none}
+li{margin:11px 0;color:#33465a}
+li:before{content:"✓";color:#178257;font-weight:900;margin-right:10px}
+.quote{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:start}
 form{background:white;border:1px solid var(--line);border-radius:16px;padding:25px;box-shadow:0 12px 35px #10243a12}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
 label{font-size:13px;font-weight:750;color:#33465a}
-input,select,textarea{width:100%;border:1px solid #cbd5de;border-radius:8px;padding:11px;font:inherit;color:var(--ink);background:#fff}
+input,select,textarea{width:100%;border:1px solid #cbd5de;border-radius:8px;padding:11px;font:inherit;color:var(--ink);background:white}
 textarea{min-height:90px;resize:vertical}
 .hint{font-size:12px;color:var(--muted);margin:12px 0}
 form button{width:100%;font-size:15px}
-.area{background:var(--navy);border-radius:15px;color:#fff;padding:25px}.area p{color:#d7e1e9;margin-bottom:0}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{background:white;padding:20px;border-top:3px solid var(--orange);border-radius:0 0 12px 12px}.step h3{color:var(--navy);margin:8px 0}.step p{color:var(--muted);font-size:14px;margin:0}
-details{max-width:850px;border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;color:var(--navy);font-weight:750}details p{color:var(--muted);margin:9px 0 0}
-.cta{background:var(--navy);color:white;padding:45px 0}.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}.cta h2{color:white;margin:0 0 6px}.cta p{color:#d7e1e9;margin:0}
-footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}footer a{color:white}
-.float{position:fixed;right:16px;bottom:16px;background:#16895d;color:white;text-decoration:none;padding:12px 16px;border-radius:40px;font-weight:800;box-shadow:0 6px 20px #0003}
-@media(max-width:760px){.links{gap:10px}.links a:not(.btn){display:none}.cards{grid-template-columns:1fr 1fr}.quote{grid-template-columns:1fr}.quote aside{position:static}.split{gap:22px}}
-@media(max-width:560px){.wrap{width:calc(100% - 28px)}.hero{padding:60px 0;min-height:390px}.hero p{font-size:16px}section{padding:52px 0}.trust .wrap,.cta .wrap{flex-direction:column;align-items:flex-start}.cards,.split,.steps,.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.photo{min-height:230px;order:2}form{padding:18px}}
+.area{background:var(--navy);border-radius:15px;color:white;padding:25px}
+.area p{color:#d7e1e9;margin-bottom:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:white;padding:20px;border-top:3px solid var(--orange);border-radius:0 0 12px 12px}
+.step h3{color:var(--navy);margin:8px 0}
+.step p{color:var(--muted);font-size:14px;margin:0}
+details{max-width:850px;border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;color:var(--navy);font-weight:750}
+details p{color:var(--muted);margin:9px 0 0}
+.cta{background:var(--navy);color:white;padding:42px 0}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.cta h2{color:white;margin:0 0 6px}
+.cta p{color:#d7e1e9;margin:0}
+footer{background:#0b1928;color:#c1ccd5;padding:25px 0;font-size:13px}
+.float{position:fixed;right:16px;bottom:16px;background:#16895d;color:white;text-decoration:none;padding:12px 16px;border-radius:40px;font-weight:800}
+@media(max-width:760px){.links{gap:10px}.links a:not(.btn){display:none}.cards{grid-template-columns:1fr 1fr}.quote{grid-template-columns:1fr}.split{gap:22px}}
+@media(max-width:560px){.wrap{width:calc(100% - 28px)}.hero{padding:58px 0;min-height:390px}.hero p{font-size:16px}section{padding:50px 0}.trust .wrap,.cta .wrap{flex-direction:column;align-items:flex-start}.cards,.split,.steps,.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.photo{min-height:220px;order:2}form{padding:18px}}
 </style>
 </head>
 <body>
-<div class="top"><div class="wrap"><span>VFC Logistics · We Deliver Commitment</span><a href="tel:+919541842526">Call: +91 95418 42526</a></div></div>
-<header><nav class="wrap">
-<a class="brand" href="#home"><img src="logo.jpg" alt="VFC Logistics logo"><span>VFC LOGISTICS<small>WE DELIVER COMMITMENT</small></span></a>
-<div class="links"><a href="#services">Services</a><a href="#coverage">Coverage</a><a href="#quote" class="btn">Request a quote</a></div>
-</nav></header>
+
+<div class="top">
+  <div class="wrap">
+    <span>VFC Logistics · We Deliver Commitment</span>
+    <a href="tel:+919541842526">Call: +91 95418 42526</a>
+  </div>
+</div>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#home">
+      <img src="logo.jpg" alt="VFC Logistics logo">
+      <span>VFC LOGISTICS<small>WE DELIVER COMMITMENT</small></span>
+    </a>
+    <div class="links">
+      <a href="#services">Services</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#quote" class="btn">Request a quote</a>
+    </div>
+  </nav>
+</header>
+
 <main>
-<section class="hero" id="home"><div class="wrap copy">
-<div class="eyebrow">Business transport solutions</div>
-<h1>Move your business freight with confidence.</h1>
-<p>Tell us what you need to move and where it needs to go. Our team will review your shipment details and get back to you with a tailored quote.</p>
-<div class="actions"><a class="btn" href="#quote">Request a transport quote →</a><a class="btn ghost" href="https://wa.me/919541842526?text=Hello%20VFC%20Logistics%2C%20I%20would%20like%20to%20discuss%20a%20transport%20requirement." target="_blank" rel="noopener">Chat on WhatsApp</a></div>
-<div class="note">Share your route, shipment size and preferred timing for a useful response.</div>
-</div></section>
-<div class="trust"><div class="wrap"><span>✓ Quotes based on your shipment details</span><span>✓ Part load and full truck enquiries</span><span>✓ Route availability confirmed with you</span></div></div>
-<section id="services"><div class="wrap"><div class="intro"><div class="eyebrow">What we arrange</div><h2>Transport options for business shipments</h2><p>Vehicle availability, schedule and final terms are confirmed when we review your request.</p></div>
-<div class="cards">
-<article class="card"><div class="icon">🚚</div><h3>Full truck load</h3><p>Request a dedicated vehicle for a larger shipment or a specific route.</p></article>
-<article class="card"><div class="icon">📦</div><h3>Part load</h3><p>Ask about space for consignments that do not need a full vehicle. Share dimensions and weight.</p></article>
-<article class="card"><div class="icon">🏭</div><h3>Regular business movement</h3><p>Discuss recurring dispatch needs, preferred routes and shipment frequency.</p></article>
-</div></div></section>
-<section class="soft"><div class="wrap split"><div class="photo" role="img" aria-label="VFC Logistics truck"></div><div><div class="eyebrow">A clear quote starts with details</div><h2>Tell us what is moving.</h2><p class="muted">We use your shipment information to check the requested route and transport requirements, then confirm availability, timing and the applicable rate.</p><ul><li>Pickup and delivery locations</li><li>Shipment weight and approximate dimensions</li><li>Vehicle type or delivery timing, if known</li><li>Handling notes that may affect transport</li></ul><a href="#quote" class="btn dark">Share shipment details</a></div></div></section>
-<section id="quote"><div class="wrap quote"><aside><div class="eyebrow">Request a quote</div><h2>Send your enquiry to our team.</h2><p class="muted">Complete the form and continue to WhatsApp. Review the message before sending it.</p><p><strong>Prefer to call?</strong><br><a href="tel:+919541842526">+91 95418 42526</a></p></aside>
-<form id="quoteForm"><div class="fields">
-<div class="field"><label for="company">Company name</label><input id="company" name="Company" autocomplete="organization" placeholder="Your business"></div>
-<div class="field"><label for="contact">Your name *</label><input id="contact" name="Contact name" required autocomplete="name" placeholder="Name"></div>
-<div class="field"><label for="phone">Mobile number *</label><input id="phone" name="Mobile number" type="tel" required autocomplete="tel" placeholder="Your number"></div>
-<div class="field"><label for="service">Service required</label><select id="service" name="Service"><option>Full truck load</option><option>Part load</option><option>Regular business transport</option><option>Not sure yet</option></select></div>
-<div class="field"><label for="pickup">Pickup location *</label><input id="pickup" name="Pickup location" required placeholder="City / PIN code"></div>
-<div class="field"><label for="drop">Delivery location *</label><input id="drop" name="Delivery location" required placeholder="City / PIN code"></div>
-<div class="field"><label for="weight">Approximate weight</label><input id="weight" name="Approximate weight" placeholder="e.g. 1,200 kg"></div>
-<div class="field"><label for="vehicle">Vehicle preference</label><input id="vehicle" name="Vehicle preference" placeholder="If known"></div>
-<div class="field full"><label for="notes">Shipment and timing details</label><textarea id="notes" name="Shipment details" placeholder="Dimensions, goods type, pickup date, or other requirements"></textarea></div>
-</div><p class="hint">WhatsApp will open with a draft message. Review it and press Send to contact us.</p><button class="btn" type="submit">Continue to WhatsApp →</button></form>
-</div></section>
-<section class="soft" id="coverage"><div class="wrap"><div class="intro"><div class="eyebrow">Service areas</div><h2>Check your route with us.</h2><p>Coverage depends on the origin, destination, vehicle and schedule. Share both locations and our team will confirm availability.</p></div>
-<div class="area"><strong>Need a recurring route?</strong><p>Include your usual dispatch frequency and expected volume so we can understand your requirement.</p></div></div></section>
-<section><div class="wrap"><div class="intro"><div class="eyebrow">Simple next steps</div><h2>From enquiry to confirmed movement</h2></div><div class="steps">
-<div class="step"><h3>1. Share the details</h3><p>Send the route, shipment size, service type and preferred timing.</p></div>
-<div class="step"><h3>2. Review the quote</h3><p>We confirm route availability, vehicle options, schedule and commercial terms.</p></div>
-<div class="step"><h3>3. Confirm the booking</h3><p>Once you accept the terms, our team coordinates the agreed movement.</p></div>
-</div></div></section>
-<section class="soft"><div class="wrap"><div class="intro"><div class="eyebrow">Common questions</div><h2>Before you request a quote</h2></div>
-<details><summary>How is the transport rate decided?</summary><p>Rates depend on route, shipment weight and dimensions, vehicle type, timing and handling requirements. Request a quote for the applicable rate.</p></details>
-<details><summary>Does this website show a final instant rate?</summary><p>No. Any quick estimate would be indicative only. Please request a quote for an approved rate based on your shipment.</p></details>
-<details><summary>Which areas do you serve?</summary><p>Availability is confirmed route by route. Share your pickup and delivery locations and our team will check the requested lane.</p></details>
-<details><summary>Is my shipment insured?</summary><p>Please ask our team about insurance options and terms for your specific consignment before confirming a booking.</p></details>
-</div></section>
-<section class="cta"><div class="wrap"><div><h2>Have a shipment to move?</h2><p>Send your route and shipment details to start a quote discussion.</p></div><a href="#quote" class="btn">Request a quote →</a></div></section>
+  <section class="hero" id="home">
+    <div class="wrap copy">
+      <div class="eyebrow">Business transport solutions</div>
+      <h1>Move your business freight with confidence.</h1>
+      <p>Tell us what you need to move and where it needs to go. Our team will review your shipment details and get back to you with a tailored quote.</p>
+      <div class="actions">
+        <a class="btn" href="#quote">Request a transport quote →</a>
+        <a class="btn ghost" href="https://wa.me/919541842526" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+      <div class="note">Share your route, shipment size and preferred timing for a useful response.</div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="wrap">
+      <span>✓ Quote based on your shipment details</span>
+      <span>✓ Part load and full truck enquiries</span>
+      <span>✓ Route availability confirmed with you</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow">What we arrange</div>
+        <h2>Transport options for business shipments</h2>
+        <p>Vehicle availability, schedule and final terms are confirmed when we review your request.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><h3>Full truck load</h3><p>Request a dedicated vehicle for a larger shipment or a specific route.</p></article>
+        <article class="card"><h3>Part load</h3><p>Ask about space for consignments that do not need a full vehicle. Share dimensions and weight.</p></article>
+        <article class="card"><h3>Regular business movement</h3><p>Discuss recurring dispatch needs, preferred routes and shipment frequency.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="wrap split">
+      <div class="photo" role="img" aria-label="VFC Logistics truck"></div>
+      <div>
+        <div class="eyebrow">A clear quote starts with details</div>
+        <h2>Tell us what is moving.</h2>
+        <p class="muted">We use your shipment information to check the requested route and transport requirements, then confirm availability, timing and the applicable rate.</p>
+        <ul>
+          <li>Pickup and delivery locations</li>
+          <li>Shipment weight and approximate dimensions</li>
+          <li>Vehicle type or delivery timing, if known</li>
+          <li>Handling notes that may affect transport</li>
+        </ul>
+        <a href="#quote" class="btn dark">Share shipment details</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote">
+    <div class="wrap quote">
+      <div>
+        <div class="eyebrow">Request a quote</div>
+        <h2>Send your enquiry to our team.</h2>
+        <p class="muted">Complete the form. Your enquiry will be emailed, and WhatsApp will open with a draft for you to review and send.</p>
+        <p><strong>Prefer to call?</strong><br><a href="tel:+919541842526">+91 95418 42526</a></p>
+      </div>
+
+      <form id="quoteForm">
+        <div class="fields">
+          <div class="field">
+            <label for="company">Company name</label>
+            <input id="company" name="Company" placeholder="Your business">
+          </div>
+          <div class="field">
+            <label for="contact">Your name *</label>
+            <input id="contact" name="Contact name" required placeholder="Name">
+          </div>
+          <div class="field">
+            <label for="phone">Mobile number *</label>
+            <input id="phone" name="Mobile number" type="tel" required placeholder="Your number">
+          </div>
+          <div class="field">
+            <label for="service">Service required</label>
+            <select id="service" name="Service">
+              <option>Full truck load</option>
+              <option>Part load</option>
+              <option>Regular business transport</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pickup">Pickup location *</label>
+            <input id="pickup" name="Pickup location" required placeholder="City / PIN code">
+          </div>
+          <div class="field">
+            <label for="drop">Delivery location *</label>
+            <input id="drop" name="Delivery location" required placeholder="City / PIN code">
+          </div>
+          <div class="field">
+            <label for="weight">Approximate weight</label>
+            <input id="weight" name="Approximate weight" placeholder="e.g. 1,200 kg">
+          </div>
+          <div class="field">
+            <label for="vehicle">Vehicle preference</label>
+            <input id="vehicle" name="Vehicle preference" placeholder="If known">
+          </div>
+          <div class="field full">
+            <label for="notes">Shipment and timing details</label>
+            <textarea id="notes" name="Shipment details" placeholder="Dimensions, goods type, pickup date, or other requirements"></textarea>
+          </div>
+        </div>
+        <p class="hint">WhatsApp opens with a draft. Review the message and press Send there too.</p>
+        <button class="btn" type="submit">Send enquiry by email + WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="soft" id="coverage">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow">Service areas</div>
+        <h2>Check your route with us.</h2>
+        <p>Coverage depends on the origin, destination, vehicle and schedule. Share both locations and our team will confirm availability.</p>
+      </div>
+      <div class="area">
+        <strong>Need a recurring route?</strong>
+        <p>Include your usual dispatch frequency and expected volume so we can understand your requirement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow">Simple next steps</div>
+        <h2>From enquiry to confirmed movement</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>1. Share the details</h3><p>Send the route, shipment size, service type and preferred timing.</p></div>
+        <div class="step"><h3>2. Review the quote</h3><p>We confirm route availability, vehicle options, schedule and commercial terms.</p></div>
+        <div class="step"><h3>3. Confirm the booking</h3><p>Once you accept the terms, our team coordinates the agreed movement.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow">Common questions</div>
+        <h2>Before you request a quote</h2>
+      </div>
+      <details><summary>How is the transport rate decided?</summary><p>Rates depend on route, shipment weight and dimensions, vehicle type, timing and handling requirements. Request a quote for the applicable rate.</p></details>
+      <details><summary>Does this website show a final instant rate?</summary><p>No. Any quick estimate would be indicative only. Please request a quote for an approved rate based on your shipment.</p></details>
+      <details><summary>Which areas do you serve?</summary><p>Availability is confirmed route by route. Share your pickup and delivery locations and our team will check the requested lane.</p></details>
+      <details><summary>Is my shipment insured?</summary><p>Please ask our team about insurance options and terms for your specific consignment before confirming a booking.</p></details>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div><h2>Have a shipment to move?</h2><p>Send your route and shipment details to start a quote discussion.</p></div>
+      <a href="#quote" class="btn">Request a quote →</a>
+    </div>
+  </section>
 </main>
-<footer><div class="wrap"><span>© <span id="year"></span> VFC Logistics · We Deliver Commitment</span><span><a href="tel:+919541842526">+91 95418 42526</a> · <a href="https://wa.me/919541842526" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
-<a class="float" href="https://wa.me/919541842526?text=Hello%20VFC%20Logistics%2C%20I%20would%20like%20a%20transport%20quote." target="_blank" rel="noopener">WhatsApp ↗</a>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> VFC Logistics · We Deliver Commitment</span>
+    <span><a href="tel:+919541842526">+91 95418 42526</a> · <a href="https://wa.me/919541842526">WhatsApp</a></span>
+  </div>
+</footer>
+
+<a class="float" href="https://wa.me/919541842526" target="_blank" rel="noopener">WhatsApp ↗</a>
+
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
-document.getElementById('quoteForm').addEventListener('submit',function(event){
- event.preventDefault();
- const lines=['Hello VFC Logistics, I would like a transport quote.',''];
- for(const [key,value] of new FormData(event.currentTarget))if(String(value).trim())lines.push(key+': '+String(value).trim());
- window.open('https://wa.me/919541842526?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener,noreferrer');
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.getElementById('quoteForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const data = Object.fromEntries(new FormData(form).entries());
+  const lines = ['Hello VFC Logistics, I would like a transport quote.', ''];
+
+  for (const [key, value] of Object.entries(data)) {
+    if (String(value).trim()) lines.push(key + ': ' + String(value).trim());
+  }
+
+  const whatsappUrl =
+    'https://wa.me/919541842526?text=' +
+    encodeURIComponent(lines.join('\n'));
+
+  // WhatsApp draft kholne ki koshish; wahan Send dabana hoga.
+  const whatsappTab = window.open(whatsappUrl, '_blank');
+
+  try {
+    const response = await fetch(
+      'https://formsubmit.co/ajax/fitnesslakshy75@gmail.com',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: 'New VFC Logistics transport enquiry'
+        })
+      }
+    );
+
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+      throw new Error('Email submission failed');
+    }
+
+    alert('Email enquiry submit ho gayi. WhatsApp draft mein Send bhi dabana.');
+    form.reset();
+  } catch (error) {
+    alert('Email abhi submit nahi hui. WhatsApp draft khula ho to wahan Send dabao, phir dobara try karo.');
+  }
 });
 </script>
+
 </body>
 </html>
